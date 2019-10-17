@@ -22,5 +22,3 @@ except GurobiError:
     print ('Error reported')
 
 
-
-#afadfjalsd
