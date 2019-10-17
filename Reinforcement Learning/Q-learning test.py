@@ -1,13 +1,24 @@
 import numpy as np
 import pandas as pd
 import time
+import random
+from interval import Interval
+#State S[Remaining data storage ability, Remaining time,Incoming Task number]
 
-N_STATES = 6   # 1维世界的宽度
-ACTIONS = ['left', 'right']     # 探索者的可用动作
+Task={'1':[1,3,2,2],'2':[2,5,3,3],'3':[6,8,2,2]}
+Tasklist=[1,2,3]
+RemainingTime=list[Interval(1,8,closed=True)]
+Tasklist=[2,3,2]
+Storage=5
+TaskNumber=random.choice(Tasklist)
+label=1
+S=[Storage, RemainingTime,TaskNumber,label]
+N_STATES = 1  # 1维世界的宽度
+ACTIONS = ['Accept', 'Reject']     # 探索者的可用动作
 EPSILON = 0.9   # 贪婪度 greedy
 ALPHA = 0.1     # 学习率
 GAMMA = 0.9    # 奖励递减值
-MAX_EPISODES = 13   # 最大回合数
+MAX_EPISODES = 3  # 最大回合数
 FRESH_TIME = 0.3    # 移动间隔时间
 
 
@@ -31,29 +42,56 @@ def build_q_table(n_states, actions):
 
 # 在某个 state 地点, 选择行为
 def choose_action(state, q_table):
-    state_actions = q_table.iloc[state, :]  # 选出这个 state 的所有 action 值
+    state_actions = q_table.iloc[S[3], :]  # 选出这个 state 的所有 action 值
     if (np.random.uniform() > EPSILON) or (state_actions.all() == 0):  # 非贪婪 or 或者这个 state 还没有探索过
         action_name = np.random.choice(ACTIONS)
     else:
         action_name = state_actions.argmax()    # 贪婪模式
     return action_name
 
-def get_env_feedback(S, A):
+def get_env_feedback(S, A,taskList):
     # This is how agent will interact with the environment
-    if A == 'right':    # move right
-        if S == N_STATES - 2:   # terminate
-            S_ = 'terminal'
-            R = 1
+    taskList.remove(S[2]) #确保一个episode里面只会遇到某一个任务一次
+    Tasknum=S[2]
+    RemainingTime=S[1]
+
+    if S[0] < Task[Tasknum][2] or \
+            (Task[Tasknum][0] not in RemainingTime) or (Task[Tasknum][1] not in RemainingTime):
+
+        if A=='Accept':
+
+            R=-1
+
+            S[2]=random.choice(taskList)
+
+
         else:
-            S_ = S + 1
-            R = 0
-    else:   # move left
-        R = 0
-        if S == 0:
-            S_ = S  # reach the wall
+
+            R=0
+
+            S[2] = random.choice(taskList)
+
+
+    else:
+
+        if A=='Accept':
+
+            R=1
+
+            S[0]=S[0]-Task[Tasknum][2]
+            RemainingTime[1].lower_bound = RemainingTime[0].lower_bound
+            RemainingTime[0].lower_bound=Task[Tasknum][1]
+            RemainingTime[1].upper_bound=Task[Tasknum][0]
+
+            S[2] = random.choice(taskList)
+
         else:
-            S_ = S - 1
-    return S_, R
+
+            R=0
+
+            S[2] = random.choice(taskList)
+
+    return S, R
 
 def update_env(S, episode, step_counter):
     # This is how environment be updated
@@ -73,7 +111,8 @@ def rl():
     q_table = build_q_table(N_STATES, ACTIONS)  # 初始 q table
     for episode in range(MAX_EPISODES):     # 回合
         step_counter = 0
-        S = 0   # 回合初始位置
+
+
         is_terminated = False   # 是否回合结束
         update_env(S, episode, step_counter)    # 环境更新
         while not is_terminated:
