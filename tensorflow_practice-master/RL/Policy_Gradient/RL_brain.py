@@ -35,9 +35,9 @@ class PolicyGradient:
 
         self.ep_obs, self.ep_as, self.ep_rs = [], [], []
 
-        self._build_net()
+        self._build_net()#建立神经网络
 
-        self.sess = tf.Session()
+        self.sess = tf.Session()#Session 是 Tensorflow 为了控制,和输出文件的执行的语句.
 
         if output_graph:
             # $ tensorboard --logdir=logs

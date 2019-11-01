@@ -3,6 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="639b334a-7721-4416-ac57-6edd38b904bb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reinforcement Learning/Q-learing test2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Reinforcement Learning/Q-learing test2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tensorflow_practice-master/RL/Policy_Gradient/RL_brain.py" beforeDir="false" afterPath="$PROJECT_DIR$/tensorflow_practice-master/RL/Policy_Gradient/RL_brain.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tensorflow_practice-master/RL/Policy_Gradient/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Reinforcement Learning/Q-learning_test3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tensorflow_practice-master/RL/Policy_Gradient/run_MountainCar.py" beforeDir="false" afterPath="$PROJECT_DIR$/tensorflow_practice-master/RL/Policy_Gradient/run_MountainCar.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,7 +18,32 @@
     <favorites_list name="Satellites Mission Shedule" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Reinforcement Learning/Q-learing test2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-6266">
+              <caret line="8" column="19" lean-forward="true" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Reinforcement Learning/Q-learning_test3.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="269">
+              <caret line="523" lean-forward="true" selection-start-line="523" selection-end-line="523" />
+              <folding>
+                <element signature="e#45#63#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -33,9 +62,13 @@
         <option value="$PROJECT_DIR$/Mission schedule with Gurobi(According to the paper 'Optimal Continous-Time...')/get_data.py" />
         <option value="$PROJECT_DIR$/Reinforcement Learning/tensorFlowTest.py" />
         <option value="$PROJECT_DIR$/Reinforcement Learning/Q-learning test.py" />
-        <option value="$PROJECT_DIR$/Reinforcement Learning/Q-learing test2.py" />
         <option value="$PROJECT_DIR$/Reinforcement Learning/A3C_test.py" />
         <option value="$PROJECT_DIR$/Reinforcement Learning/AC_test.py" />
+        <option value="$PROJECT_DIR$/tensorflow_practice-master/RL/Policy_Gradient/__init__.py" />
+        <option value="$PROJECT_DIR$/tensorflow_practice-master/RL/Policy_Gradient/RL_brain.py" />
+        <option value="$PROJECT_DIR$/tensorflow_practice-master/RL/Policy_Gradient/run_MountainCar.py" />
+        <option value="$PROJECT_DIR$/Reinforcement Learning/Q-learing test2.py" />
+        <option value="$PROJECT_DIR$/Reinforcement Learning/Q-learning_test3.py" />
       </list>
     </option>
   </component>
@@ -51,12 +84,28 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Satellites Mission Schedule" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Satellites Mission Schedule" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Satellites Mission Schedule" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Satellites Mission Schedule" type="462c0819:PsiDirectoryNode" />
+              <item name="Reinforcement Learning" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope" />
-      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
@@ -79,7 +128,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.A3C_test">
+  <component name="RunManager" selected="Python.Q-learning_test3">
     <configuration name="A3C_test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Satellites Mission Schedule" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -143,7 +192,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="callback" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="Q-learning_test3" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Satellites Mission Schedule" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -151,11 +200,32 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../ANAdonda/pkgs/Gurobi/win64/examples/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Reinforcement Learning" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../ANAdonda/pkgs/Gurobi/win64/examples/python/callback.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Reinforcement Learning/Q-learning_test3.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="run_MountainCar" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Satellites Mission Schedule" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tensorflow_practice-master/RL/Policy_Gradient" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tensorflow_practice-master/RL/Policy_Gradient/run_MountainCar.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -185,34 +255,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="workforce1" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Satellites Mission Schedule" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Mission schedule with Gurobi(According to the paper 'Optimal Continous-Time...')" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Mission schedule with Gurobi(According to the paper 'Optimal Continous-Time...')/workforce1.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.A3C_test" />
+        <item itemvalue="Python.Q-learning_test3" />
         <item itemvalue="Python.Q-learing test2" />
+        <item itemvalue="Python.run_MountainCar" />
+        <item itemvalue="Python.A3C_test" />
         <item itemvalue="Python.Q-learning test" />
-        <item itemvalue="Python.workforce1" />
-        <item itemvalue="Python.callback" />
       </list>
     </recent_temporary>
   </component>
@@ -283,13 +332,30 @@
       <option name="project" value="LOCAL" />
       <updated>1572338505206</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="2019.10.29 Morning">
+      <created>1572426015019</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1572426015019</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="695" extended-state="7" />
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49814814" visible="true" weight="0.19776714" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49814814" visible="true" weight="0.2942584" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.50185186" side_tool="true" weight="0.24960127" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -298,11 +364,11 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3991655" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32962963" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32962447" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32777777" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50069445" side_tool="true" weight="0.32841823" />
-      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49930555" weight="0.6662031" />
+      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49930555" weight="0.66481483" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -417,16 +483,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Reinforcement Learning/Q-learing test2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="3" column="29" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Reinforcement Learning/Q-learning test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="429">
@@ -441,6 +497,61 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="364">
           <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.3/system/python_stubs/-2009539318/numpy/random/mtrand.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="2317" column="4" selection-start-line="2317" selection-start-column="4" selection-end-line="2317" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ANAdonda/Lib/site-packages/tensorflow/python/framework/random_seed.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="83" column="4" selection-start-line="83" selection-start-column="4" selection-end-line="83" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tensorflow_practice-master/RL/Policy_Gradient/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/tensorflow_practice-master/RL/Policy_Gradient/RL_brain.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="60" column="46" selection-start-line="60" selection-start-column="46" selection-end-line="60" selection-end-column="46" />
+          <folding>
+            <element signature="e#276#294#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tensorflow_practice-master/RL/Policy_Gradient/run_MountainCar.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Reinforcement Learning/Q-learing test2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6266">
+          <caret line="8" column="19" lean-forward="true" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Reinforcement Learning/Q-learning_test3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="523" lean-forward="true" selection-start-line="523" selection-end-line="523" />
+          <folding>
+            <element signature="e#45#63#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
