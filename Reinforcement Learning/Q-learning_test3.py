@@ -1,26 +1,41 @@
 #拓展到实际例子
 #用stk计算时间窗口
+
+# 2018年7月24日22时19分52秒	2018年7月24日22时20分37秒	45.501	YuannanProvince
+# 2018年7月24日22时22分32秒	2018年7月24日22时23分58秒	85.691	HenanProvince
+# 2018年7月24日22时22分54秒	2018年7月24日22时24分11秒	76.985	Anhui1
+# 2018年7月24日22时23分51秒	2018年7月24日22时25分16秒	85.356	ShandongProvince
+# 2018年7月24日22时24分02秒	2018年7月24日22时25分27秒	85.599	Shouguang
+# StartTime 737265.930462963	737265.932314815
+# 737265.932569444	737265.933229167	737265.933356482
+# EndTime   737265.930983796	737265.933310185
+# 737265.933460648	737265.934212963	737265.934340278
+
 import numpy as np
 import pandas as pd
 import time
 from interval import Interval
 
 # State S[Remaining data storage ability, Remaining time,Incoming Task number]
-# Task startTime endTime engergyCost reward
-Task = {'1': [1, 3, 2, 2], '2': [2, 5, 3, 3], '3': [6, 8, 2, 2]}
-Tasklist = [1, 2, 3, 0]
-RemainingTime = [Interval(1, 8, closed=True)]
-RemainingTimeTotal = [[Interval(1, 8, closed=True)]]
+# Task [startTime,endTime,engergyCost,reward]
+Task = {'1': [737265.930462963, 737265.930983796, 1, 2],
+        '2': [737265.932314815, 737265.933310185, 1, 2],
+        '3': [737265.932569444, 737265.933460648, 1, 200],
+        '4': [737265.933229167, 737265.934212963, 1, 2],
+        '5': [737265.933356482, 737265.934340278, 1, 2]}
+Tasklist_Initial = [1, 2, 3,4,5,0]
+RemainingTime_Initial = [Interval(737265.930462963, 737265.934340278, closed=True)]
+RemainingTimeTotal = [[Interval(737265.930462963, 737265.934340278, closed=True)]]
 Storage = 5
 TaskNumber = 1
 label = 0
-S = [Storage, RemainingTime, TaskNumber, label]
+S = [Storage, RemainingTime_Initial, TaskNumber, label]
 N_STATES = 1  # 1维世界的宽度
 ACTIONS = ['Accept', 'Reject', 'Storage', 'IncomingTask']  # 探索者的可用动作
 EPSILON = 0.8  # 贪婪度 greedy
 ALPHA = 0.1  # 学习率
 GAMMA = 0.9  # 奖励递减值
-MAX_EPISODES = 10000  # 最大回合数
+MAX_EPISODES = 100 # 最大回合数
 FRESH_TIME = 0.3  # 移动间隔时间
 
 
@@ -489,7 +504,7 @@ def update_env(S, episode, step_counter):
         time.sleep(FRESH_TIME)
 
 
-def rl(RemainingTimeTotal):
+def rl(RemainingTimeTotal,RemainingTime_Initial,Tasklist_Initial,Storage):
     q_table = build_q_table(N_STATES, ACTIONS)  # 初始 q table
     episodeCounter = 0
     for episode in range(MAX_EPISODES):
@@ -497,22 +512,22 @@ def rl(RemainingTimeTotal):
         episodeCounter += 1
 
         # 回合
-        RemainingTime = [Interval(1, 8, closed=True)]
-        Storage = 5
+        RemainingTime = RemainingTime_Initial.copy()
         TaskNumber = 1
         label = 0
         S = [Storage, RemainingTime, TaskNumber, label]
-        Tasklist = [1, 2, 3, 0]
+        Tasklist = Tasklist_Initial.copy()
 
         is_terminated = False  # 是否回合结束
         # update_env(S, episode, step_counter)    # 环境更新
         while not is_terminated:
 
             A = choose_action(S, q_table)  # 选行为
-            S_old = S.copy()
+            S_old = S.copy()#注意，数组传入函数中自身会被改变，所以要用copy
             S_, R, q_table, RemainingTimeTotal = get_env_feedback(S, A, Tasklist, q_table,
                                                                   RemainingTimeTotal)  # 实施行为并得到环境的反馈
             q_predict = q_table.loc[S_old[3], A]  # 估算的(状态-行为)值
+            # q_predict = q_table.loc[S[3], A]
             if S_[2] != 0:
                 q_target = R + GAMMA * q_table.iloc[S_[3], 0:2].max()  # 实际的(状态-行为)值 (回合没结束)
             else:
@@ -520,6 +535,7 @@ def rl(RemainingTimeTotal):
                 is_terminated = True  # terminate this episode
 
             q_table.loc[S_old[3], A] += ALPHA * (q_target - q_predict)  # q_table 更新
+            #q_table.loc[S[3], A] += ALPHA * (q_target - q_predict)
             S = S_  # 探索者移动到下一个 state
 
             # update_env(S, episode, step_counter+1)  # 环境更新
@@ -529,14 +545,13 @@ def rl(RemainingTimeTotal):
 
 
 
-def getSolution(q_table,RemainingTimeTotal):
+def getSolution(q_table,RemainingTimeTotal,RemainingTime_Initial,Tasklist_Initial, Storage ):
     action_space=[]
-    RemainingTime = [Interval(1, 8, closed=True)]
-    Storage = 5
     TaskNumber = 1
     label = 0
+    RemainingTime=RemainingTime_Initial.copy()
     S = [Storage, RemainingTime, TaskNumber, label]
-    Tasklist = [1, 2, 3, 0]
+    Tasklist=Tasklist_Initial.copy()
 
     is_terminated = False  # 是否回合结束
     # update_env(S, episode, step_counter)    # 环境更新
@@ -560,9 +575,9 @@ def getSolution(q_table,RemainingTimeTotal):
 
 
 if __name__ == "__main__":
-    q_table,RemainingTimeTotal = rl(RemainingTimeTotal)
+    q_table,RemainingTimeTotal = rl(RemainingTimeTotal,RemainingTime_Initial,Tasklist_Initial,Storage)
 
-    action_space=getSolution(q_table,RemainingTimeTotal)
+    action_space=getSolution(q_table,RemainingTimeTotal,RemainingTime_Initial,Tasklist_Initial, Storage )
     print(action_space)
     print('\r\nQ-table:\n')
     print(q_table)
