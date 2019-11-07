@@ -10,7 +10,7 @@
 # 737265.932569444	737265.933229167	737265.933356482
 # EndTime   737265.930983796	737265.933310185
 # 737265.933460648	737265.934212963	737265.934340278
-
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import time
@@ -18,12 +18,13 @@ from interval import Interval
 
 # State S[Remaining data storage ability, Remaining time,Incoming Task number]
 # Task [startTime,endTime,engergyCost,reward]
+
 Task = {'1': [737265.930462963, 737265.930983796, 1, 2],
         '2': [737265.932314815, 737265.933310185, 1, 2],
-        '3': [737265.932569444, 737265.933460648, 1, 200],
+        '3': [737265.932569444, 737265.933460648, 1, 2],
         '4': [737265.933229167, 737265.934212963, 1, 2],
         '5': [737265.933356482, 737265.934340278, 1, 2]}
-Tasklist_Initial = [1, 2, 3,4,5,0]
+Tasklist_Initial = [1,2,3,4,5,0]
 RemainingTime_Initial = [Interval(737265.930462963, 737265.934340278, closed=True)]
 RemainingTimeTotal = [[Interval(737265.930462963, 737265.934340278, closed=True)]]
 Storage = 5
@@ -507,10 +508,10 @@ def update_env(S, episode, step_counter):
 def rl(RemainingTimeTotal,RemainingTime_Initial,Tasklist_Initial,Storage):
     q_table = build_q_table(N_STATES, ACTIONS)  # 初始 q table
     episodeCounter = 0
+    rewardCounter=[]
     for episode in range(MAX_EPISODES):
 
         episodeCounter += 1
-
         # 回合
         RemainingTime = RemainingTime_Initial.copy()
         TaskNumber = 1
@@ -526,6 +527,7 @@ def rl(RemainingTimeTotal,RemainingTime_Initial,Tasklist_Initial,Storage):
             S_old = S.copy()#注意，数组传入函数中自身会被改变，所以要用copy
             S_, R, q_table, RemainingTimeTotal = get_env_feedback(S, A, Tasklist, q_table,
                                                                   RemainingTimeTotal)  # 实施行为并得到环境的反馈
+
             q_predict = q_table.loc[S_old[3], A]  # 估算的(状态-行为)值
             # q_predict = q_table.loc[S[3], A]
             if S_[2] != 0:
@@ -535,13 +537,19 @@ def rl(RemainingTimeTotal,RemainingTime_Initial,Tasklist_Initial,Storage):
                 is_terminated = True  # terminate this episode
 
             q_table.loc[S_old[3], A] += ALPHA * (q_target - q_predict)  # q_table 更新
+
             #q_table.loc[S[3], A] += ALPHA * (q_target - q_predict)
             S = S_  # 探索者移动到下一个 state
 
             # update_env(S, episode, step_counter+1)  # 环境更新
 
-            # step_counter += 1
-    return q_table,RemainingTimeTotal
+
+        action_space, Reward = getSolution(q_table, RemainingTimeTotal,
+                                           RemainingTime_Initial,
+                                           Tasklist_Initial, Storage)
+        rewardCounter.append(Reward)
+        # step_counter += 1
+    return q_table,RemainingTimeTotal,rewardCounter
 
 
 
@@ -552,6 +560,7 @@ def getSolution(q_table,RemainingTimeTotal,RemainingTime_Initial,Tasklist_Initia
     RemainingTime=RemainingTime_Initial.copy()
     S = [Storage, RemainingTime, TaskNumber, label]
     Tasklist=Tasklist_Initial.copy()
+    Reward=0
 
     is_terminated = False  # 是否回合结束
     # update_env(S, episode, step_counter)    # 环境更新
@@ -570,17 +579,26 @@ def getSolution(q_table,RemainingTimeTotal,RemainingTime_Initial,Tasklist_Initia
 
 
         S = S_  # 探索者移动到下一个 state
+        Reward+=R
 
-    return action_space
+    return action_space,Reward
 
 
 if __name__ == "__main__":
-    q_table,RemainingTimeTotal = rl(RemainingTimeTotal,RemainingTime_Initial,Tasklist_Initial,Storage)
+    q_table,RemainingTimeTotal,reward_counter = rl(RemainingTimeTotal,
+                                                   RemainingTime_Initial,
+                                                   Tasklist_Initial,Storage)
 
-    action_space=getSolution(q_table,RemainingTimeTotal,RemainingTime_Initial,Tasklist_Initial, Storage )
-    print(action_space)
-    print('\r\nQ-table:\n')
-    print(q_table)
-    print('Time')
-    print(RemainingTimeTotal)
+    action_space,Reward=getSolution(q_table,RemainingTimeTotal,
+                                    RemainingTime_Initial,
+                                    Tasklist_Initial, Storage)
+    print('action_space',action_space,'Reward',Reward)
+
+    # print(reward_counter)
+    plt.plot(reward_counter)
+    plt.show()
+    # print('\r\nQ-table:\n')
+    # print(q_table)
+    # print('Time')
+    # print(RemainingTimeTotal)
 

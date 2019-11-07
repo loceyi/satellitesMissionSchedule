@@ -1,6 +1,7 @@
 import gym
 
 import matplotlib.pyplot as plt
+
 from RL_brain import PolicyGradient
 
 DISPLAY_REWARD_THRESHOLD = -2000
