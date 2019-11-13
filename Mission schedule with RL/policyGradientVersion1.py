@@ -44,12 +44,23 @@ class PolicyNetwork(nn.Module):
         self.optimizer = optim.Adam(self.parameters(), lr=learning_rate)
 
     def forward(self, state):
+
         x = F.relu(self.linear1(state))#Relu: f(x)=max(0,x)
         x = F.softmax(self.linear2(x), dim=1) #softmax层，将输入转换成概率输出。
         return x
 
     def get_action(self, state):
-        state = torch.from_numpy(state).float().unsqueeze(0)
+
+        ''''
+        torch.autograd.Variable用来包裹张量并记录应用的操作。
+        Variable可以看作是对Tensor对象周围的一个薄包装，也包含了和张量相关的梯度，
+        以及对创建它的函数的引用。 此引用允许对创建数据的整个操作链进行回溯。
+        需要BP的网络都是通过Variable来计算的。如果Variable是由用户创建的，
+        则其grad_fn将为None，我们将这些对象称为叶子Variable。
+        '''
+
+
+        state = torch.from_numpy(state).float().unsqueeze(0)#转化为Torch的格式
         probs = self.forward(Variable(state))
         highest_prob_action = np.random.choice(self.num_actions, p=np.squeeze(probs.detach().numpy()))
         log_prob = torch.log(probs.squeeze(0)[highest_prob_action])
@@ -73,6 +84,10 @@ def update_policy(policy_network, rewards, log_probs):
                 discounted_rewards.std() + 1e-9)  # normalize discounted rewards
 
     policy_gradient = []
+
+    #zip() 函数用于将可迭代的对象作为参数，将对象中对应的元素打包成一个个元组，
+    # 然后返回由这些元组组成的对象，这样做的好处是节约了不少的内存。
+
     for log_prob, Gt in zip(log_probs, discounted_rewards):
         policy_gradient.append(-log_prob * Gt)
 
