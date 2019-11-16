@@ -10,8 +10,11 @@ from gym import spaces, core
 
 class MyEnv(core.Env):
     def __init__(self):
-        self.action_space = spaces.Box(low=-1, high=1, shape=(1,))  # 动作空间
-        self.observation_space = spaces.Box(low=-1, high=1, shape=(1,))  # 状态空间
+
+        self.action_space = spaces.Box(low=-1, high=1, shape=(1,))
+        self.action_space = spaces.Discrete(2)# 动作空间
+        self.observation_space = spaces.Box(low=-1, high=1, shape=(1,))
+        self.observation_space = spaces.Discrete(4) # 状态空间
 
     # 其他成员
 
