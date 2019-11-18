@@ -1,5 +1,6 @@
 #拓展到实际例子
 #用stk计算时间窗口
+#可以直接输出结果
 
 # 2018年7月24日22时19分52秒	2018年7月24日22时20分37秒	45.501	YuannanProvince
 # 2018年7月24日22时22分32秒	2018年7月24日22时23分58秒	85.691	HenanProvince
@@ -49,33 +50,17 @@ Task = {'1': [737265.930462963, 737265.930983796, 1, 2],
         '2': [737265.932314815, 737265.933310185, 1, 2],
         '3': [737265.932569444, 737265.933460648, 1, 2],
         '4': [737265.933229167, 737265.934212963, 1, 2],
-        '5': [737265.933356482, 737265.934340278, 1, 2],
-        '6': [737265.940462963, 737265.940983796, 1, 2],
-        '7': [737265.942314815, 737265.943310185, 1, 2],
-        '8': [737265.942569444, 737265.943460648, 1, 2],
-        '9': [737265.943229167, 737265.944212963, 1, 2],
-        '10':[737265.943356482, 737265.944340278, 1, 2],
-        '11': [737265.950462963, 737265.950983796, 1, 2],
-        '12': [737265.952314815, 737265.953310185, 1, 2],
-        '13': [737265.952569444, 737265.953460648, 1, 2],
-        '14': [737265.953229167, 737265.954212963, 1, 2],
-        '15': [737265.953356482, 737265.954340278, 1, 2],
-        '16': [737265.960462963, 737265.960983796, 1, 2],
-        '17': [737265.962314815, 737265.963310185, 1, 2],
-        '18': [737265.962569444, 737265.963460648, 1, 2],
-        '19': [737265.963229167, 737265.964212963, 1, 2],
-        '20':[737265.963356482, 737265.964340278, 1, 2]
+        '5': [737265.933356482, 737265.934340278, 1, 2]
         }
 
 
 
 
 
-Tasklist_Initial = [1,2,3,4,5,6,7,8,9,10,11,
-                    12,13,14,15,16,17,18,19,20,0]
-RemainingTime_Initial = [Interval(Task['1'][0], Task['20'][1], closed=True)]
-RemainingTimeTotal = [[Interval(Task['1'][0], Task['20'][1], closed=True)]]
-Storage = 20
+Tasklist_Initial = [1,2,3,4,5,0]
+RemainingTime_Initial = [Interval(Task['1'][0], Task['5'][1], closed=True)]
+RemainingTimeTotal = [[Interval(Task['1'][0], Task['5'][1], closed=True)]]
+Storage = 5
 TaskNumber = 1
 label = 0
 S = [Storage, RemainingTime_Initial, TaskNumber, label]
@@ -591,13 +576,13 @@ def rl(RemainingTimeTotal,RemainingTime_Initial,Tasklist_Initial,Storage):
 
             # update_env(S, episode, step_counter+1)  # 环境更新
 
-
-        action_space, Reward = getSolution(q_table, RemainingTimeTotal,
-                                           RemainingTime_Initial,
-                                           Tasklist_Initial, Storage)
-        rewardCounter.append(Reward)
+        #
+        # action_space, Reward = getSolution(q_table, RemainingTimeTotal,
+        #                                    RemainingTime_Initial,
+        #                                    Tasklist_Initial, Storage)
+        # rewardCounter.append(Reward)
         # step_counter += 1
-    return q_table,RemainingTimeTotal,rewardCounter
+    return q_table,RemainingTimeTotal
 
 
 
@@ -633,7 +618,7 @@ def getSolution(q_table,RemainingTimeTotal,RemainingTime_Initial,Tasklist_Initia
 
 
 if __name__ == "__main__":
-    q_table,RemainingTimeTotal,reward_counter = rl(RemainingTimeTotal,
+    q_table,RemainingTimeTotal = rl(RemainingTimeTotal,
                                                    RemainingTime_Initial,
                                                    Tasklist_Initial,Storage)
 
@@ -643,8 +628,8 @@ if __name__ == "__main__":
     print('action_space',action_space,'Reward',Reward)
 
     # print(reward_counter)
-    plt.plot(reward_counter)
-    plt.show()
+    # plt.plot(reward_counter)
+    # plt.show()
     # print('\r\nQ-table:\n')
     # print(q_table)
     # print('Time')
