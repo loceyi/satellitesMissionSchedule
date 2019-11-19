@@ -52,32 +52,26 @@ Task = {'1': [737265.930462963, 737265.930983796, 1, 2],
         '3': [737265.932569444, 737265.933460648, 1, 2],
         '4': [737265.933229167, 737265.934212963, 1, 2],
         '5': [737265.933356482, 737265.934340278, 1, 2],
-        '6': [737265.940462963, 737265.940983796, 1, 2],
-        '7': [737265.942314815, 737265.943310185, 1, 2],
-        '8': [737265.942569444, 737265.943460648, 1, 2],
-        '9': [737265.943229167, 737265.944212963, 1, 2],
-        '10': [737265.943356482, 737265.944340278, 1, 2]
         }
+#
+# taskGroup2 = {'1b': [737265.930462963, 737265.930983796, 1, 2],
+#         '11': [737265.932314815, 737265.933310185, 1, 2],
+#         '13': [737265.932569444, 737265.933460648, 1, 2],
+#         '14': [737265.933229167, 737265.934212963, 1, 2],
+#         '15': [737265.933356482, 737265.934340278, 1, 2],
+#         '16': [737265.940462963, 737265.940983796, 1, 2],
+#         '17': [737265.942314815, 737265.943310185, 1, 2],
+#         '18': [737265.942569444, 737265.943460648, 1, 2],
+#         '19': [737265.943229167, 737265.944212963, 1, 2],
+#         '20': [737265.943356482, 737265.944340278, 1, 2]
+#         }
 
-taskGroup2 = {'1b': [737265.930462963, 737265.930983796, 1, 2],
-        '11': [737265.932314815, 737265.933310185, 1, 2],
-        '13': [737265.932569444, 737265.933460648, 1, 2],
-        '14': [737265.933229167, 737265.934212963, 1, 2],
-        '15': [737265.933356482, 737265.934340278, 1, 2],
-        '16': [737265.940462963, 737265.940983796, 1, 2],
-        '17': [737265.942314815, 737265.943310185, 1, 2],
-        '18': [737265.942569444, 737265.943460648, 1, 2],
-        '19': [737265.943229167, 737265.944212963, 1, 2],
-        '20': [737265.943356482, 737265.944340278, 1, 2]
-        }
 
 
-
-Tasklist_Initial = [1,2,3,4,5,6,7,8,9,10,11,
-                    12,13,14,15,16,17,18,19,20,0]
-RemainingTime_Initial = [Interval(Task['1'][0], Task['20'][1], closed=True)]
-RemainingTimeTotal = [[Interval(Task['1'][0], Task['20'][1], closed=True)]]
-Storage = 20
+Tasklist_Initial = [1,2,3,4,5,0]
+RemainingTime_Initial = [Interval(Task['1'][0], Task['5'][1], closed=True)]
+RemainingTimeTotal = [[Interval(Task['1'][0], Task['5'][1], closed=True)]]
+Storage = 5
 TaskNumber = 1
 label = 0
 S = [Storage, RemainingTime_Initial, TaskNumber, label]
@@ -568,7 +562,7 @@ def rl(RemainingTimeTotal,RemainingTime_Initial,Tasklist_Initial,Storage):
         label = 0
         S = [Storage, RemainingTime, TaskNumber, label]
         Tasklist = Tasklist_Initial.copy()
-
+        rEachEpisode = 0
         is_terminated = False  # 是否回合结束
         # update_env(S, episode, step_counter)    # 环境更新
         while not is_terminated:
@@ -590,14 +584,10 @@ def rl(RemainingTimeTotal,RemainingTime_Initial,Tasklist_Initial,Storage):
 
             #q_table.loc[S[3], A] += ALPHA * (q_target - q_predict)
             S = S_  # 探索者移动到下一个 state
-
+            rEachEpisode += R
             # update_env(S, episode, step_counter+1)  # 环境更新
 
-
-        action_space, Reward = getSolution(q_table, RemainingTimeTotal,
-                                           RemainingTime_Initial,
-                                           Tasklist_Initial, Storage)
-        rewardCounter.append(Reward)
+        rewardCounter.append(rEachEpisode)
         # step_counter += 1
     return q_table,RemainingTimeTotal,rewardCounter
 
@@ -608,6 +598,7 @@ def getSolution(q_table,RemainingTimeTotal,RemainingTime_Initial,Tasklist_Initia
     TaskNumber = 1
     label = 0
     RemainingTime=RemainingTime_Initial.copy()
+    RemainingTimeTotal_gets = RemainingTimeTotal.copy()
     S = [Storage, RemainingTime, TaskNumber, label]
     Tasklist=Tasklist_Initial.copy()
     Reward=0
@@ -618,8 +609,8 @@ def getSolution(q_table,RemainingTimeTotal,RemainingTime_Initial,Tasklist_Initia
 
         A = choose_action_greedy(S, q_table)  # 选行为
         action_space.append(A)
-        S_, R, q_table, RemainingTimeTotal = get_env_feedback(S, A, Tasklist, q_table,
-                                                              RemainingTimeTotal)  # 实施行为并得到环境的反馈
+        S_, R, q_table, RemainingTimeTotal_gets = get_env_feedback(S, A, Tasklist, q_table,
+                                                                   RemainingTimeTotal_gets)  # 实施行为并得到环境的反馈
         if S_[2] != 0:
 
             pass
@@ -644,7 +635,7 @@ if __name__ == "__main__":
                                     Tasklist_Initial, Storage)
     print('action_space',action_space,'Reward',Reward)
 
-    # print(reward_counter)
+
     plt.plot(reward_counter)
     plt.show()
     # print('\r\nQ-table:\n')

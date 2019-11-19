@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="639b334a-7721-4416-ac57-6edd38b904bb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mission schedule with RL/Q-learning Version2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/Q-learning Version2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mission schedule with RL/Q-learning Version3.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/Q-learning Version3.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Mission schedule with RL/Q-learning Version4.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/Q-learning Version4.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -11,34 +13,24 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DockManager">
-    <window id="2">
-      <content type="file-editors">
-        <state>
-          <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-            <file pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/Mission schedule with RL/Q-learning Version4.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="358">
-                    <caret line="469" lean-forward="true" selection-start-line="469" selection-end-line="469" />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="FavoritesManager">
     <favorites_list name="Satellites Mission Shedule" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Mission schedule with RL/Q-learning Version4.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="69" lean-forward="true" selection-start-line="69" selection-end-line="69" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Mission schedule with RL/Q-learning Version1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="12116">
+            <state relative-caret-position="12194">
               <caret line="469" selection-start-line="469" selection-end-line="469" />
               <folding>
                 <element signature="e#45#63#0" expanded="true" />
@@ -47,20 +39,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Mission schedule with RL/Q-learning Version2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="506" lean-forward="true" selection-start-line="506" selection-end-line="506" />
+            <state relative-caret-position="229">
+              <caret line="577" column="8" lean-forward="true" selection-start-line="577" selection-start-column="8" selection-end-line="577" selection-end-column="42" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Mission schedule with RL/Q-learning Version3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="16380">
-              <caret line="634" selection-start-line="634" selection-end-line="634" />
+            <state relative-caret-position="255">
+              <caret line="638" column="28" lean-forward="true" selection-start-line="638" selection-start-column="28" selection-end-line="638" selection-end-column="28" />
               <folding>
                 <element signature="e#593#624#0" expanded="true" />
               </folding>
@@ -71,7 +63,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Mission schedule with RL/policyGradientVersion1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2002">
+            <state relative-caret-position="429">
               <caret line="85" column="24" selection-start-line="85" selection-start-column="24" selection-end-line="85" selection-end-column="24" />
               <folding>
                 <element signature="e#35#45#0" expanded="true" />
@@ -83,7 +75,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Mission schedule with RL/cartpole.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3406">
+            <state relative-caret-position="429">
               <caret line="135" selection-start-line="135" selection-end-line="135" />
               <folding>
                 <element signature="e#169#180#0" expanded="true" />
@@ -129,13 +121,13 @@
         <option value="$PROJECT_DIR$/tensorflow_practice-master/RL/Basic-Policy-Network/run_CartPole.py" />
         <option value="$PROJECT_DIR$/tensorflow_practice-master/RL/Policy_Gradient/run_MountainCar.py" />
         <option value="$PROJECT_DIR$/Reinforcement Learning/Q-learning_test3.py" />
-        <option value="$PROJECT_DIR$/Mission schedule with RL/Q-learning Version3.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/policyGradientVersion1.py" />
         <option value="$PROJECT_DIR$/../ANAdonda/Lib/site-packages/gym/envs/classic_control/__init__.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/cartpole.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/myEnv.py" />
-        <option value="$PROJECT_DIR$/Mission schedule with RL/Q-learning Version2.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/Q-learning Version4.py" />
+        <option value="$PROJECT_DIR$/Mission schedule with RL/Q-learning Version2.py" />
+        <option value="$PROJECT_DIR$/Mission schedule with RL/Q-learning Version3.py" />
       </list>
     </option>
   </component>
@@ -230,7 +222,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Q-learning Version4">
+  <component name="RunManager" selected="Python.Q-learning Version3">
     <configuration name="Q-learning Version2" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Satellites Mission Schedule" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -244,6 +236,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Mission schedule with RL/Q-learning Version2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Q-learning Version3" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Satellites Mission Schedule" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Mission schedule with RL" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Mission schedule with RL/Q-learning Version3.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -315,27 +328,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="q-learning_basic" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Satellites Mission Schedule" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tensorflow_practice-master/RL" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tensorflow_practice-master/RL/q-learning_basic.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="satellite_mission_schedule" type="PythonConfigurationType" factoryName="Python">
       <module name="Satellites Mission Schedule" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -359,11 +351,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Q-learning Version4" />
+        <item itemvalue="Python.Q-learning Version3" />
         <item itemvalue="Python.Q-learning Version2" />
+        <item itemvalue="Python.Q-learning Version4" />
         <item itemvalue="Python.policyGradientVersion1" />
         <item itemvalue="Python.Q-learning test" />
-        <item itemvalue="Python.q-learning_basic" />
       </list>
     </recent_temporary>
   </component>
@@ -497,7 +489,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574049877002</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="2019.11.18 16:17">
+      <created>1574065040807</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1574065040807</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TodoView">
@@ -513,13 +512,13 @@
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49814814" visible="true" weight="0.028708134" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49814814" weight="0.3293461" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.50185186" side_tool="true" weight="0.24960127" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32962963" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.6944444" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.37777779" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.5925926" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32962963" />
@@ -546,7 +545,8 @@
     <MESSAGE value="2019.11.13 Woooops! Try to build a new env for my program but failed today. Try it again tomorrow" />
     <MESSAGE value="2019.11.16 Try it more" />
     <MESSAGE value="2019.11.18 Finally finish the debug. Find the problem of function getsolution" />
-    <option name="LAST_COMMIT_MESSAGE" value="2019.11.18 Finally finish the debug. Find the problem of function getsolution" />
+    <MESSAGE value="2019.11.18 16:17" />
+    <option name="LAST_COMMIT_MESSAGE" value="2019.11.18 16:17" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -899,21 +899,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../ANAdonda/Lib/site-packages/pandas/core/indexing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="1465" selection-start-line="1465" selection-end-line="1465" />
+        <state relative-caret-position="48">
+          <caret line="1464" selection-start-line="1464" selection-end-line="1464" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../ANAdonda/Lib/site-packages/interval.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="59">
-          <caret line="335" column="22" selection-start-line="335" selection-start-column="22" selection-end-line="335" selection-end-column="22" />
+        <state relative-caret-position="62">
+          <caret line="729" selection-start-line="729" selection-end-line="729" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/Q-learning Version1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12116">
+        <state relative-caret-position="12194">
           <caret line="469" selection-start-line="469" selection-end-line="469" />
           <folding>
             <element signature="e#45#63#0" expanded="true" />
@@ -921,19 +921,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/Q-learning Version3.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16380">
-          <caret line="634" selection-start-line="634" selection-end-line="634" />
-          <folding>
-            <element signature="e#593#624#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/policyGradientVersion1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2002">
+        <state relative-caret-position="429">
           <caret line="85" column="24" selection-start-line="85" selection-start-column="24" selection-end-line="85" selection-end-column="24" />
           <folding>
             <element signature="e#35#45#0" expanded="true" />
@@ -943,7 +933,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/cartpole.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3406">
+        <state relative-caret-position="429">
           <caret line="135" selection-start-line="135" selection-end-line="135" />
           <folding>
             <element signature="e#169#180#0" expanded="true" />
@@ -953,15 +943,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/Q-learning Version4.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="469" lean-forward="true" selection-start-line="469" selection-end-line="469" />
+        <state relative-caret-position="390">
+          <caret line="69" lean-forward="true" selection-start-line="69" selection-end-line="69" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/Q-learning Version2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="506" lean-forward="true" selection-start-line="506" selection-end-line="506" />
+        <state relative-caret-position="229">
+          <caret line="577" column="8" lean-forward="true" selection-start-line="577" selection-start-column="8" selection-end-line="577" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/Q-learning Version3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="638" column="28" lean-forward="true" selection-start-line="638" selection-start-column="28" selection-end-line="638" selection-end-column="28" />
+          <folding>
+            <element signature="e#593#624#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

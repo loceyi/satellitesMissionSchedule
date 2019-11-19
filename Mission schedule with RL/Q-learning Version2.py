@@ -551,7 +551,7 @@ def rl(RemainingTimeTotal,RemainingTime_Initial,Tasklist_Initial,Storage):
         label = 0
         S = [Storage, RemainingTime, TaskNumber, label]
         Tasklist = Tasklist_Initial.copy()
-
+        rEachEpisode=0
         is_terminated = False  # 是否回合结束
         # update_env(S, episode, step_counter)    # 环境更新
         while not is_terminated:
@@ -570,19 +570,16 @@ def rl(RemainingTimeTotal,RemainingTime_Initial,Tasklist_Initial,Storage):
                 is_terminated = True  # terminate this episode
 
             q_table.loc[S_old[3], A] += ALPHA * (q_target - q_predict)  # q_table 更新
-
+            rEachEpisode+=R
             #q_table.loc[S[3], A] += ALPHA * (q_target - q_predict)
             S = S_  # 探索者移动到下一个 state
 
-            # update_env(S, episode, step_counter+1)  # 环境更新
 
-        #
-        # action_space, Reward = getSolution(q_table, RemainingTimeTotal,
-        #                                    RemainingTime_Initial,
-        #                                    Tasklist_Initial, Storage)
-        # rewardCounter.append(Reward)
-        # step_counter += 1
-    return q_table,RemainingTimeTotal
+        rewardCounter.append(rEachEpisode)
+            # update_env(S, episode, step_counter+1)  # 环境更新A
+
+
+    return q_table,RemainingTimeTotal,rewardCounter
 
 
 
@@ -591,6 +588,7 @@ def getSolution(q_table,RemainingTimeTotal,RemainingTime_Initial,Tasklist_Initia
     TaskNumber = 1
     label = 0
     RemainingTime=RemainingTime_Initial.copy()
+    RemainingTimeTotal_gets=RemainingTimeTotal.copy()
     S = [Storage, RemainingTime, TaskNumber, label]
     Tasklist=Tasklist_Initial.copy()
     Reward=0
@@ -601,8 +599,8 @@ def getSolution(q_table,RemainingTimeTotal,RemainingTime_Initial,Tasklist_Initia
 
         A = choose_action_greedy(S, q_table)  # 选行为
         action_space.append(A)
-        S_, R, q_table, RemainingTimeTotal = get_env_feedback(S, A, Tasklist, q_table,
-                                                              RemainingTimeTotal)  # 实施行为并得到环境的反馈
+        S_, R, q_table, RemainingTimeTotal_gets = get_env_feedback(S, A, Tasklist, q_table,
+                                                              RemainingTimeTotal_gets)  # 实施行为并得到环境的反馈
         if S_[2] != 0:
 
             pass
@@ -618,7 +616,7 @@ def getSolution(q_table,RemainingTimeTotal,RemainingTime_Initial,Tasklist_Initia
 
 
 if __name__ == "__main__":
-    q_table,RemainingTimeTotal = rl(RemainingTimeTotal,
+    q_table,RemainingTimeTotal,rewardCounter = rl(RemainingTimeTotal,
                                                    RemainingTime_Initial,
                                                    Tasklist_Initial,Storage)
 
@@ -627,9 +625,8 @@ if __name__ == "__main__":
                                     Tasklist_Initial, Storage)
     print('action_space',action_space,'Reward',Reward)
 
-    # print(reward_counter)
-    # plt.plot(reward_counter)
-    # plt.show()
+    plt.plot(rewardCounter)
+    plt.show()
     # print('\r\nQ-table:\n')
     # print(q_table)
     # print('Time')
