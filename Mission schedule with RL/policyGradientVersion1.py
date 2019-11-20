@@ -1,152 +1,138 @@
-#First set up the policy network
+#######################################################################
+# Copyright (C)                                                       #
+# 2016 - 2019 Pinard Liu(liujianping-ok@163.com)                      #
+# https://www.cnblogs.com/pinard                                      #
+# Permission given to modify the code as long as you keep this        #
+# declaration at the top                                              #
+#######################################################################
+## https://www.cnblogs.com/pinard/p/10137696.html ##
+## 强化学习(十三) 策略梯度(Policy Gradient) ##
 
-
-import sys
-import torch
 import gym
+import tensorflow as tf
 import numpy as np
-import torch.nn as nn
-import torch.optim as optim
-import torch.nn.functional as F
-from torch.autograd import Variable
-import matplotlib.pyplot as plt
+import random
+from collections import deque
+import pandas as pd
+# Hyper Parameters
+GAMMA = 0.95 # discount factor
+LEARNING_RATE=0.01
 
-# Constants
-GAMMA = 0.9
+class Policy_Gradient():
+    def __init__(self, env):
+        # init some parameters
+        self.time_step = 0
+        self.state_dim = env.observation_space.shape[0]
+        self.action_dim = env.action_space.n
+        self.ep_obs, self.ep_as, self.ep_rs = [], [], []
+        self.create_softmax_network()
 
+        # Init session
+        self.session = tf.InteractiveSession()
+        self.session.run(tf.global_variables_initializer())
 
-class PolicyNetwork(nn.Module):
-    def __init__(self, num_inputs, num_actions, hidden_size, learning_rate=3e-4):
-        super(PolicyNetwork, self).__init__()
+    def create_softmax_network(self):
+        # network weights
+        W1 = self.weight_variable([self.state_dim, 20])
+        b1 = self.bias_variable([20])
+        W2 = self.weight_variable([20, self.action_dim])
+        b2 = self.bias_variable([self.action_dim])
+        # input layer
+        self.state_input = tf.placeholder("float", [None, self.state_dim])
+        self.tf_acts = tf.placeholder(tf.int32, [None, ], name="actions_num")
+        self.tf_vt = tf.placeholder(tf.float32, [None, ], name="actions_value")
+        # hidden layers
+        h_layer = tf.nn.relu(tf.matmul(self.state_input, W1) + b1)
+        # softmax layer
+        self.softmax_input = tf.matmul(h_layer, W2) + b2
+        #softmax output
+        self.all_act_prob = tf.nn.softmax(self.softmax_input, name='act_prob')
+        self.neg_log_prob = tf.nn.sparse_softmax_cross_entropy_with_logits(logits=self.softmax_input,
+                                                                      labels=self.tf_acts)
+        self.loss = tf.reduce_mean(self.neg_log_prob * self.tf_vt)  # reward guided loss
 
-        self.num_actions = num_actions
+        self.train_op = tf.train.AdamOptimizer(LEARNING_RATE).minimize(self.loss)
 
-        '''
-        nn.Linear 线性变换，加权重，加偏置.y=Ax+b
-        '''
+    def weight_variable(self, shape):
+        initial = tf.truncated_normal(shape)
+        return tf.Variable(initial)
 
-        self.linear1 = nn.Linear(num_inputs, hidden_size)
+    def bias_variable(self, shape):
+        initial = tf.constant(0.01, shape=shape)
+        return tf.Variable(initial)
 
-        self.linear2 = nn.Linear(hidden_size, num_actions)
+    def choose_action(self, observation):
+        prob_weights = self.session.run(self.all_act_prob, feed_dict={self.state_input: observation[np.newaxis, :]})
+        action = np.random.choice(range(prob_weights.shape[1]), p=prob_weights.ravel())  # select action w.r.t the actions prob
+        return action
 
+    def store_transition(self, s, a, r):
+        self.ep_obs.append(s)
+        self.ep_as.append(a)
+        self.ep_rs.append(r)
 
-        '''
-        torch.optim是一个实现了多种优化算法的包
-        为了使用torch.optim，需先构造一个优化器对象Optimizer，用来保存当前的状态
-        ，并能够根据计算得到的梯度来更新参数
-        Adam Adam 是一种可以替代传统随机梯度下降（SGD）过程的一阶优化算法，
-        它能基于训练数据迭代地更新神经网络权重
-        要构建一个优化器optimizer，
-        你必须给它一个可进行迭代优化的包含了所有参数（所有的参数必须是变量s）的列表。
-        然后，您可以指定程序优化特定的选项，例如学习速率，权重衰减等
-        '''
+    def learn(self):
 
-        self.optimizer = optim.Adam(self.parameters(), lr=learning_rate)
+        discounted_ep_rs = np.zeros_like(self.ep_rs)
+        running_add = 0
+        for t in reversed(range(0, len(self.ep_rs))):
+            running_add = running_add * GAMMA + self.ep_rs[t]
+            discounted_ep_rs[t] = running_add
 
-    def forward(self, state):
+        discounted_ep_rs -= np.mean(discounted_ep_rs)
+        discounted_ep_rs /= np.std(discounted_ep_rs)
 
-        x = F.relu(self.linear1(state))#Relu: f(x)=max(0,x)
-        x = F.softmax(self.linear2(x), dim=1) #softmax层，将输入转换成概率输出。
-        return x
+        # train on episode
+        self.session.run(self.train_op, feed_dict={
+             self.state_input: np.vstack(self.ep_obs),
+             self.tf_acts: np.array(self.ep_as),
+             self.tf_vt: discounted_ep_rs,
+        })
 
-    def get_action(self, state):
-
-        ''''
-        torch.autograd.Variable用来包裹张量并记录应用的操作。
-        Variable可以看作是对Tensor对象周围的一个薄包装，也包含了和张量相关的梯度，
-        以及对创建它的函数的引用。 此引用允许对创建数据的整个操作链进行回溯。
-        需要BP的网络都是通过Variable来计算的。如果Variable是由用户创建的，
-        则其grad_fn将为None，我们将这些对象称为叶子Variable。
-        '''
-
-
-        state = torch.from_numpy(state).float().unsqueeze(0)#转化为Torch的格式
-        probs = self.forward(Variable(state))
-        highest_prob_action = np.random.choice(self.num_actions, p=np.squeeze(probs.detach().numpy()))
-        log_prob = torch.log(probs.squeeze(0)[highest_prob_action])
-        return highest_prob_action, log_prob
-#The update function
-
-
-def update_policy(policy_network, rewards, log_probs):
-    discounted_rewards = []
-
-    for t in range(len(rewards)):
-        Gt = 0
-        pw = 0
-        for r in rewards[t:]:
-            Gt = Gt + GAMMA ** pw * r
-            pw = pw + 1
-        discounted_rewards.append(Gt)
-
-    discounted_rewards = torch.tensor(discounted_rewards)
-    discounted_rewards = (discounted_rewards - discounted_rewards.mean()) / (
-                discounted_rewards.std() + 1e-9)  # normalize discounted rewards
-
-    policy_gradient = []
-
-    #zip() 函数用于将可迭代的对象作为参数，将对象中对应的元素打包成一个个元组，
-    # 然后返回由这些元组组成的对象，这样做的好处是节约了不少的内存。
-
-    for log_prob, Gt in zip(log_probs, discounted_rewards):
-        policy_gradient.append(-log_prob * Gt)
-
-    policy_network.optimizer.zero_grad()
-    policy_gradient = torch.stack(policy_gradient).sum()
-    policy_gradient.backward()
-    policy_network.optimizer.step()
-
-#The main loop
+        self.ep_obs, self.ep_as, self.ep_rs = [], [], []    # empty episode data
+# Hyper Parameters
+ENV_NAME = 'CartPole-v0'
+EPISODE = 3000 # Episode limitation
+STEP = 3000 # Step limitation in an episode
+TEST = 10 # The number of experiment test every 100 episode
 
 def main():
-    env = gym.make('CartPole-v0')
-    policy_net = PolicyNetwork(env.observation_space.shape[0], env.action_space.n, 128)
+  # initialize OpenAI Gym env and dqn agent
+  satStateTable = pd.DataFrame(
+        np.zeros((n_states, len(actions))),  # q_table 全 0 初始
+        columns=actions,  # columns 对应的是行为名称
+    )
+  env = gym.make(ENV_NAME)
+  agent = Policy_Gradient(env)
 
-    max_episode_num = 5000
-    max_steps = 10000
-    numsteps = []
-    avg_numsteps = []
-    all_rewards = []
+  for episode in range(EPISODE):
+    # initialize task
+    state = env.reset()
+    # Train
+    for step in range(STEP):
+      action = agent.choose_action(state) # e-greedy action for train
+      next_state,reward,done,_ = env.step(action)
+      agent.store_transition(state, action, reward)
+      state = next_state
+      if done:
+        #print("stick for ",step, " steps")
+        agent.learn()
+        break
 
-    for episode in range(max_episode_num):
+    # Test every 100 episodes
+    if episode % 100 == 0:
+      total_reward = 0
+      for i in range(TEST):
         state = env.reset()
-        log_probs = []
-        rewards = []
+        for j in range(STEP):
+          env.render()
+          action = agent.choose_action(state) # direct action for test
+          state,reward,done,_ = env.step(action)
+          total_reward += reward
+          if done:
+            break
+      ave_reward = total_reward/TEST
+      print ('episode: ',episode,'Evaluation Average Reward:',ave_reward)
 
-        for steps in range(max_steps):
-            env.render()
-            action, log_prob = policy_net.get_action(state)
-            new_state, reward, done, _ = env.step(action)
-            log_probs.append(log_prob)
-            rewards.append(reward)
-
-            if done:
-                update_policy(policy_net, rewards, log_probs)
-                numsteps.append(steps)
-                avg_numsteps.append(np.mean(numsteps[-10:]))
-                all_rewards.append(np.sum(rewards))
-                if episode % 1 == 0:
-                    sys.stdout.write("episode: {}, total reward: {}, average_reward: {}, length: {}\n".format(episode,
-                                                                                                              np.round(
-                                                                                                                  np.sum(
-                                                                                                                      rewards),
-                                                                                                                  decimals=3),
-                                                                                                              np.round(
-                                                                                                                  np.mean(
-                                                                                                                      all_rewards[
-                                                                                                                      -10:]),
-                                                                                                                  decimals=3),
-                                                                                                              steps))
-                break
-
-            state = new_state
-
-    plt.plot(numsteps)
-    plt.plot(avg_numsteps)
-    plt.xlabel('Episode')
-    plt.show()
-
-
-if __name__ == "__main__":
-
-    main()
+if __name__ == '__main__':
+  main()

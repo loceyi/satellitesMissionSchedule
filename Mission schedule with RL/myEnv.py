@@ -3,6 +3,7 @@ import gym
 from gym import spaces, logger
 import numpy as np
 from interval import Interval
+from .import myEnvSubfunction1
 # core.Env是gym的环境基类,自定义的环境就是根据自己的需要重写其中的方法；
 # 必须要重写的方法有:
 # __init__()：构造函数
@@ -21,17 +22,21 @@ class MyEnv(gym.Env):
     # 其他成员
 
     def reset(self):
-        RemainingTime = [Interval(1, 8, closed=True)]
+
         Storage = 5
         TaskNumber = 1
         label = 0
-        self.state = np.array()[Storage, RemainingTime,TaskNumber,label]
+        self.state = np.array([Storage,TaskNumber,label])
         self.steps_beyond_done = None
+
         return np.array(self.state)
 
 
-    def step(self):
-        ...
+    def step (self,action):
+        state = self.state
+        Storage, TaskNumber, label=state
+
+
         reward = self.get_reward()
         done = self.get_done()
         obs = self.get_observation()
