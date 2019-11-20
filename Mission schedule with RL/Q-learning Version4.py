@@ -442,6 +442,7 @@ def rl(RemainingTimeTotal,Tasklist_Initial,Storage):
         TimeOccupation = 0
         TaskNumber = 1
         label = 0
+        rEachEpisode = 0
         S = [Storage, TimeOccupation, TaskNumber, label]
         Tasklist = Tasklist_Initial.copy()
 
@@ -463,16 +464,13 @@ def rl(RemainingTimeTotal,Tasklist_Initial,Storage):
                 is_terminated = True  # terminate this episode
 
             q_table.loc[S_old[3], A] += ALPHA * (q_target - q_predict)  # q_table 更新
-
+            rEachEpisode += R
             #q_table.loc[S[3], A] += ALPHA * (q_target - q_predict)
             S = S_  # 探索者移动到下一个 state
 
             # update_env(S, episode, step_counter+1)  # 环境更新
 
-
-        action_space, Reward = getSolution(q_table, RemainingTimeTotal,
-                                           Tasklist_Initial, Storage)
-        rewardCounter.append(Reward)
+        rewardCounter.append(rEachEpisode)
         # step_counter += 1
     return q_table,RemainingTimeTotal,rewardCounter
     # return q_table, RemainingTimeTotal
