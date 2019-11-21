@@ -35,13 +35,12 @@ class MyEnv(gym.Env):
     def step (self,action):
         state = self.state
         Storage, TaskNumber, label=state
-
-
         reward = self.get_reward()
         done = self.get_done()
         obs = self.get_observation()
         info = {}  # 用于记录训练过程中的环境信息,便于观察训练状态
-        return obs, reward, done, info
+
+        return np.array(self.state), reward, done, {}
 
     # 根据需要设计相关辅助函数
     def get_observation(self):
