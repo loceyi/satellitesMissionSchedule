@@ -5,11 +5,12 @@ import globalVariable
 #self.state = np.array([Storage,TaskNumber,label])
 def get_env_feedback(S, A):
 
-    globalVariable.taskListMove(S[1])
+    globalVariable.taskListMove(S[1]) #更新完global值后要取出来
+    taskList=globalVariable.get_value_taskList()
 
     # This is how agent will interact with the environment
     Tasknum = S[1]
-    TaskRequirement=globalVariable.get_value_Task(str(Tasknum))
+    TaskRequirement=globalVariable.get_value_Task(str(Tasknum)).copy()
     # S[2]=taskList[0]
     # RemainingTime = S[1]
     RemainingTime=globalVariable.get_value_RemainingTime(S[2])
@@ -31,15 +32,15 @@ def get_env_feedback(S, A):
             break
 
 
-    if A == 'Accept':
+    if A == 1: #Accept=1
 
         R = TaskRequirement[3]
 
-        S[0] = S[0] - Task[str(Tasknum)][2]
+        S[0] = S[0] - TaskRequirement[2]
         # 更新可用时间窗口
         # a=S[1]
-        NewTW_1 = Interval(RemainingTime[NumTW].lower_bound, Task[str(Tasknum)][0], closed=True)
-        NewTW_2 = Interval(Task[str(Tasknum)][1], RemainingTime[NumTW].upper_bound, closed=True)
+        NewTW_1 = Interval(RemainingTime[NumTW].lower_bound, TaskRequirement[str(Tasknum)][0], closed=True)
+        NewTW_2 = Interval(TaskRequirement[str(Tasknum)][1], RemainingTime[NumTW].upper_bound, closed=True)
         if NewTW_1.upper_bound - NewTW_1.lower_bound == 0:
 
             if NewTW_2.upper_bound - NewTW_2.lower_bound == 0:
@@ -71,7 +72,7 @@ def get_env_feedback(S, A):
 
             if taskList[0] == 0:
 
-                S[2] = taskList[0]
+                S[1] = taskList[0]
 
 
                 break
@@ -82,23 +83,25 @@ def get_env_feedback(S, A):
 
                 for j in range(0, len(RemainingTime)):
 
-                    if (Task[str(taskList[0])][0] in RemainingTime[j]) and\
-                            (Task[str(taskList[0])][1] in RemainingTime[j]):
+                    if (TaskRequirement[str(taskList[0])][0] in RemainingTime[j]) and\
+                            (TaskRequirement[str(taskList[0])][1] in RemainingTime[j]):
 
                         Counter += 1
 
 
 
-                if S[0] < Task[str(S[2])][2] or Counter == 0:
+                if S[0] < TaskRequirement[str(S[1])][2] or Counter == 0:
 
-                    taskList.pop(0)  # 删除第一个元素
-                    S[2] = taskList[0]
+                    # taskList.pop(0)  # 删除第一个元素
+                    globalVariable.taskListPop()
+                    taskList = globalVariable.get_value_taskList()
+                    S[1] = taskList[0]
 
 
 
                 else:
 
-                    S[2] = taskList[0]
+                    S[1] = taskList[0]
 
                     break
 

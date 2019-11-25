@@ -6,7 +6,7 @@ import pandas as pd
 
 def init():
     global a
-    a=1
+    a=[]
 
 
 def add(b):

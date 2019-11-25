@@ -6,10 +6,10 @@ def c(k):
 
     test.add(k)
 
-    a=test.get_value() #必须要通过get_value才能把值传出来。
-
-
-    print(a)
+    # a=test.get_value() #必须要通过get_value才能把值传出来。
+    #
+    #
+    # print(a)
 
 if __name__ == '__main__':
     k=213

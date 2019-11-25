@@ -13,8 +13,8 @@ def _init():
     global RemainingTimeTotal
     global taskList
     satStateTable = pd.DataFrame(
-        np.zeros((1, 4)),
-        columns=['label','storage','timeWindow','nextTask'])
+        np.zeros((1, 3)),
+        columns=['Storage','TaskNumber','label'])
     taskList=[1,2,3,4,5,0]
     # Task[startTime, endTime, engergyCost, reward]
     Task = {'1': [737265.930462963, 737265.930983796, 1, 2],
@@ -39,9 +39,9 @@ def addNewState(label,storage,nextTask):
     # Tasklist_Initial = [1, 2, 3, 4, 5, 0]
 
 
-    new = pd.DataFrame({'label': label,
-                        'storage': storage,
-                        'nextTask': nextTask},
+    new = pd.DataFrame({'Storage':storage ,
+                        'TaskNumber':nextTask ,
+                        'label': label},
                        index=[0])#设置行初始index
 
     satStateTable = satStateTable.append(new, ignore_index=True)
@@ -50,7 +50,7 @@ def get_value_taskList():
 
     global taskList
 
-    return taskList
+    return taskList.copy()
 
 
 def get_value_Task(number):
@@ -58,7 +58,7 @@ def get_value_Task(number):
     #number为str类型数值
     global Task
 
-    return Task[number]
+    return Task[number].copy()
 
 
 def get_value_RemainingTime(label):
@@ -77,6 +77,13 @@ def taskListMove(number):
     global taskList
 
     taskList.remove(number)
+
+def taskListPop():
+
+    global taskList
+
+    taskList.pop(0)
+
 
 
 
