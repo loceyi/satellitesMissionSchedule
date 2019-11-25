@@ -14,7 +14,9 @@ import numpy as np
 import random
 from collections import deque
 import pandas as pd
+import globalVariable
 # Hyper Parameters
+
 GAMMA = 0.95 # discount factor
 LEARNING_RATE=0.01
 
@@ -102,6 +104,7 @@ def main():
         np.zeros((n_states, len(actions))),  # q_table 全 0 初始
         columns=actions,  # columns 对应的是行为名称
     )
+  globalVariable._init()#初始化真实状态信息出差表格
   env = gym.make(ENV_NAME)
   agent = Policy_Gradient(env)
 

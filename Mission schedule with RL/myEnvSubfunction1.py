@@ -1,16 +1,20 @@
 import pandas as pd
 from interval import Interval
+#关于action：若接收任务，action=1,拒绝任务，action=0
+import globalVariable
+#self.state = np.array([Storage,TaskNumber,label])
+def get_env_feedback(S, A):
 
-
-def get_env_feedback(S, A,satStateTable):
+    globalVariable.taskListMove(S[1])
 
     # This is how agent will interact with the environment
-    taskList.remove(S[2])  # 确保一个episode里面只会遇到某一个任务一次,remove只移除第一个遇到的指定元素
-    Tasknum = S[2]
+    Tasknum = S[1]
+    TaskRequirement=globalVariable.get_value_Task(str(Tasknum))
     # S[2]=taskList[0]
     # RemainingTime = S[1]
+    RemainingTime=globalVariable.get_value_RemainingTime(S[2])
 
-    RemainingTime=RemainingTimeTotal[S[3]].copy() #因为取出来的是列表，只想复制它的值
+    # RemainingTime=RemainingTimeTotal[S[3]].copy() #因为取出来的是列表，只想复制它的值
     # print('S-label',S[3])
     # print('RemainingTime',RemainingTime)
     # print('Tasknum',Tasknum,'Action',A)
@@ -18,7 +22,7 @@ def get_env_feedback(S, A,satStateTable):
     # print('Task[str(Tasknum)][1]',Task[str(Tasknum)][1])
     for i in range(0, len(RemainingTime)):
 
-        if (Task[str(Tasknum)][0] in RemainingTime[i]) and (Task[str(Tasknum)][1] in RemainingTime[i]):
+        if (TaskRequirement[0] in RemainingTime[i]) and (TaskRequirement[1] in RemainingTime[i]):
 
 
 
@@ -29,7 +33,7 @@ def get_env_feedback(S, A,satStateTable):
 
     if A == 'Accept':
 
-        R = Task[str(Tasknum)][3]
+        R = TaskRequirement[3]
 
         S[0] = S[0] - Task[str(Tasknum)][2]
         # 更新可用时间窗口
