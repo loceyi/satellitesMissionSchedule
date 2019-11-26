@@ -5,6 +5,7 @@ import globalVariable
 #self.state = np.array([Storage,TaskNumber,label])
 def get_env_feedback(S, A):
 
+    satStateTable=globalVariable.get_value_satState()
     globalVariable.taskListMove(S[1]) #更新完global值后要取出来
     taskList=globalVariable.get_value_taskList()
 
@@ -14,6 +15,7 @@ def get_env_feedback(S, A):
     # S[2]=taskList[0]
     # RemainingTime = S[1]
     RemainingTime=globalVariable.get_value_RemainingTime(S[2])
+    RemainingTimeTotal=globalVariable.get_value_RemainingTimeTotal()
 
     # RemainingTime=RemainingTimeTotal[S[3]].copy() #因为取出来的是列表，只想复制它的值
     # print('S-label',S[3])
@@ -106,11 +108,14 @@ def get_env_feedback(S, A):
                     break
 
         # 判断此时的状态是否是之前的episode遍历过的
+        #为什么需要判读：qtable中是为了对应状态的更新，这里是为了取出对应的timewindow
         diff = 0
         # 判断是否出现过同样的timewindow
         # print('RemainingTimeTotalBefore',RemainingTimeTotal)
         # print(Tasknum,A)
-        for i in range(0, q_table.shape[0]):
+
+        for i in range(0, satStateTable.shape[0]):
+
             diff_TW = 0
             RemainTimeIndex = i
             RemainingTime_i = RemainingTimeTotal[RemainTimeIndex].copy()

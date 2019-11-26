@@ -5,8 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Mission schedule with RL/globalVariable.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/globalVariable.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Mission schedule with RL/myEnvSubfunction1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/myEnvSubfunction1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mission schedule with RL/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mission schedule with RL/test2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/test2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mission schedule with RL/policyGradientVersion1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/policyGradientVersion1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Mission schedule with RL/test3.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/test3.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,7 +22,7 @@
             <file pinned="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/Mission schedule with RL/cartpole.py">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="26">
+                  <state relative-caret-position="2730">
                     <caret line="109" column="48" selection-start-line="109" selection-start-column="48" selection-end-line="109" selection-end-column="48" />
                     <folding>
                       <element signature="e#169#180#0" expanded="true" />
@@ -35,8 +34,8 @@
             <file pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/Mission schedule with RL/globalVariable.py">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="561">
-                    <caret line="84" column="19" selection-start-line="84" selection-start-column="19" selection-end-line="84" selection-end-column="19" />
+                  <state relative-caret-position="390">
+                    <caret line="111" column="4" selection-start-line="111" selection-start-column="4" selection-end-line="111" selection-end-column="34" />
                     <folding>
                       <element signature="e#73#91#0" expanded="true" />
                     </folding>
@@ -57,8 +56,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Mission schedule with RL/Q-learning Version4.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-364">
-              <caret line="28" selection-start-line="28" selection-end-line="28" />
+            <state relative-caret-position="52">
+              <caret line="71" lean-forward="true" selection-start-line="71" selection-end-line="71" />
               <folding>
                 <element signature="e#677#708#0" expanded="true" />
               </folding>
@@ -70,7 +69,7 @@
         <entry file="file://$PROJECT_DIR$/Mission schedule with RL/myEnv.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="286">
-              <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+              <caret line="32" selection-start-line="32" selection-end-line="32" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -81,8 +80,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Mission schedule with RL/policyGradientVersion1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="113" column="11" selection-start-line="113" selection-start-column="11" selection-end-line="113" selection-end-column="11" />
+            <state relative-caret-position="645">
+              <caret line="113" lean-forward="true" selection-start-line="113" selection-end-line="113" />
               <folding>
                 <element signature="e#595#605#0" expanded="true" />
               </folding>
@@ -94,7 +93,7 @@
         <entry file="file://$PROJECT_DIR$/Mission schedule with RL/myEnvSubfunction1.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="156">
-              <caret line="108" column="16" lean-forward="true" selection-start-line="108" selection-start-column="16" selection-end-line="108" selection-end-column="16" />
+              <caret line="117" column="12" selection-start-line="117" selection-start-column="12" selection-end-line="117" selection-end-column="12" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -105,8 +104,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Mission schedule with RL/test3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="5" column="17" lean-forward="true" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+            <state relative-caret-position="234">
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
@@ -117,8 +116,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Mission schedule with RL/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="26">
+              <caret line="10" selection-start-line="10" selection-end-line="10" />
               <folding>
                 <element signature="e#1#19#0" expanded="true" />
               </folding>
@@ -130,7 +129,7 @@
         <entry file="file://$PROJECT_DIR$/Mission schedule with RL/test2.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="182">
-              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
             </state>
           </provider>
         </entry>
@@ -189,11 +188,11 @@
         <option value="$PROJECT_DIR$/Mission schedule with RL/test3" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/Q-learning Version4.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/myEnv.py" />
-        <option value="$PROJECT_DIR$/Mission schedule with RL/policyGradientVersion1.py" />
-        <option value="$PROJECT_DIR$/Mission schedule with RL/globalVariable.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/test2.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/test.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/test3.py" />
+        <option value="$PROJECT_DIR$/Mission schedule with RL/policyGradientVersion1.py" />
+        <option value="$PROJECT_DIR$/Mission schedule with RL/globalVariable.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/myEnvSubfunction1.py" />
       </list>
     </option>
@@ -210,6 +209,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -226,7 +226,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -575,7 +574,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574681160690</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="2019.11.25 22：23编写到107行，注意python函数return时只是赋值，不传递变量地址">
+      <created>1574692009787</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1574692009787</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TodoView">
@@ -591,7 +597,7 @@
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49814814" visible="true" weight="0.16985646" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49814814" weight="0.16985646" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.50185186" side_tool="true" weight="0.24960127" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -671,7 +677,8 @@
     <MESSAGE value="2019.11.21 加油！" />
     <MESSAGE value="2019.11.22 试图把stk窗口计算加入python代码中，&#10;可是agi官网打不开，帮助信息看不到了。。。" />
     <MESSAGE value="2019.11.25 正在编写强化学习环境文件" />
-    <option name="LAST_COMMIT_MESSAGE" value="2019.11.25 正在编写强化学习环境文件" />
+    <MESSAGE value="2019.11.25 22：23编写到107行，注意python函数return时只是赋值，不传递变量地址" />
+    <option name="LAST_COMMIT_MESSAGE" value="2019.11.25 22：23编写到107行，注意python函数return时只是赋值，不传递变量地址" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1001,7 +1008,7 @@
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/test3" />
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/cartpole.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
+        <state relative-caret-position="2730">
           <caret line="109" column="48" selection-start-line="109" selection-start-column="48" selection-end-line="109" selection-end-column="48" />
           <folding>
             <element signature="e#169#180#0" expanded="true" />
@@ -1009,12 +1016,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/policyGradientVersion1.py">
+    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/test2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="113" column="11" selection-start-line="113" selection-start-column="11" selection-end-line="113" selection-end-column="11" />
+        <state relative-caret-position="182">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
           <folding>
-            <element signature="e#595#605#0" expanded="true" />
+            <element signature="e#1#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1022,7 +1036,7 @@
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/myEnv.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
-          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
@@ -1031,47 +1045,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/Q-learning Version4.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-364">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
+        <state relative-caret-position="52">
+          <caret line="71" lean-forward="true" selection-start-line="71" selection-end-line="71" />
           <folding>
             <element signature="e#677#708#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/globalVariable.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="84" column="19" selection-start-line="84" selection-start-column="19" selection-end-line="84" selection-end-column="19" />
-          <folding>
-            <element signature="e#73#91#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/test2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-          <folding>
-            <element signature="e#1#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/test3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="5" column="17" lean-forward="true" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+        <state relative-caret-position="234">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/policyGradientVersion1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="645">
+          <caret line="113" lean-forward="true" selection-start-line="113" selection-end-line="113" />
+          <folding>
+            <element signature="e#595#605#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/globalVariable.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="111" column="4" selection-start-line="111" selection-start-column="4" selection-end-line="111" selection-end-column="34" />
+          <folding>
+            <element signature="e#73#91#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1079,7 +1086,7 @@
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/myEnvSubfunction1.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="156">
-          <caret line="108" column="16" lean-forward="true" selection-start-line="108" selection-start-column="16" selection-end-line="108" selection-end-column="16" />
+          <caret line="117" column="12" selection-start-line="117" selection-start-column="12" selection-end-line="117" selection-end-column="12" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>

@@ -100,16 +100,22 @@ TEST = 10 # The number of experiment test every 100 episode
 
 def main():
   # initialize OpenAI Gym env and dqn agent
-  satStateTable = pd.DataFrame(
-        np.zeros((n_states, len(actions))),  # q_table 全 0 初始
-        columns=actions,  # columns 对应的是行为名称
-    )
-  globalVariable._init()#初始化真实状态信息出差表格
+  # satStateTable = pd.DataFrame(
+  #       np.zeros((n_states, len(actions))),  # q_table 全 0 初始
+  #       columns=actions,  # columns 对应的是行为名称
+  #   )
+  globalVariable.initRemainingTimeTotal()#在总的学习开始前初始化时间窗口存储器
+  globalVariable.initTask()
+  globalVariable.initsatState()
+
   env = gym.make(ENV_NAME)
   agent = Policy_Gradient(env)
 
+
+
   for episode in range(EPISODE):
     # initialize task
+    globalVariable.initTasklist()  # 每个episode开始前都初始化Tasklist
     state = env.reset()
     # Train
     for step in range(STEP):
