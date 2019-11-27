@@ -17,7 +17,7 @@ def initsatState():
 
     satStateTable.loc[0, 'Storage'] = 5
     satStateTable.loc[0, 'TaskNumber'] = 1
-    satStateTable.loc[0, 'label'] = 1
+    satStateTable.loc[0, 'label'] = 0 #状态label从零开始编号，代表不同的状态
 
 def initTasklist():
     # global satStateTable
@@ -66,7 +66,7 @@ def updateRemainTimeTotal(RemainingTime):
 #     _global_dict[name] = value
 
 
-def addNewState(label,storage,nextTask):
+def addNewState(storage,nextTask,label):
     global satStateTable
     global Task
 

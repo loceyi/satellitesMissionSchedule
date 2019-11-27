@@ -3,8 +3,9 @@ from interval import Interval
 #关于action：若接收任务，action=1,拒绝任务，action=0
 import globalVariable
 #self.state = np.array([Storage,TaskNumber,label])
-def get_env_feedback(S, A):
 
+def get_env_feedback(S, A):
+    done=0
     satStateTable=globalVariable.get_value_satState()
     globalVariable.taskListMove(S[1]) #更新完global值后要取出来
     taskList=globalVariable.get_value_taskList()
@@ -26,7 +27,6 @@ def get_env_feedback(S, A):
     for i in range(0, len(RemainingTime)):
 
         if (TaskRequirement[0] in RemainingTime[i]) and (TaskRequirement[1] in RemainingTime[i]):
-
 
 
             NumTW = i
@@ -75,7 +75,7 @@ def get_env_feedback(S, A):
             if taskList[0] == 0:
 
                 S[1] = taskList[0]
-
+                done=1
 
                 break
 
@@ -92,7 +92,7 @@ def get_env_feedback(S, A):
 
 
 
-                if S[0] < TaskRequirement[str(S[1])][2] or Counter == 0:
+                if S[0] < TaskRequirement[str(taskList[0])][2] or Counter == 0:
 
                     # taskList.pop(0)  # 删除第一个元素
                     globalVariable.taskListPop()
@@ -152,41 +152,41 @@ def get_env_feedback(S, A):
                 # 判断若窗口全都一样，看看其它状态量是否相同
             if diff_TW == 0:
 
-                if S[0] != q_table.loc[i, 'Storage']:
+                if S[0] != satStateTable.loc[i, 'Storage']:
                     diff += 1
 
 
 
                 else:
 
-                    if S[2] != q_table.loc[i, 'IncomingTask']:
+                    if S[1] != satStateTable.loc[i, 'TaskNumber']:
                         diff += 1
 
 
                     else:
 
                         SameRecord = i
-                        S[3] = SameRecord
-                        S[1] = S[3]
+                        S[2] = SameRecord
                         break
 
             else:
 
                 diff += 1
 
-        if diff == q_table.shape[0]:
+        if diff == satStateTable.shape[0]:
 
-            new = pd.DataFrame({'Accept': 0,
-                                'Reject': 0,
-                                'Storage': S[0],
-                                'IncomingTask': S[2]},
-                               index=[0])
+            # new = pd.DataFrame({'Accept': 0,
+            #                     'Reject': 0,
+            #                     'Storage': S[0],
+            #                     'IncomingTask': S[2]},
+            #                    index=[0])
+            #
+            # q_table = q_table.append(new, ignore_index=True)
+            # RemainingTimeTotal.append(RemainingTime)
+            S[2]=satStateTable.shape[0]
+            globalVariable.addNewState(S[0],S[1],S[2])
 
-            q_table = q_table.append(new, ignore_index=True)
-            RemainingTimeTotal.append(RemainingTime)
 
-            S[3] = q_table.shape[0] - 1
-            S[1]=S[3]
 
 
 
@@ -205,8 +205,8 @@ def get_env_feedback(S, A):
 
             if taskList[0] == 0:
 
-                S[2] = taskList[0]
-
+                S[1] = taskList[0]
+                done = 1
 
                 break
 
@@ -216,23 +216,29 @@ def get_env_feedback(S, A):
 
                 for j in range(0, len(RemainingTime)):
 
-                    if (Task[str(taskList[0])][0] in RemainingTime[j]) and\
-                            (Task[str(taskList[0])][1] in RemainingTime[j]):
+                    if (TaskRequirement[str(taskList[0])][0] in RemainingTime[j]) and\
+                            (TaskRequirement[str(taskList[0])][1] in RemainingTime[j]):
 
                         Counter += 1
 
 
 
-                if S[0] < Task[str(S[2])][2] or Counter == 0:
+                if S[0] < TaskRequirement[str(taskList[0])][2] or Counter == 0:
 
-                    taskList.pop(0)  # 删除第一个元素
-                    S[2] = taskList[0]
+                    # taskList.pop(0)  # 删除第一个元素
+                    #
+                    # S[1] = taskList[0]
+
+                    globalVariable.taskListPop()
+                    taskList = globalVariable.get_value_taskList()
+                    S[1] = taskList[0]
+
 
 
 
                 else:
 
-                    S[2] = taskList[0]
+                    S[1] = taskList[0]
 
                     break
 
@@ -241,7 +247,7 @@ def get_env_feedback(S, A):
         # 判断是否出现过同样的timewindow
         # print(RemainingTimeTotal)
         # print(Tasknum, A)
-        for i in range(0, q_table.shape[0]):
+        for i in range(0, satStateTable.shape[0]):
             diff_TW = 0
             RemainTimeIndex = i
             RemainingTime_i = RemainingTimeTotal[RemainTimeIndex].copy()
@@ -279,22 +285,22 @@ def get_env_feedback(S, A):
                 # 判断若窗口全都一样，看看其它状态量是否相同
             if diff_TW == 0:
 
-                if S[0] != q_table.loc[i, 'Storage']:
+                if S[0] != satStateTable.loc[i, 'Storage']:
                     diff += 1
 
 
 
                 else:
 
-                    if S[2] != q_table.loc[i, 'IncomingTask']:
+                    if S[1] != satStateTable.loc[i, 'TaskNumber']:
                         diff += 1
 
 
                     else:
 
                         SameRecord = i
-                        S[3] = SameRecord
-                        S[1] = S[3]
+                        S[2] = SameRecord
+
 
                         break
 
@@ -302,23 +308,26 @@ def get_env_feedback(S, A):
 
                 diff += 1
 
-        if diff == q_table.shape[0]:
+        if diff == satStateTable.shape[0]:
 
-            new = pd.DataFrame({'Accept': 0,
-                                'Reject': 0,
-                                'Storage': S[0],
-                                'IncomingTask': S[2]},
-                               index=[0])
+            # new = pd.DataFrame({'Accept': 0,
+            #                     'Reject': 0,
+            #                     'Storage': S[0],
+            #                     'IncomingTask': S[2]},
+            #                    index=[0])
+            #
+            # q_table = q_table.append(new, ignore_index=True)
+            # RemainingTimeTotal.append(RemainingTime)
+            # S[3] = q_table.shape[0] - 1
+            # S[1] = S[3]
 
-            q_table = q_table.append(new, ignore_index=True)
-            RemainingTimeTotal.append(RemainingTime)
-            S[3] = q_table.shape[0] - 1
-            S[1] = S[3]
+            S[2]=satStateTable.shape[0]
+            globalVariable.addNewState(S[0],S[1],S[2])
 
 
         else:
 
             pass
 
-    return S, R,satStateTable
+    return S,R,done
 

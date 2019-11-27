@@ -188,7 +188,7 @@ def get_env_feedback(S, A, taskList, q_table, RemainingTimeTotal):
 
 
 
-                if S[0] < Task[str(S[2])][2] or Counter == 0:
+                if S[0] < Task[str(taskList[0])][2] or Counter == 0:
 
                     taskList.pop(0)  # 删除第一个元素
                     S[2] = taskList[0]
@@ -314,7 +314,7 @@ def get_env_feedback(S, A, taskList, q_table, RemainingTimeTotal):
 
 
 
-                if S[0] < Task[str(S[2])][2] or Counter == 0:
+                if S[0] < Task[str(taskList[0])][2] or Counter == 0:
 
                     taskList.pop(0)  # 删除第一个元素
                     S[2] = taskList[0]
