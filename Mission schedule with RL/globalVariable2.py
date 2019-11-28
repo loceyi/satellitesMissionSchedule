@@ -47,6 +47,7 @@ def initTask():
 def initRemainingTimeTotal():
 
     global RemainingTimeTotal
+    global Task
 
     RemainingTimeTotal = [[Interval(Task['1'][0], Task['5'][1], closed=True)]]
 
@@ -95,6 +96,13 @@ def get_value_Task(number):
     global Task
 
     return Task[number].copy()
+
+def get_value_TaskTotal():
+    global Task
+
+    return copy.deepcopy(Task)
+
+
 
 
 def get_value_RemainingTime(label):

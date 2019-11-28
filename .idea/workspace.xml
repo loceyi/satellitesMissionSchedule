@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="639b334a-7721-4416-ac57-6edd38b904bb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mission schedule with RL/myEnv.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/myEnv.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mission schedule with RL/globalVariable.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/globalVariable2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mission schedule with RL/myEnvSubfunction1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/myEnvSubfunction1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Mission schedule with RL/policyGradientVersion1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/policyGradientVersion1.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,7 +21,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Mission schedule with RL/Q-learning Version4.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5499">
+            <state relative-caret-position="5265">
               <caret line="329" column="34" selection-start-line="329" selection-start-column="34" selection-end-line="329" selection-end-column="34" />
               <folding>
                 <element signature="e#677#708#0" expanded="true" />
@@ -30,55 +31,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Mission schedule with RL/myEnv.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="18" column="38" lean-forward="true" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Mission schedule with RL/policyGradientVersion1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="96" column="35" lean-forward="true" selection-start-line="96" selection-start-column="35" selection-end-line="96" selection-end-column="35" />
-              <folding>
-                <element signature="e#595#605#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="36">
+              <caret line="14" column="29" lean-forward="true" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../ANAdonda/Lib/site-packages/gym/envs/__init__.py">
+        <entry file="file://$PROJECT_DIR$/../ANAdonda/Lib/site-packages/gym/envs/user/myEnvSubfunction1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="685" column="9" lean-forward="true" selection-start-line="685" selection-start-column="9" selection-end-line="685" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Mission schedule with RL/cartpole.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1626">
-              <caret line="135" lean-forward="true" selection-start-line="135" selection-end-line="135" />
-              <folding>
-                <element signature="e#169#180#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Mission schedule with RL/myEnvSubfunction1.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="957">
-              <caret line="331" column="19" selection-start-line="331" selection-start-column="19" selection-end-line="331" selection-end-column="19" />
+            <state relative-caret-position="130">
+              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -86,13 +51,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Mission schedule with RL/globalVariable.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../ANAdonda/Lib/site-packages/gym/envs/user/myEnv.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="21" column="19" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="19" />
+            <state relative-caret-position="234">
+              <caret line="9" column="15" lean-forward="true" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
               <folding>
-                <element signature="e#73#91#0" expanded="true" />
+                <element signature="e#0#11#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -139,6 +104,8 @@
       <find>target</find>
       <find>IAgTa</find>
       <find>eOrbit</find>
+      <find>RemainingTime</find>
+      <find>TaskR</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -174,13 +141,15 @@
         <option value="$PROJECT_DIR$/Mission schedule with RL/test2.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/test.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/test3.py" />
-        <option value="$PROJECT_DIR$/Mission schedule with RL/globalVariable.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/Q-learning Version4.py" />
-        <option value="$PROJECT_DIR$/Mission schedule with RL/myEnvSubfunction1.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/myEnv.py" />
         <option value="$PROJECT_DIR$/../ANAdonda/Lib/site-packages/gym/envs/user/__init__.py" />
         <option value="$PROJECT_DIR$/../ANAdonda/Lib/site-packages/gym/envs/__init__.py" />
+        <option value="$PROJECT_DIR$/Mission schedule with RL/globalVariable.py" />
+        <option value="$PROJECT_DIR$/Mission schedule with RL/myEnvSubfunction1.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/policyGradientVersion1.py" />
+        <option value="$PROJECT_DIR$/../ANAdonda/Lib/site-packages/gym/envs/user/myEnvSubfunction1.py" />
+        <option value="$PROJECT_DIR$/../ANAdonda/Lib/site-packages/gym/envs/user/myEnv.py" />
       </list>
     </option>
   </component>
@@ -196,7 +165,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -213,6 +181,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -267,6 +236,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="globalVariable" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Satellites Mission Schedule" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Mission schedule with RL" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="D:\Satellites Mission Schedule\Mission schedule with RL\globalVariable2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="policyGradientVersion1" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Satellites Mission Schedule" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -301,27 +291,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Mission schedule with Gurobi(According to the paper 'Optimal Continous-Time...')/gurobi_test_example.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="test2" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Satellites Mission Schedule" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Mission schedule with RL" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Mission schedule with RL/test2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -375,10 +344,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.policyGradientVersion1" />
+        <item itemvalue="Python.globalVariable" />
         <item itemvalue="Python.Q-learning Version4" />
         <item itemvalue="Python.test3" />
         <item itemvalue="Python.timeWindowCalculationStk" />
-        <item itemvalue="Python.test2" />
       </list>
     </recent_temporary>
   </component>
@@ -582,7 +551,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574861830161</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="2019.11.28 10:38 编写了个大概，开始debug">
+      <created>1574908707028</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1574908707028</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TodoView">
@@ -598,7 +574,7 @@
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49814814" visible="true" weight="0.16905901" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49814814" weight="0.16905901" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.50185186" side_tool="true" weight="0.24960127" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -681,7 +657,8 @@
     <MESSAGE value="2019.11.25 22：23编写到107行，注意python函数return时只是赋值，不传递变量地址" />
     <MESSAGE value="2019.11.26 17:08" />
     <MESSAGE value="2019.11.27 21:36 应该是编写好了myenv，下一步去构建整个神经网络，加油！" />
-    <option name="LAST_COMMIT_MESSAGE" value="2019.11.27 21:36 应该是编写好了myenv，下一步去构建整个神经网络，加油！" />
+    <MESSAGE value="2019.11.28 10:38 编写了个大概，开始debug" />
+    <option name="LAST_COMMIT_MESSAGE" value="2019.11.28 10:38 编写了个大概，开始debug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -702,29 +679,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../ANAdonda/Lib/site-packages/matplotlib/pyplot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="2861" column="39" lean-forward="true" selection-start-line="2861" selection-start-column="39" selection-end-line="2861" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tensorflow_practice-master/RL/DQN-demo/maze_env.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2787">
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Reinforcement Learning/tensorFlowTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tensorflow_practice-master/RL/DQN-demo/run_this.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
@@ -988,6 +942,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../ANAdonda/Lib/site-packages/gym/spaces/discrete.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-26">
+          <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ANAdonda/Lib/site-packages/gym/envs/registration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-369">
+          <caret line="154" column="4" selection-start-line="154" selection-start-column="4" selection-end-line="154" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
@@ -1005,26 +973,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/globalVariable.py">
+    <entry file="file://$PROJECT_DIR$/../ANAdonda/Lib/site-packages/gym/envs/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="21" column="19" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="19" />
-          <folding>
-            <element signature="e#73#91#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="195">
+          <caret line="685" column="9" selection-start-line="685" selection-start-column="9" selection-end-line="685" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../ANAdonda/Lib/site-packages/gym/spaces/discrete.py">
+    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/cartpole.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-26">
-          <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+        <state relative-caret-position="65">
+          <caret line="121" column="38" lean-forward="true" selection-start-line="121" selection-start-column="38" selection-end-line="121" selection-end-column="38" />
+          <folding>
+            <element signature="e#169#180#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/Q-learning Version4.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5499">
+        <state relative-caret-position="5265">
           <caret line="329" column="34" selection-start-line="329" selection-start-column="34" selection-end-line="329" selection-end-column="34" />
           <folding>
             <element signature="e#677#708#0" expanded="true" />
@@ -1032,17 +1000,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../ANAdonda/Lib/site-packages/gym/envs/registration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-369">
-          <caret line="154" column="4" selection-start-line="154" selection-start-column="4" selection-end-line="154" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/myEnvSubfunction1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="957">
-          <caret line="331" column="19" selection-start-line="331" selection-start-column="19" selection-end-line="331" selection-end-column="19" />
+        <state relative-caret-position="-702">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
@@ -1051,20 +1012,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/myEnv.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="18" column="38" lean-forward="true" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
+        <state relative-caret-position="-117">
+          <caret line="18" column="38" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/cartpole.py">
+    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/globalVariable2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1626">
-          <caret line="135" lean-forward="true" selection-start-line="135" selection-end-line="135" />
+        <state relative-caret-position="91">
+          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
           <folding>
-            <element signature="e#169#180#0" expanded="true" />
+            <element signature="e#73#91#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1076,19 +1037,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../ANAdonda/Lib/site-packages/gym/envs/__init__.py">
+    <entry file="file://$PROJECT_DIR$/../ANAdonda/Lib/site-packages/gym/envs/user/globalVariable.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="685" column="9" lean-forward="true" selection-start-line="685" selection-start-column="9" selection-end-line="685" selection-end-column="9" />
+        <state relative-caret-position="78">
+          <caret line="6" column="11" lean-forward="true" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
+          <folding>
+            <element signature="e#73#91#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ANAdonda/Lib/site-packages/gym/envs/user/myEnvSubfunction1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/policyGradientVersion1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="96" column="35" lean-forward="true" selection-start-line="96" selection-start-column="35" selection-end-line="96" selection-end-column="35" />
+        <state relative-caret-position="36">
+          <caret line="14" column="29" lean-forward="true" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ANAdonda/Lib/site-packages/gym/envs/user/myEnv.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="9" column="15" lean-forward="true" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
           <folding>
-            <element signature="e#595#605#0" expanded="true" />
+            <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>

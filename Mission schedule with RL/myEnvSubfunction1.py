@@ -1,22 +1,22 @@
 import pandas as pd
 from interval import Interval
 #关于action：若接收任务，action=1,拒绝任务，action=0
-import globalVariable
+import globalVariable2
 #self.state = np.array([Storage,TaskNumber,label])
 
 def get_env_feedback(S, A):
     done=0
-    satStateTable=globalVariable.get_value_satState()
-    globalVariable.taskListMove(S[1]) #更新完global值后要取出来
-    taskList=globalVariable.get_value_taskList()
-
+    satStateTable=globalVariable2.get_value_satState()
+    globalVariable2.taskListMove(S[1]) #更新完global值后要取出来
+    taskList=globalVariable2.get_value_taskList()
+    TaskTotal=globalVariable2.get_value_TaskTotal() #返回整个task字典变量
     # This is how agent will interact with the environment
     Tasknum = S[1]
-    TaskRequirement=globalVariable.get_value_Task(str(Tasknum)).copy()
+    TaskRequirement=globalVariable2.get_value_Task(str(Tasknum)).copy()
     # S[2]=taskList[0]
     # RemainingTime = S[1]
-    RemainingTime=globalVariable.get_value_RemainingTime(S[2])
-    RemainingTimeTotal=globalVariable.get_value_RemainingTimeTotal()
+    RemainingTime=globalVariable2.get_value_RemainingTime(S[2])
+    RemainingTimeTotal=globalVariable2.get_value_RemainingTimeTotal()
 
     # RemainingTime=RemainingTimeTotal[S[3]].copy() #因为取出来的是列表，只想复制它的值
     # print('S-label',S[3])
@@ -34,15 +34,15 @@ def get_env_feedback(S, A):
             break
 
 
-    if A == 1: #Accept=1
+    if A == float(1.0): #Accept=1
 
         R = TaskRequirement[3]
 
         S[0] = S[0] - TaskRequirement[2]
         # 更新可用时间窗口
         # a=S[1]
-        NewTW_1 = Interval(RemainingTime[NumTW].lower_bound, TaskRequirement[str(Tasknum)][0], closed=True)
-        NewTW_2 = Interval(TaskRequirement[str(Tasknum)][1], RemainingTime[NumTW].upper_bound, closed=True)
+        NewTW_1 = Interval(RemainingTime[NumTW].lower_bound, TaskRequirement[0], closed=True)
+        NewTW_2 = Interval(TaskRequirement[1], RemainingTime[NumTW].upper_bound, closed=True)
         if NewTW_1.upper_bound - NewTW_1.lower_bound == 0:
 
             if NewTW_2.upper_bound - NewTW_2.lower_bound == 0:
@@ -85,18 +85,18 @@ def get_env_feedback(S, A):
 
                 for j in range(0, len(RemainingTime)):
 
-                    if (TaskRequirement[str(taskList[0])][0] in RemainingTime[j]) and\
-                            (TaskRequirement[str(taskList[0])][1] in RemainingTime[j]):
+                    if (TaskTotal[str(taskList[0])][0] in RemainingTime[j]) and\
+                            (TaskTotal[str(taskList[0])][1] in RemainingTime[j]):
 
                         Counter += 1
 
 
 
-                if S[0] < TaskRequirement[str(taskList[0])][2] or Counter == 0:
+                if S[0] < TaskTotal[str(taskList[0])][2] or Counter == 0:
 
                     # taskList.pop(0)  # 删除第一个元素
-                    globalVariable.taskListPop()
-                    taskList = globalVariable.get_value_taskList()
+                    globalVariable2.taskListPop()
+                    taskList = globalVariable2.get_value_taskList()
                     S[1] = taskList[0]
 
 
@@ -184,7 +184,8 @@ def get_env_feedback(S, A):
             # q_table = q_table.append(new, ignore_index=True)
             # RemainingTimeTotal.append(RemainingTime)
             S[2]=satStateTable.shape[0]
-            globalVariable.addNewState(S[0],S[1],S[2])
+            globalVariable2.addNewState(S[0], S[1], S[2])
+            globalVariable2.updateRemainTimeTotal(RemainingTime)
 
 
 
@@ -197,7 +198,7 @@ def get_env_feedback(S, A):
 
     else:
 
-        R = 0
+        R = float(0.0)
 
         # S[2] = taskList[0]
         # 更新下一个任务分配，如果下一个任务有冲突就跳到再下一个任务,一直验证到不冲突的任务再把任务给出去
@@ -216,21 +217,21 @@ def get_env_feedback(S, A):
 
                 for j in range(0, len(RemainingTime)):
 
-                    if (TaskRequirement[str(taskList[0])][0] in RemainingTime[j]) and\
-                            (TaskRequirement[str(taskList[0])][1] in RemainingTime[j]):
+                    if (TaskTotal[str(taskList[0])][0] in RemainingTime[j]) and\
+                            (TaskTotal[str(taskList[0])][1] in RemainingTime[j]):
 
                         Counter += 1
 
 
 
-                if S[0] < TaskRequirement[str(taskList[0])][2] or Counter == 0:
+                if S[0] < TaskTotal[str(taskList[0])][2] or Counter == 0:
 
                     # taskList.pop(0)  # 删除第一个元素
                     #
                     # S[1] = taskList[0]
 
-                    globalVariable.taskListPop()
-                    taskList = globalVariable.get_value_taskList()
+                    globalVariable2.taskListPop()
+                    taskList = globalVariable2.get_value_taskList()
                     S[1] = taskList[0]
 
 
@@ -322,8 +323,8 @@ def get_env_feedback(S, A):
             # S[1] = S[3]
 
             S[2]=satStateTable.shape[0]
-            globalVariable.addNewState(S[0],S[1],S[2])
-
+            globalVariable2.addNewState(S[0], S[1], S[2])
+            globalVariable2.updateRemainTimeTotal(RemainingTime)
 
         else:
 

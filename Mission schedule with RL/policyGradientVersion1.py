@@ -14,7 +14,9 @@ import numpy as np
 import random
 from collections import deque
 import pandas as pd
-import globalVariable
+# import sys
+# sys.path.append(r'D:\ANAdonda\Lib\site-packages\gym\envs\user')
+import gym.envs.user.globalVariable as globalVariable
 # Hyper Parameters
 
 GAMMA = 0.95 # discount factor
@@ -24,7 +26,7 @@ class Policy_Gradient():
     def __init__(self, env):
         # init some parameters
         self.time_step = 0
-        self.state_dim = env.observation_space.shape[0]
+        self.state_dim = env.observation_space.n
         self.action_dim = env.action_space.n
         self.ep_obs, self.ep_as, self.ep_rs = [], [], []
         self.create_softmax_network()
@@ -104,8 +106,9 @@ def main():
   #       np.zeros((n_states, len(actions))),  # q_table 全 0 初始
   #       columns=actions,  # columns 对应的是行为名称
   #   )
-  globalVariable.initRemainingTimeTotal()#在总的学习开始前初始化时间窗口存储器
   globalVariable.initTask()
+  globalVariable.initRemainingTimeTotal()#在总的学习开始前初始化时间窗口存储器
+
   globalVariable.initsatState()
 
   env = gym.make(ENV_NAME)
