@@ -57,6 +57,6 @@ class MyEnv(gym.Env):
         label = 0
         self.state = np.array([Storage,TaskNumber,label])
         self.steps_beyond_done = None
-        self.taskList=[]
+        # self.taskList=[]
         return np.array(self.state)
 

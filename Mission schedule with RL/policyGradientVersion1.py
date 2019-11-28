@@ -39,7 +39,7 @@ class Policy_Gradient():
         b1 = self.bias_variable([20])
         W2 = self.weight_variable([20, self.action_dim])
         b2 = self.bias_variable([self.action_dim])
-        # input layer
+        # input layer placeholder用于定义参数
         self.state_input = tf.placeholder("float", [None, self.state_dim])
         self.tf_acts = tf.placeholder(tf.int32, [None, ], name="actions_num")
         self.tf_vt = tf.placeholder(tf.float32, [None, ], name="actions_value")
@@ -56,8 +56,8 @@ class Policy_Gradient():
         self.train_op = tf.train.AdamOptimizer(LEARNING_RATE).minimize(self.loss)
 
     def weight_variable(self, shape):
-        initial = tf.truncated_normal(shape)
-        return tf.Variable(initial)
+        initial = tf.truncated_normal(shape)# 从截断的正态分布中输出随机值
+        return tf.Variable(initial)#Variable（）构造函数需要变量的初始值
 
     def bias_variable(self, shape):
         initial = tf.constant(0.01, shape=shape)
@@ -93,9 +93,9 @@ class Policy_Gradient():
 
         self.ep_obs, self.ep_as, self.ep_rs = [], [], []    # empty episode data
 # Hyper Parameters
-ENV_NAME = 'CartPole-v0'
+ENV_NAME = 'MyEnv-v0'
 EPISODE = 3000 # Episode limitation
-STEP = 3000 # Step limitation in an episode
+STEP = 6 # Step limitation in an episode
 TEST = 10 # The number of experiment test every 100 episode
 
 def main():
@@ -123,7 +123,7 @@ def main():
       next_state,reward,done,_ = env.step(action)
       agent.store_transition(state, action, reward)
       state = next_state
-      if done:
+      if done:#每进行完一个episode就开始学习
         #print("stick for ",step, " steps")
         agent.learn()
         break
@@ -134,7 +134,7 @@ def main():
       for i in range(TEST):
         state = env.reset()
         for j in range(STEP):
-          env.render()
+          # env.render()
           action = agent.choose_action(state) # direct action for test
           state,reward,done,_ = env.step(action)
           total_reward += reward
