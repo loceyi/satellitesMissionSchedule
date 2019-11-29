@@ -70,6 +70,13 @@ class Policy_Gradient():
         action = np.random.choice(range(prob_weights.shape[1]), p=prob_weights.ravel())  # select action w.r.t the actions prob
         return action
 
+    def choose_action_greedy(self, observation):
+        prob_weights = self.session.run(self.all_act_prob, feed_dict={self.state_input: observation[np.newaxis, :]})
+        p = prob_weights.ravel().tolist()
+        action=p.index(max(p))
+        # action = np.random.choice(range(prob_weights.shape[1]), p=prob_weights.ravel())  # select action w.r.t the actions prob
+        return action
+
     def store_transition(self, s, a, r):
         self.ep_obs.append(s)
         self.ep_as.append(a)
@@ -83,6 +90,9 @@ class Policy_Gradient():
             running_add = running_add * GAMMA + self.ep_rs[t]
             discounted_ep_rs[t] = running_add
 
+        # discounted_ep_rs=float(discounted_ep_rs)
+        discounted_ep_rs= map(float, discounted_ep_rs)
+        discounted_ep_rs=list(discounted_ep_rs)
         discounted_ep_rs -= np.mean(discounted_ep_rs)
         discounted_ep_rs /= np.std(discounted_ep_rs)
 
@@ -131,20 +141,39 @@ def main():
         agent.learn()
         break
 
-    # Test every 100 episodes
-    if episode % 100 == 0:
-      total_reward = 0
-      for i in range(TEST):
-        state = env.reset()
-        for j in range(STEP):
-          # env.render()
-          action = agent.choose_action(state) # direct action for test
-          state,reward,done,_ = env.step(action)
-          total_reward += reward
-          if done:
-            break
-      ave_reward = total_reward/TEST
-      print ('episode: ',episode,'Evaluation Average Reward:',ave_reward)
+    # # Test every 100 episodes
+    # if episode % 100 == 0:
+    #   total_reward = 0
+    #   for i in range(TEST):
+    #     state = env.reset()
+    #     globalVariable.initTasklist()
+    #     for j in range(STEP):
+    #       # env.render()
+    #       action = agent.choose_action(state) # direct action for test
+    #       state,reward,done,_ = env.step(action)
+    #       total_reward += reward
+    #       if done:
+    #         # print(total_reward)
+    #         break
+    #   ave_reward = total_reward/TEST
+    #
+    #   print ('episode: ',episode,'Evaluation Average Reward:',ave_reward)
+
+    #get the final result
+
+  state = env.reset()
+  globalVariable.initTasklist()
+  for j in range(STEP):
+      # env.render()
+
+      action = agent.choose_action_greedy(state)
+      print('Task', state[1], 'action', action)
+      state, reward, done, _ = env.step(action)
+      if done:
+          # print(total_reward)
+          break
+
+
 
 if __name__ == '__main__':
   main()
