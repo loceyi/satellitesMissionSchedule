@@ -16,7 +16,8 @@ from collections import deque
 import pandas as pd
 # import sys
 # sys.path.append(r'D:\ANAdonda\Lib\site-packages\gym\envs\user')
-import gym.envs.user.globalVariable as globalVariable
+import globalVariableLocal
+import myEnvLocal
 # Hyper Parameters
 
 GAMMA = 0.95 # discount factor
@@ -105,7 +106,7 @@ class Policy_Gradient():
 
         self.ep_obs, self.ep_as, self.ep_rs = [], [], []    # empty episode data
 # Hyper Parameters
-ENV_NAME = 'MyEnv-v0'
+# ENV_NAME = 'MyEnv-v0'
 EPISODE = 3000 # Episode limitation
 STEP = 6 # Step limitation in an episode
 TEST = 10 # The number of experiment test every 100 episode
@@ -116,19 +117,20 @@ def main():
   #       np.zeros((n_states, len(actions))),  # q_table 全 0 初始
   #       columns=actions,  # columns 对应的是行为名称
   #   )
-  globalVariable.initTask()
-  globalVariable.initRemainingTimeTotal()#在总的学习开始前初始化时间窗口存储器
+  globalVariableLocal.initTask()
+  globalVariableLocal.initRemainingTimeTotal()#在总的学习开始前初始化时间窗口存储器
 
-  globalVariable.initsatState()
+  globalVariableLocal.initsatState()
 
-  env = gym.make(ENV_NAME)
+  # env = gym.make(ENV_NAME)
+  env=myEnvLocal.MyEnv()
   agent = Policy_Gradient(env)
 
 
 
   for episode in range(EPISODE):
     # initialize task
-    globalVariable.initTasklist()  # 每个episode开始前都初始化Tasklist
+    globalVariableLocal.initTasklist()  # 每个episode开始前都初始化Tasklist
     state = env.reset()
     # Train
     for step in range(STEP):
@@ -162,7 +164,7 @@ def main():
     #get the final result
 
   state = env.reset()
-  globalVariable.initTasklist()
+  globalVariableLocal.initTasklist()
   for j in range(STEP):
       # env.render()
 

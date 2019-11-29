@@ -1,22 +1,22 @@
 import pandas as pd
 from interval import Interval
 #关于action：若接收任务，action=1,拒绝任务，action=0
-import globalVariable2
+import globalVariableLocal
 #self.state = np.array([Storage,TaskNumber,label])
 
 def get_env_feedback(S, A):
     done=0
-    satStateTable=globalVariable2.get_value_satState()
-    globalVariable2.taskListMove(S[1]) #更新完global值后要取出来
-    taskList=globalVariable2.get_value_taskList()
-    TaskTotal=globalVariable2.get_value_TaskTotal() #返回整个task字典变量
+    satStateTable=globalVariableLocal.get_value_satState()
+    globalVariableLocal.taskListMove(S[1]) #更新完global值后要取出来
+    taskList=globalVariableLocal.get_value_taskList()
+    TaskTotal=globalVariableLocal.get_value_TaskTotal() #返回整个task字典变量
     # This is how agent will interact with the environment
     Tasknum = S[1]
-    TaskRequirement=globalVariable2.get_value_Task(str(Tasknum)).copy()
+    TaskRequirement=globalVariableLocal.get_value_Task(str(Tasknum)).copy()
     # S[2]=taskList[0]
     # RemainingTime = S[1]
-    RemainingTime=globalVariable2.get_value_RemainingTime(S[2])
-    RemainingTimeTotal=globalVariable2.get_value_RemainingTimeTotal()
+    RemainingTime=globalVariableLocal.get_value_RemainingTime(S[2])
+    RemainingTimeTotal=globalVariableLocal.get_value_RemainingTimeTotal()
 
     # RemainingTime=RemainingTimeTotal[S[3]].copy() #因为取出来的是列表，只想复制它的值
     # print('S-label',S[3])
@@ -95,8 +95,8 @@ def get_env_feedback(S, A):
                 if S[0] < TaskTotal[str(taskList[0])][2] or Counter == 0:
 
                     # taskList.pop(0)  # 删除第一个元素
-                    globalVariable2.taskListPop()
-                    taskList = globalVariable2.get_value_taskList()
+                    globalVariableLocal.taskListPop()
+                    taskList = globalVariableLocal.get_value_taskList()
                     S[1] = taskList[0]
 
 
@@ -184,8 +184,8 @@ def get_env_feedback(S, A):
             # q_table = q_table.append(new, ignore_index=True)
             # RemainingTimeTotal.append(RemainingTime)
             S[2]=satStateTable.shape[0]
-            globalVariable2.addNewState(S[0], S[1], S[2])
-            globalVariable2.updateRemainTimeTotal(RemainingTime)
+            globalVariableLocal.addNewState(S[0], S[1], S[2])
+            globalVariableLocal.updateRemainTimeTotal(RemainingTime)
 
 
 
@@ -230,8 +230,8 @@ def get_env_feedback(S, A):
                     #
                     # S[1] = taskList[0]
 
-                    globalVariable2.taskListPop()
-                    taskList = globalVariable2.get_value_taskList()
+                    globalVariableLocal.taskListPop()
+                    taskList = globalVariableLocal.get_value_taskList()
                     S[1] = taskList[0]
 
 
@@ -323,8 +323,8 @@ def get_env_feedback(S, A):
             # S[1] = S[3]
 
             S[2]=satStateTable.shape[0]
-            globalVariable2.addNewState(S[0], S[1], S[2])
-            globalVariable2.updateRemainTimeTotal(RemainingTime)
+            globalVariableLocal.addNewState(S[0], S[1], S[2])
+            globalVariableLocal.updateRemainTimeTotal(RemainingTime)
 
         else:
 

@@ -3,7 +3,7 @@ import gym
 from gym import spaces, logger
 import numpy as np
 from interval import Interval
-import myEnvSubfunction1
+import myEnvSubfunctionLocal
 # core.Env是gym的环境基类,自定义的环境就是根据自己的需要重写其中的方法；
 # 必须要重写的方法有:
 # __init__()：构造函数
@@ -28,7 +28,7 @@ class MyEnv(gym.Env):
     def step (self,action):
         state = self.state
 
-        self.state,reward,done=myEnvSubfunction1.get_env_feedback(state, action)
+        self.state,reward,done=myEnvSubfunctionLocal.get_env_feedback(state, action)
 
         # reward = self.get_reward()
         # done = self.get_done()
