@@ -41,7 +41,7 @@ class Policy_Gradient():
 
         # Init session
         self.session = tf.InteractiveSession()
-        # writer = tf.summary.FileWriter("logs/", self.session.graph)
+        writer = tf.summary.FileWriter("logs/", self.session.graph)
         self.session.run(tf.global_variables_initializer())
 
     def create_softmax_network(self):
@@ -101,12 +101,13 @@ class Policy_Gradient():
         for t in reversed(range(0, len(self.ep_rs))):
             running_add = running_add * GAMMA + self.ep_rs[t]
             discounted_ep_rs[t] = running_add
-        print('ep_rs',self.ep_rs)
+        # print('ep_rs',self.ep_rs)
         # discounted_ep_rs=float(discounted_ep_rs)
         discounted_ep_rs= map(float, discounted_ep_rs)
         discounted_ep_rs=list(discounted_ep_rs)
-        discounted_ep_rs -= np.mean(discounted_ep_rs)
-        print('discounted_ep_rs',discounted_ep_rs)
+        # print('discounted_ep_rs', discounted_ep_rs)
+        discounted_ep_rs -= np.mean(discounted_ep_rs) #对reward进一步处理
+        # print('discounted_ep_rs',discounted_ep_rs)
         discounted_ep_rs /= np.std(discounted_ep_rs)
 
         # train on episode
