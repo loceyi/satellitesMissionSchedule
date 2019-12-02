@@ -41,6 +41,7 @@ class Policy_Gradient():
 
         # Init session
         self.session = tf.InteractiveSession()
+        # writer = tf.summary.FileWriter("logs/", self.session.graph)
         self.session.run(tf.global_variables_initializer())
 
     def create_softmax_network(self):
@@ -59,6 +60,7 @@ class Policy_Gradient():
         self.softmax_input = tf.matmul(h_layer, W2) + b2
         #softmax output
         self.all_act_prob = tf.nn.softmax(self.softmax_input, name='act_prob')
+
         self.neg_log_prob = tf.nn.sparse_softmax_cross_entropy_with_logits(logits=self.softmax_input,
                                                                       labels=self.tf_acts)
         self.loss = tf.reduce_mean(self.neg_log_prob * self.tf_vt)  # reward guided loss
@@ -75,7 +77,9 @@ class Policy_Gradient():
 
     def choose_action(self, observation):
         prob_weights = self.session.run(self.all_act_prob, feed_dict={self.state_input: observation[np.newaxis, :]})
+        # print('prob_weights', prob_weights)
         action = np.random.choice(range(prob_weights.shape[1]), p=prob_weights.ravel())  # select action w.r.t the actions prob
+        # print('action',action)
         return action
 
     def choose_action_greedy(self, observation):
@@ -97,11 +101,12 @@ class Policy_Gradient():
         for t in reversed(range(0, len(self.ep_rs))):
             running_add = running_add * GAMMA + self.ep_rs[t]
             discounted_ep_rs[t] = running_add
-
+        print('ep_rs',self.ep_rs)
         # discounted_ep_rs=float(discounted_ep_rs)
         discounted_ep_rs= map(float, discounted_ep_rs)
         discounted_ep_rs=list(discounted_ep_rs)
         discounted_ep_rs -= np.mean(discounted_ep_rs)
+        print('discounted_ep_rs',discounted_ep_rs)
         discounted_ep_rs /= np.std(discounted_ep_rs)
 
         # train on episode

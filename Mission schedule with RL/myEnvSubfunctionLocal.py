@@ -198,7 +198,7 @@ def get_env_feedback(S, A):
 
     else:
 
-        R = float(0.0)
+        R = float(0.01)
 
         # S[2] = taskList[0]
         # 更新下一个任务分配，如果下一个任务有冲突就跳到再下一个任务,一直验证到不冲突的任务再把任务给出去
