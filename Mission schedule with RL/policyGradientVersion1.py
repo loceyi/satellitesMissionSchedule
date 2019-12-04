@@ -41,7 +41,7 @@ class Policy_Gradient():
 
         # Init session
         self.session = tf.InteractiveSession()
-        writer = tf.summary.FileWriter("logs/", self.session.graph)
+        # writer = tf.summary.FileWriter("logs/", self.session.graph)
         self.session.run(tf.global_variables_initializer())
 
     def create_softmax_network(self):
@@ -120,7 +120,7 @@ class Policy_Gradient():
         self.ep_obs, self.ep_as, self.ep_rs = [], [], []    # empty episode data
 # Hyper Parameters
 ENV_NAME = 'MyEnv-v0'
-EPISODE = 3000 # Episode limitation
+EPISODE = 5000 # Episode limitation
 STEP = 6 # Step limitation in an episode
 TEST = 10 # The number of experiment test every 100 episode
 

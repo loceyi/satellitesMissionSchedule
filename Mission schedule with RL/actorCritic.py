@@ -14,6 +14,9 @@ import numpy as np
 import random
 from collections import deque
 
+import globalVariableLocal as globalVariable
+import myEnvLocal as myEnv
+
 # Hyper Parameters
 GAMMA = 0.95 # discount factor
 LEARNING_RATE=0.01
@@ -22,7 +25,7 @@ class Actor():
     def __init__(self, env, sess):
         # init some parameters
         self.time_step = 0
-        self.state_dim = env.observation_space.shape[0]
+        self.state_dim = env.observation_space.n
         self.action_dim = env.action_space.n
         self.create_softmax_network()
 
@@ -47,7 +50,7 @@ class Actor():
         # softmax output
         self.all_act_prob = tf.nn.softmax(self.softmax_input, name='act_prob')
 
-        self.neg_log_prob = tf.nn.softmax_cross_entropy_with_logits(logits=self.softmax_input,
+        self.neg_log_prob = tf.nn.softmax_cross_entropy_with_logits_v2(logits=self.softmax_input,
                                                                            labels=self.tf_acts)
         self.exp = tf.reduce_mean(self.neg_log_prob * self.td_error)
 
@@ -64,9 +67,17 @@ class Actor():
 
     def choose_action(self, observation):
         prob_weights = self.session.run(self.all_act_prob, feed_dict={self.state_input: observation[np.newaxis, :]})
+        print('prob_weights', prob_weights)
         action = np.random.choice(range(prob_weights.shape[1]), p=prob_weights.ravel())  # select action w.r.t the actions prob
+        print('action',action)
         return action
 
+    def choose_action_greedy(self, observation):
+        prob_weights = self.session.run(self.all_act_prob, feed_dict={self.state_input: observation[np.newaxis, :]})
+        p = prob_weights.ravel().tolist()
+        action=p.index(max(p))
+        # action = np.random.choice(range(prob_weights.shape[1]), p=prob_weights.ravel())  # select action w.r.t the actions prob
+        return action
 
     def learn(self, state, action, td_error):
         s = state[np.newaxis, :]
@@ -90,7 +101,7 @@ class Critic():
         # init some parameters
         self.time_step = 0
         self.epsilon = EPSILON
-        self.state_dim = env.observation_space.shape[0]
+        self.state_dim = env.observation_space.n
         self.action_dim = env.action_space.n
 
         self.create_Q_network()
@@ -140,21 +151,30 @@ class Critic():
 # Hyper Parameters
 ENV_NAME = 'CartPole-v0'
 EPISODE = 3000 # Episode limitation
-STEP = 3000 # Step limitation in an episode
+STEP = 6 # Step limitation in an episode
 TEST = 10 # The number of experiment test every 100 episode
 
 def main():
+    # 在总的学习开始前初始化时间窗口存储器
+  globalVariable.initTask()
+  globalVariable.initRemainingTimeTotal()
+  globalVariable.initsatState()
+
+
   # initialize OpenAI Gym env and dqn agent
   sess = tf.InteractiveSession()
-  env = gym.make(ENV_NAME)
+  env = myEnv.MyEnv()#导入自我编写环境
   actor = Actor(env, sess)
   critic = Critic(env, sess)
 
   for episode in range(EPISODE):
     # initialize task
+    # initialize task
+    globalVariable.initTasklist()  # 每个episode开始前都初始化Tasklist
     state = env.reset()
     # Train
     for step in range(STEP):
+      print('state',state)
       action = actor.choose_action(state) # e-greedy action for train
       next_state,reward,done,_ = env.step(action)
       td_error = critic.train_Q_network(state, reward, next_state)  # gradient = grad[r + gamma * V(s_) - V(s)]
@@ -163,20 +183,33 @@ def main():
       if done:
           break
 
-    # Test every 100 episodes
-    if episode % 100 == 0:
-      total_reward = 0
-      for i in range(TEST):
-        state = env.reset()
-        for j in range(STEP):
-          env.render()
-          action = actor.choose_action(state) # direct action for test
-          state,reward,done,_ = env.step(action)
-          total_reward += reward
-          if done:
-            break
-      ave_reward = total_reward/TEST
-      print ('episode: ',episode,'Evaluation Average Reward:',ave_reward)
+    # # Test every 100 episodes
+    # if episode % 100 == 0:
+    #   total_reward = 0
+    #   for i in range(TEST):
+    #     state = env.reset()
+    #     for j in range(STEP):
+    #       env.render()
+    #       action = actor.choose_action(state) # direct action for test
+    #       state,reward,done,_ = env.step(action)
+    #       total_reward += reward
+    #       if done:
+    #         break
+    #   ave_reward = total_reward/TEST
+    #   print ('episode: ',episode,'Evaluation Average Reward:',ave_reward)
+
+  state = env.reset()
+  globalVariable.initTasklist()
+  for j in range(STEP):
+      # env.render()
+
+      action = actor.choose_action_greedy(state)
+      print('Task', state[1], 'action', action)
+      state, reward, done, _ = env.step(action)
+      if done:
+          # print(total_reward)
+          break
+
 
 if __name__ == '__main__':
   main()
