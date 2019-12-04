@@ -179,6 +179,7 @@ def main():
       next_state,reward,done,_ = env.step(action)
       td_error = critic.train_Q_network(state, reward, next_state)  # gradient = grad[r + gamma * V(s_) - V(s)]
       actor.learn(state, action, td_error)  # true_gradient = grad[logPi(s,a) * td_error]
+      #每一步都学习，而不是像PG一样只在跑完一个episode后学习
       state = next_state
       if done:
           break

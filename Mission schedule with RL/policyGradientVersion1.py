@@ -77,9 +77,9 @@ class Policy_Gradient():
 
     def choose_action(self, observation):
         prob_weights = self.session.run(self.all_act_prob, feed_dict={self.state_input: observation[np.newaxis, :]})
-        # print('prob_weights', prob_weights)
+        print('prob_weights', prob_weights)
         action = np.random.choice(range(prob_weights.shape[1]), p=prob_weights.ravel())  # select action w.r.t the actions prob
-        # print('action',action)
+        print('action',action)
         return action
 
     def choose_action_greedy(self, observation):
@@ -148,6 +148,8 @@ def main():
     # Train
     for step in range(STEP):
       action = agent.choose_action(state) # e-greedy action for train
+      print('state', state)
+
       next_state,reward,done,_ = env.step(action)
       agent.store_transition(state, action, reward)
       state = next_state
