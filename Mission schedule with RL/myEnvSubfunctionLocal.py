@@ -6,7 +6,7 @@ import globalVariableLocal
 
 def get_env_feedback(S, A):
     done=0
-    satStateTable=globalVariableLocal.get_value_satState()
+    # satStateTable=globalVariableLocal.get_value_satState()
     globalVariableLocal.taskListMove(S[1]) #更新完global值后要取出来
     taskList=globalVariableLocal.get_value_taskList()
     TaskTotal=globalVariableLocal.get_value_TaskTotal() #返回整个task字典变量
@@ -15,8 +15,9 @@ def get_env_feedback(S, A):
     TaskRequirement=globalVariableLocal.get_value_Task(str(Tasknum)).copy()
     # S[2]=taskList[0]
     # RemainingTime = S[1]
-    RemainingTime=globalVariableLocal.get_value_RemainingTime(S[2])
+
     RemainingTimeTotal=globalVariableLocal.get_value_RemainingTimeTotal()
+    RemainingTime = RemainingTimeTotal[S[2]].copy()
 
     # RemainingTime=RemainingTimeTotal[S[3]].copy() #因为取出来的是列表，只想复制它的值
     # print('S-label',S[3])
@@ -34,9 +35,9 @@ def get_env_feedback(S, A):
             break
 
 
-    if A == float(1.0): #Accept=1
+    if A == 1: #Accept=1
 
-        R = TaskRequirement[3]
+        R = float(TaskRequirement[3])
 
         S[0] = S[0] - TaskRequirement[2]
         # 更新可用时间窗口
@@ -114,11 +115,10 @@ def get_env_feedback(S, A):
         # print('RemainingTimeTotalBefore',RemainingTimeTotal)
         # print(Tasknum,A)
 
-        for i in range(0, satStateTable.shape[0]):
+        for i in range(0, len(RemainingTimeTotal)):
 
             diff_TW = 0
-            RemainTimeIndex = i
-            RemainingTime_i = RemainingTimeTotal[RemainTimeIndex].copy()
+            RemainingTime_i = RemainingTimeTotal[i].copy()
             CurrentStateRemaingingTime = RemainingTime.copy()
             CRT = len(CurrentStateRemaingingTime)
             RT = len(RemainingTime_i)
@@ -152,28 +152,14 @@ def get_env_feedback(S, A):
                 # 判断若窗口全都一样，看看其它状态量是否相同
             if diff_TW == 0:
 
-                if S[0] != satStateTable.loc[i, 'Storage']:
-                    diff += 1
+                S[2] = i #与RemainTimetotal中第i个时间窗口相同
 
-
-
-                else:
-
-                    if S[1] != satStateTable.loc[i, 'TaskNumber']:
-                        diff += 1
-
-
-                    else:
-
-                        SameRecord = i
-                        S[2] = SameRecord
-                        break
 
             else:
 
                 diff += 1
 
-        if diff == satStateTable.shape[0]:
+        if diff == len(RemainingTimeTotal):
 
             # new = pd.DataFrame({'Accept': 0,
             #                     'Reject': 0,
@@ -183,12 +169,9 @@ def get_env_feedback(S, A):
             #
             # q_table = q_table.append(new, ignore_index=True)
             # RemainingTimeTotal.append(RemainingTime)
-            S[2]=satStateTable.shape[0]
-            globalVariableLocal.addNewState(S[0], S[1], S[2])
+            S[2]=len(RemainingTimeTotal)
+            # globalVariableLocal.addNewState(S[0], S[1], S[2])
             globalVariableLocal.updateRemainTimeTotal(RemainingTime)
-
-
-
 
 
         else:
@@ -248,7 +231,7 @@ def get_env_feedback(S, A):
         # 判断是否出现过同样的timewindow
         # print(RemainingTimeTotal)
         # print(Tasknum, A)
-        for i in range(0, satStateTable.shape[0]):
+        for i in range(0, len(RemainingTimeTotal)):
             diff_TW = 0
             RemainTimeIndex = i
             RemainingTime_i = RemainingTimeTotal[RemainTimeIndex].copy()
@@ -286,30 +269,13 @@ def get_env_feedback(S, A):
                 # 判断若窗口全都一样，看看其它状态量是否相同
             if diff_TW == 0:
 
-                if S[0] != satStateTable.loc[i, 'Storage']:
-                    diff += 1
-
-
-
-                else:
-
-                    if S[1] != satStateTable.loc[i, 'TaskNumber']:
-                        diff += 1
-
-
-                    else:
-
-                        SameRecord = i
-                        S[2] = SameRecord
-
-
-                        break
+                S[2] = i
 
             else:
 
                 diff += 1
 
-        if diff == satStateTable.shape[0]:
+        if diff == len(RemainingTimeTotal):
 
             # new = pd.DataFrame({'Accept': 0,
             #                     'Reject': 0,
@@ -322,8 +288,8 @@ def get_env_feedback(S, A):
             # S[3] = q_table.shape[0] - 1
             # S[1] = S[3]
 
-            S[2]=satStateTable.shape[0]
-            globalVariableLocal.addNewState(S[0], S[1], S[2])
+            S[2]=len(RemainingTimeTotal)
+            # globalVariableLocal.addNewState(S[0], S[1], S[2])
             globalVariableLocal.updateRemainTimeTotal(RemainingTime)
 
         else:

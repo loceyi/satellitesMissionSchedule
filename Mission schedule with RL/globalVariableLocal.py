@@ -19,6 +19,7 @@ def initsatState():
     satStateTable.loc[0, 'TaskNumber'] = 1
     satStateTable.loc[0, 'label'] = 0 #状态label从零开始编号，代表不同的状态
     # 最后的label确保了状态不会重叠编成一样的。
+
 def initTasklist():
     # global satStateTable
     # global  Task

@@ -133,7 +133,7 @@ def main():
   globalVariable.initTask()
   globalVariable.initRemainingTimeTotal()#在总的学习开始前初始化时间窗口存储器
 
-  globalVariable.initsatState()
+  # globalVariable.initsatState()
 
   # env = gym.make(ENV_NAME)
   env=myEnv.MyEnv()

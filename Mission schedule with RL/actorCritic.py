@@ -158,7 +158,7 @@ def main():
     # 在总的学习开始前初始化时间窗口存储器
   globalVariable.initTask()
   globalVariable.initRemainingTimeTotal()
-  globalVariable.initsatState()
+  # globalVariable.initsatState()
 
 
   # initialize OpenAI Gym env and dqn agent
