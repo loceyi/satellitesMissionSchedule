@@ -19,6 +19,8 @@ import os
 import shutil
 import matplotlib.pyplot as plt
 
+import globalVariableLocal as globalVariable
+import myEnvLocal as myEnv
 
 GAME = 'CartPole-v0'
 OUTPUT_GRAPH = True
@@ -33,11 +35,13 @@ LR_A = 0.001    # learning rate for actor
 LR_C = 0.001    # learning rate for critic
 GLOBAL_RUNNING_R = []
 GLOBAL_EP = 0
-STEP = 3000 # Step limitation in an episode
+STEP = 6 # Step limitation in an episode
 TEST = 10 # The number of experiment test every 100 episode
-
-env = gym.make(GAME)
-N_S = env.observation_space.shape[0]
+globalVariable.initTask()
+globalVariable.initRemainingTimeTotal()
+env = myEnv.MyEnv()
+# env = gym.make(GAME)
+N_S = env.observation_space.n
 N_A = env.action_space.n
 
 
@@ -61,10 +65,10 @@ class ACNet(object):
                     self.c_loss = tf.reduce_mean(tf.square(td))
 
                 with tf.name_scope('a_loss'):
-                    log_prob = tf.reduce_sum(tf.log(self.a_prob + 1e-5) * tf.one_hot(self.a_his, N_A, dtype=tf.float32), axis=1, keep_dims=True)
+                    log_prob = tf.reduce_sum(tf.log(self.a_prob + 1e-5) * tf.one_hot(self.a_his, N_A, dtype=tf.float32), axis=1, keepdims=True)
                     exp_v = log_prob * tf.stop_gradient(td)
                     entropy = -tf.reduce_sum(self.a_prob * tf.log(self.a_prob + 1e-5),
-                                             axis=1, keep_dims=True)  # encourage exploration
+                                             axis=1, keepdims=True)  # encourage exploration
                     self.exp_v = ENTROPY_BETA * entropy + exp_v
                     self.a_loss = tf.reduce_mean(-self.exp_v)
 
@@ -99,6 +103,7 @@ class ACNet(object):
         SESS.run([self.pull_a_params_op, self.pull_c_params_op])
 
     def choose_action(self, s):  # run by a local
+        # print(s)
         prob_weights = SESS.run(self.a_prob, feed_dict={self.s: s[np.newaxis, :]})
         action = np.random.choice(range(prob_weights.shape[1]),
                                   p=prob_weights.ravel())  # select action w.r.t the actions prob
@@ -107,7 +112,8 @@ class ACNet(object):
 
 class Worker(object):
     def __init__(self, name, globalAC):
-        self.env = gym.make(GAME).unwrapped
+        # self.env = gym.make(GAME).unwrapped
+        self.env=myEnv.MyEnv()
         self.name = name
         self.AC = ACNet(name, globalAC)
 
@@ -117,10 +123,12 @@ class Worker(object):
         buffer_s, buffer_a, buffer_r = [], [], []
         while not COORD.should_stop() and GLOBAL_EP < MAX_GLOBAL_EP:
             s = self.env.reset()
+
             ep_r = 0
             while True:
                 # if self.name == 'W_0':
                 #     self.env.render()
+
                 a = self.AC.choose_action(s)
                 s_, r, done, info = self.env.step(a)
                 if done: r = -5
@@ -179,7 +187,7 @@ if __name__ == "__main__":
             i_name = 'W_%i' % i   # worker name
             workers.append(Worker(i_name, GLOBAL_AC))
 
-    COORD = tf.train.Coordinator()
+    COORD = tf.train.Coordinator()#多线程管理器
     SESS.run(tf.global_variables_initializer())
 
     if OUTPUT_GRAPH:
@@ -189,29 +197,30 @@ if __name__ == "__main__":
 
     worker_threads = []
     for worker in workers:
-        job = lambda: worker.work()
-        t = threading.Thread(target=job)
-        t.start()
-        worker_threads.append(t)
-    COORD.join(worker_threads)
+        job = lambda: worker.work()#worker的工作目标,此处调用Worker类中的work
+        #lambda创建匿名函数
+        t = threading.Thread(target=job)#每一个线程完成一个worker的工作目标
+        t.start()# 启动每一个worker
+        worker_threads.append(t)#每一个worker的工作都加入thread中
+    COORD.join(worker_threads) #合并几个worker,当每一个worker都运行完再继续后面步骤
 
-    testWorker = Worker("test", GLOBAL_AC)
-    testWorker.AC.pull_global()
+    # testWorker = Worker("test", GLOBAL_AC)
+    # testWorker.AC.pull_global()
 
-    total_reward = 0
-    for i in range(TEST):
-        state = env.reset()
-        for j in range(STEP):
-            env.render()
-            action = testWorker.AC.choose_action(state)  # direct action for test
-            state, reward, done, _ = env.step(action)
-            total_reward += reward
-            if done:
-                break
-    ave_reward = total_reward / TEST
-    print('episode: ', GLOBAL_EP, 'Evaluation Average Reward:', ave_reward)
+    # total_reward = 0
+    # for i in range(TEST):
+    #     state = env.reset()
+    #     for j in range(STEP):
+    #         env.render()
+    #         action = testWorker.AC.choose_action(state)  # direct action for test
+    #         state, reward, done, _ = env.step(action)
+    #         total_reward += reward
+    #         if done:
+    #             break
+    # ave_reward = total_reward / TEST
+    # print('episode: ', GLOBAL_EP, 'Evaluation Average Reward:', ave_reward)
 
-    plt.plot(np.arange(len(GLOBAL_RUNNING_R)), GLOBAL_RUNNING_R)
-    plt.xlabel('step')
-    plt.ylabel('Total moving reward')
-    plt.show()
+    # plt.plot(np.arange(len(GLOBAL_RUNNING_R)), GLOBAL_RUNNING_R)
+    # plt.xlabel('step')
+    # plt.ylabel('Total moving reward')
+    # plt.show()

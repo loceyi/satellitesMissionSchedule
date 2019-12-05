@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="639b334a-7721-4416-ac57-6edd38b904bb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Mission schedule with RL/actor3Critic.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mission schedule with RL/actorCritic.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/actorCritic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mission schedule with RL/policyGradientVersion1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/policyGradientVersion1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mission schedule with RL/actor3Critic.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/actor3Critic.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,8 +19,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Mission schedule with RL/policyGradientVersion1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="83" lean-forward="true" selection-start-line="83" selection-end-line="83" />
+            <state relative-caret-position="4654">
+              <caret line="179" lean-forward="true" selection-start-line="179" selection-end-line="179" />
               <folding>
                 <element signature="e#595#605#0" expanded="true" />
               </folding>
@@ -33,8 +31,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Mission schedule with RL/actor3Critic.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="15" column="18" lean-forward="true" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
+            <state relative-caret-position="307">
+              <caret line="210" column="27" lean-forward="true" selection-start-line="210" selection-start-column="27" selection-end-line="210" selection-end-column="27" />
+              <folding>
+                <element signature="e#770#786#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -42,8 +43,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Mission schedule with RL/actorCritic.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="72" column="21" lean-forward="true" selection-start-line="72" selection-start-column="21" selection-end-line="72" selection-end-column="21" />
+            <state relative-caret-position="169">
+              <caret line="152" column="35" lean-forward="true" selection-start-line="152" selection-start-column="35" selection-end-line="152" selection-end-column="35" />
               <folding>
                 <element signature="e#586#596#0" expanded="true" />
               </folding>
@@ -54,7 +55,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Mission schedule with RL/myEnvLocal.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
+            <state relative-caret-position="806">
               <caret line="31" selection-start-line="31" selection-end-line="31" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
@@ -113,6 +114,8 @@
       <find>min</find>
       <find>LEARNING_RATE</find>
       <find>minibatch</find>
+      <find>choose_action</find>
+      <find>gym</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -182,6 +185,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -204,7 +208,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -237,7 +240,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.policyGradientVersion1">
+  <component name="RunManager" selected="Python.actor3Critic">
     <configuration name="Q-learning Version4" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Satellites Mission Schedule" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -259,6 +262,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="actor3Critic" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Satellites Mission Schedule" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Mission schedule with RL" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Mission schedule with RL/actor3Critic.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="actorCritic" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Satellites Mission Schedule" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -272,27 +296,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Mission schedule with RL/actorCritic.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="globalVariable" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Satellites Mission Schedule" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Mission schedule with RL" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="D:\Satellites Mission Schedule\Mission schedule with RL\globalVariableLocal.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -366,11 +369,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.actor3Critic" />
         <item itemvalue="Python.policyGradientVersion1" />
         <item itemvalue="Python.actorCritic" />
         <item itemvalue="Python.test3" />
         <item itemvalue="Python.Q-learning Version4" />
-        <item itemvalue="Python.globalVariable" />
       </list>
     </recent_temporary>
   </component>
@@ -630,7 +633,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575452616051</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="2019.12.4 20:59 开始编写a3c">
+      <created>1575464360205</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1575464360205</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TodoView">
@@ -706,7 +716,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="2019.11.06 在Q-learning_test3中添加了实际的卫星窗口，并且将函数中要用的初始化数据统一在文件头定义，并且需要注意python的赋值规则" />
     <MESSAGE value="2019.11.7 在Q-learning_test3中加入了画图功能，利用在每学完一个episode后新得到的Q-table，计算当前学习程度下按照现有policy的greedy 能够得到的reward。然后展现在不断地学习过程中这个reward能够逐渐趋于最佳。" />
     <MESSAGE value="2019.11.8 Create new directory" />
     <MESSAGE value="2019.11.12 添加了policy gradient的文件，开始学习具体如何构造一个完整的算法。" />
@@ -731,7 +740,8 @@
     <MESSAGE value="2019.12.2 17:10 准备开始用ac的方法来训练，单纯的pg方法很容易收敛到局部解" />
     <MESSAGE value="2019.12.4 16：56 ac方法编好了，打算把记录卫星状态表格这一项删除，感觉没有必要" />
     <MESSAGE value="2019.12.4 17：42 ac编好了，可是为什么在最开始学习的时候，选择accept，给了一个reward，accept的概率还是减小" />
-    <option name="LAST_COMMIT_MESSAGE" value="2019.12.4 17：42 ac编好了，可是为什么在最开始学习的时候，选择accept，给了一个reward，accept的概率还是减小" />
+    <MESSAGE value="2019.12.4 20:59 开始编写a3c" />
+    <option name="LAST_COMMIT_MESSAGE" value="2019.12.4 20:59 开始编写a3c" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -752,16 +762,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../ANAdonda/Lib/site-packages/gym/envs/classic_control/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-          <folding>
-            <element signature="e#0#57#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.PyCharmCE2018.3/system/python_stubs/-2009539318/numpy/random/mtrand.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="229">
@@ -883,13 +883,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/myEnvFunction1.py" />
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/myEnvSubfunction.py" />
-    <entry file="file://$PROJECT_DIR$/../ANAdonda/Lib/site-packages/gym/core.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1742">
-          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tensorflow_practice-master/RL/DQN-maze/RL_brain.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="26">
@@ -1078,6 +1071,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../ANAdonda/Lib/site-packages/gym/core.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="104" selection-start-line="104" selection-end-line="104" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ANAdonda/Lib/site-packages/tensorflow/python/client/session.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="1110" selection-start-line="1110" selection-end-line="1110" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/policyGradientVersion1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4654">
+          <caret line="179" lean-forward="true" selection-start-line="179" selection-end-line="179" />
+          <folding>
+            <element signature="e#595#605#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/myEnvSubfunctionLocal.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="702">
@@ -1100,7 +1117,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/myEnvLocal.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
+        <state relative-caret-position="806">
           <caret line="31" selection-start-line="31" selection-end-line="31" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
@@ -1110,28 +1127,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/actorCritic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="72" column="21" lean-forward="true" selection-start-line="72" selection-start-column="21" selection-end-line="72" selection-end-column="21" />
+        <state relative-caret-position="169">
+          <caret line="152" column="35" lean-forward="true" selection-start-line="152" selection-start-column="35" selection-end-line="152" selection-end-column="35" />
           <folding>
             <element signature="e#586#596#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/policyGradientVersion1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="83" lean-forward="true" selection-start-line="83" selection-end-line="83" />
-          <folding>
-            <element signature="e#595#605#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/actor3Critic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="15" column="18" lean-forward="true" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
+        <state relative-caret-position="307">
+          <caret line="210" column="27" lean-forward="true" selection-start-line="210" selection-start-column="27" selection-end-line="210" selection-end-column="27" />
+          <folding>
+            <element signature="e#770#786#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
