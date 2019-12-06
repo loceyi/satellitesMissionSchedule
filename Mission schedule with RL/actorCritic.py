@@ -62,7 +62,7 @@ class Actor():
         return tf.Variable(initial)
 
     def bias_variable(self, shape):
-        initial = tf.constant(0.01, shape=shape)
+        initial = tf.constant(0.0, shape=shape)
         return tf.Variable(initial)
 
     def choose_action(self, observation):
@@ -150,7 +150,7 @@ class Critic():
 
 # Hyper Parameters
 ENV_NAME = 'CartPole-v0'
-EPISODE = 3000 # Episode limitation
+EPISODE = 1000 # Episode limitation
 STEP = 6 # Step limitation in an episode
 TEST = 10 # The number of experiment test every 100 episode
 

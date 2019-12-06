@@ -26,26 +26,26 @@ GAME = 'CartPole-v0'
 OUTPUT_GRAPH = True
 LOG_DIR = './log'
 N_WORKERS = 3
-MAX_GLOBAL_EP = 3000
-GLOBAL_NET_SCOPE = 'Global_Net'
-UPDATE_GLOBAL_ITER = 100
-GAMMA = 0.9
+MAX_GLOBAL_EP = 3000 #中央大脑最大回合数
+GLOBAL_NET_SCOPE = 'Global_Net'  #中央大脑的名字
+UPDATE_GLOBAL_ITER = 100 #中央大脑每N次提升一次
+GAMMA = 0.9 #衰减度
 ENTROPY_BETA = 0.001
 LR_A = 0.001    # learning rate for actor
 LR_C = 0.001    # learning rate for critic
 GLOBAL_RUNNING_R = []
-GLOBAL_EP = 0
+GLOBAL_EP = 0 #中央大脑步数
 STEP = 6 # Step limitation in an episode
 TEST = 10 # The number of experiment test every 100 episode
 globalVariable.initTask()
 globalVariable.initRemainingTimeTotal()
-env = myEnv.MyEnv()
+env = myEnv.MyEnv() #定义游戏环境
 # env = gym.make(GAME)
 N_S = env.observation_space.n
 N_A = env.action_space.n
 
 
-class ACNet(object):
+class ACNet(object): #这个class即可用于生产global net，也可生成 worker net，因为结构相同
     def __init__(self, scope, globalAC=None):
 
         if scope == GLOBAL_NET_SCOPE:   # get global network
@@ -53,13 +53,13 @@ class ACNet(object):
                 self.s = tf.placeholder(tf.float32, [None, N_S], 'S')
                 self.a_params, self.c_params = self._build_net(scope)[-2:]
         else:   # local net, calculate losses
-            with tf.variable_scope(scope):
+            with tf.variable_scope(scope): #这里的scope传入的是worker的名字
                 self.s = tf.placeholder(tf.float32, [None, N_S], 'S')
                 self.a_his = tf.placeholder(tf.int32, [None, ], 'A')
                 self.v_target = tf.placeholder(tf.float32, [None, 1], 'Vtarget')
 
                 self.a_prob, self.v, self.a_params, self.c_params = self._build_net(scope)
-
+                # 建立神经网络，acts_prob为返回的概率值,v为返回的评价值
                 td = tf.subtract(self.v_target, self.v, name='TD_error')
                 with tf.name_scope('c_loss'):
                     self.c_loss = tf.reduce_mean(tf.square(td))
@@ -74,7 +74,9 @@ class ACNet(object):
 
                 with tf.name_scope('local_grad'):
                     self.a_grads = tf.gradients(self.a_loss, self.a_params)
+                    # 实现a_loss对a_params每一个参数的求导，返回一个list
                     self.c_grads = tf.gradients(self.c_loss, self.c_params)
+                    # 实现c_loss对c_params每一个参数的求导，返回一个list
 
             with tf.name_scope('sync'):
                 with tf.name_scope('pull'):
@@ -112,8 +114,9 @@ class ACNet(object):
 
 class Worker(object):
     def __init__(self, name, globalAC):
+        #globalAC指定global网络对象
         # self.env = gym.make(GAME).unwrapped
-        self.env=myEnv.MyEnv()
+        self.env=myEnv.MyEnv() #定义worker使用的环境
         self.name = name
         self.AC = ACNet(name, globalAC)
 
@@ -122,6 +125,7 @@ class Worker(object):
         total_step = 1
         buffer_s, buffer_a, buffer_r = [], [], []
         while not COORD.should_stop() and GLOBAL_EP < MAX_GLOBAL_EP:
+            globalVariable.initTasklist()
             s = self.env.reset()
 
             ep_r = 0
@@ -186,10 +190,11 @@ if __name__ == "__main__":
         for i in range(N_WORKERS):
             i_name = 'W_%i' % i   # worker name
             workers.append(Worker(i_name, GLOBAL_AC))
+            #实例化 Worker(i_name, GLOBAL_AC)，并且传入global
 
     COORD = tf.train.Coordinator()#多线程管理器
     SESS.run(tf.global_variables_initializer())
-
+    #输出log文件，可以加载tensorboard用来看神经网络的结构
     if OUTPUT_GRAPH:
         if os.path.exists(LOG_DIR):
             shutil.rmtree(LOG_DIR)
