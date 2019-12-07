@@ -114,7 +114,7 @@ class ACNet(object): #这个class即可用于生产global net，也可生成 wor
 
 class Worker(object):
     def __init__(self, name, globalAC):
-        #globalAC指定global网络对象
+        # globalAC指定global网络对象
         # self.env = gym.make(GAME).unwrapped
         self.env=myEnv.MyEnv() #定义worker使用的环境
         self.name = name
@@ -185,12 +185,14 @@ if __name__ == "__main__":
         OPT_A = tf.train.RMSPropOptimizer(LR_A, name='RMSPropA')
         OPT_C = tf.train.RMSPropOptimizer(LR_C, name='RMSPropC')
         GLOBAL_AC = ACNet(GLOBAL_NET_SCOPE)  # we only need its params
-        workers = []
+        workers = []#把实例化后的类储存在里面
+
         # Create worker
         for i in range(N_WORKERS):
             i_name = 'W_%i' % i   # worker name
             workers.append(Worker(i_name, GLOBAL_AC))
-            #实例化 Worker(i_name, GLOBAL_AC)，并且传入global
+
+            #实例化多个 Worker(i_name, GLOBAL_AC)，并且传入global
 
     COORD = tf.train.Coordinator()#多线程管理器
     SESS.run(tf.global_variables_initializer())
