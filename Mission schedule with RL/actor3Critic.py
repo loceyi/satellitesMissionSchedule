@@ -20,7 +20,14 @@ import shutil
 import matplotlib.pyplot as plt
 
 import globalVariableLocal as globalVariable
+import globalVariableLocalWorker1 as globalVariableWorker1
+import globalVariableLocalWorker2 as globalVariableWorker2
+import globalVariableLocalWorker3 as globalVariableWorker3
 import myEnvLocal as myEnv
+import myEnvLocalWorker1 as myEnvWorker1
+import myEnvLocalWorker2 as myEnvWorker2
+import myEnvLocalWorker3 as myEnvWorker3
+import RemainingTimeTotalModule
 
 GAME = 'CartPole-v0'
 OUTPUT_GRAPH = True
@@ -43,8 +50,10 @@ env = myEnv.MyEnv() #定义游戏环境
 # env = gym.make(GAME)
 N_S = env.observation_space.n
 N_A = env.action_space.n
-
-
+globalVariableWorker1.initTask()
+globalVariableWorker2.initTask()
+globalVariableWorker3.initTask()
+RemainingTimeTotalModule.initRemainingTimeTotal()
 class ACNet(object): #这个class即可用于生产global net，也可生成 worker net，因为结构相同
     def __init__(self, scope, globalAC=None):
 
@@ -116,8 +125,21 @@ class Worker(object):
     def __init__(self, name, globalAC):
         # globalAC指定global网络对象
         # self.env = gym.make(GAME).unwrapped
-        self.env=myEnv.MyEnv() #定义worker使用的环境
         self.name = name
+        # self.env = myEnv.MyEnv()
+        if self.name=='W_0':
+
+            self.env = myEnvWorker1.MyEnv()
+        elif self.name=='W_1':
+
+            self.env = myEnvWorker2.MyEnv()
+
+        elif self.name=='W_2':
+
+            self.env = myEnvWorker3.MyEnv()
+
+        #定义worker使用的环境
+
         self.AC = ACNet(name, globalAC)
 
     def work(self):
@@ -125,7 +147,17 @@ class Worker(object):
         total_step = 1
         buffer_s, buffer_a, buffer_r = [], [], []
         while not COORD.should_stop() and GLOBAL_EP < MAX_GLOBAL_EP:
-            globalVariable.initTasklist()
+            if self.name == 'W_0':
+
+                globalVariableWorker1.initTasklist()
+            elif self.name == 'W_1':
+
+                globalVariableWorker2.initTasklist()
+
+            elif self.name == 'W_2':
+
+                globalVariableWorker3.initTasklist()
+            # globalVariable.initTasklist()
             s = self.env.reset()
 
             ep_r = 0
@@ -141,7 +173,8 @@ class Worker(object):
                 buffer_a.append(a)
                 buffer_r.append(r)
 
-                if total_step % UPDATE_GLOBAL_ITER == 0 or done:   # update global and assign to local net
+                if total_step % UPDATE_GLOBAL_ITER == 0 or done:
+                    # update global and assign to local net
                     if done:
                         v_s_ = 0   # terminal
                     else:
@@ -161,7 +194,7 @@ class Worker(object):
                     self.AC.update_global(feed_dict)
 
                     buffer_s, buffer_a, buffer_r = [], [], []
-                    self.AC.pull_global()
+                    self.AC.pull_global()#更新全局网络
 
                 s = s_
                 total_step += 1
@@ -170,11 +203,11 @@ class Worker(object):
                         GLOBAL_RUNNING_R.append(ep_r)
                     else:
                         GLOBAL_RUNNING_R.append(0.99 * GLOBAL_RUNNING_R[-1] + 0.01 * ep_r)
-                    print(
-                        self.name,
-                        "Ep:", GLOBAL_EP,
-                        "| Ep_r: %i" % GLOBAL_RUNNING_R[-1],
-                          )
+                    # print(
+                    #     self.name,
+                    #     "Ep:", GLOBAL_EP,
+                    #     "| Ep_r: %i" % GLOBAL_RUNNING_R[-1],
+                    #       )
                     GLOBAL_EP += 1
                     break
 
@@ -211,21 +244,23 @@ if __name__ == "__main__":
         worker_threads.append(t)#每一个worker的工作都加入thread中
     COORD.join(worker_threads) #合并几个worker,当每一个worker都运行完再继续后面步骤
 
-    # testWorker = Worker("test", GLOBAL_AC)
-    # testWorker.AC.pull_global()
+    testWorker = Worker("test", GLOBAL_AC)
+    testWorker.AC.pull_global()
 
-    # total_reward = 0
-    # for i in range(TEST):
-    #     state = env.reset()
-    #     for j in range(STEP):
-    #         env.render()
-    #         action = testWorker.AC.choose_action(state)  # direct action for test
-    #         state, reward, done, _ = env.step(action)
-    #         total_reward += reward
-    #         if done:
-    #             break
-    # ave_reward = total_reward / TEST
-    # print('episode: ', GLOBAL_EP, 'Evaluation Average Reward:', ave_reward)
+    total_reward = 0
+    for i in range(TEST):
+        state = env.reset()
+        globalVariable.initTasklist()
+        for j in range(STEP):
+            # env.render()
+            action = testWorker.AC.choose_action(state)  # direct action for test
+            state, reward, done, _ = env.step(action)
+            total_reward += reward
+            if done:
+                break
+
+    ave_reward = total_reward / TEST
+    print('episode: ', GLOBAL_EP, 'Evaluation Average Reward:', ave_reward)
 
     # plt.plot(np.arange(len(GLOBAL_RUNNING_R)), GLOBAL_RUNNING_R)
     # plt.xlabel('step')
