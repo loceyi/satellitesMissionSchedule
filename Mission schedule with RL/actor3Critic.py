@@ -44,7 +44,7 @@ LR_A = 0.001    # learning rate for actor
 LR_C = 0.001    # learning rate for critic
 GLOBAL_RUNNING_R = []
 GLOBAL_EP = 0 #中央大脑步数
-STEP = 6 # Step limitation in an episode
+STEP = 100 # Step limitation in an episode
 TEST = 10 # The number of experiment test every 100 episode
 globalVariable.initTask()
 env = myEnv.MyEnv()
@@ -219,6 +219,7 @@ class Worker(object):
                     #     "| Ep_r: %i" % GLOBAL_RUNNING_R[-1],
                     #       )
                     GLOBAL_EP += 1
+                    print(GLOBAL_EP)
                     break
 
 
