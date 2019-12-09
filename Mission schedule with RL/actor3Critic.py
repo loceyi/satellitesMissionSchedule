@@ -11,6 +11,8 @@
 ## https://www.cnblogs.com/pinard/p/10334127.html ##
 ## 强化学习(十五) A3C ##
 
+#global network不和环境进行交互
+
 import threading
 import tensorflow as tf
 import numpy as np
@@ -266,7 +268,7 @@ if __name__ == "__main__":
         # env.render()
 
         action = testWorker.AC.choose_action_greedy(state)
-        print('Task', state[1], 'Action',action )
+        print('Task', state[1], 'Action',action)
         state, reward, done, _ = env.step(action)
 
         if done:
