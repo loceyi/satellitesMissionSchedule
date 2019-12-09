@@ -13,7 +13,7 @@ import tensorflow as tf
 import numpy as np
 import random
 from collections import deque
-
+import RemainingTimeTotalModule
 import globalVariableLocal as globalVariable
 import myEnvLocal as myEnv
 
@@ -157,7 +157,7 @@ TEST = 10 # The number of experiment test every 100 episode
 def main():
     # 在总的学习开始前初始化时间窗口存储器
   globalVariable.initTask()
-  globalVariable.initRemainingTimeTotal()
+  RemainingTimeTotalModule.initRemainingTimeTotal()
   # globalVariable.initsatState()
 
 

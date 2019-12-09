@@ -45,19 +45,19 @@ def initTask():
 
 
 
-def initRemainingTimeTotal():
+# def initRemainingTimeTotal():
+#
+#     global RemainingTimeTotal
+#     global Task
+#
+#     RemainingTimeTotal = [[Interval(Task['1'][0], Task['5'][1], closed=True)]]
 
-    global RemainingTimeTotal
-    global Task
 
-    RemainingTimeTotal = [[Interval(Task['1'][0], Task['5'][1], closed=True)]]
-
-
-def updateRemainTimeTotal(RemainingTime):
-
-    global RemainingTimeTotal
-
-    RemainingTimeTotal.append(RemainingTime)
+# def updateRemainTimeTotal(RemainingTime):
+#
+#     global RemainingTimeTotal
+#
+#     RemainingTimeTotal.append(RemainingTime)
 
 
 
@@ -68,21 +68,21 @@ def updateRemainTimeTotal(RemainingTime):
 #     _global_dict[name] = value
 
 
-def addNewState(storage,nextTask,label):
-    global satStateTable
-    global Task
-
-
-
-    # Tasklist_Initial = [1, 2, 3, 4, 5, 0]
-
-
-    new = pd.DataFrame({'Storage':storage ,
-                        'TaskNumber':nextTask ,
-                        'label': label},
-                       index=[0])#设置行初始index
-
-    satStateTable = satStateTable.append(new, ignore_index=True)
+# def addNewState(storage,nextTask,label):
+#     global satStateTable
+#     global Task
+#
+#
+#
+#     # Tasklist_Initial = [1, 2, 3, 4, 5, 0]
+#
+#
+#     new = pd.DataFrame({'Storage':storage ,
+#                         'TaskNumber':nextTask ,
+#                         'label': label},
+#                        index=[0])#设置行初始index
+#
+#     satStateTable = satStateTable.append(new, ignore_index=True)
 
 def get_value_taskList():
 
@@ -106,40 +106,40 @@ def get_value_TaskTotal():
 
 
 
-def get_value_RemainingTime(label):
-
-    global RemainingTimeTotal
-
-    RemainingTime=RemainingTimeTotal[label].copy()
-    # storage=satStateTable.loc[label, 'storage']
-    # nextTask=satStateTable.loc[label, 'nextTask']
-
-
-    return RemainingTime
-
-
-def get_value_RemainingTimeTotal():
-
-    global RemainingTimeTotal
+# def get_value_RemainingTime(label):
+#
+#     global RemainingTimeTotal
+#
+#     RemainingTime=RemainingTimeTotal[label].copy()
+#     # storage=satStateTable.loc[label, 'storage']
+#     # nextTask=satStateTable.loc[label, 'nextTask']
+#
+#
+#     return RemainingTime
 
 
-    # storage=satStateTable.loc[label, 'storage']
-    # nextTask=satStateTable.loc[label, 'nextTask']
-
-
-    return copy.deepcopy(RemainingTimeTotal)
-    #为了防止把地址传出去误改了，确保所有改变值的操作都在本文件的变量空间中进行
-
-
+# def get_value_RemainingTimeTotal():
+#
+#     global RemainingTimeTotal
+#
+#
+#     # storage=satStateTable.loc[label, 'storage']
+#     # nextTask=satStateTable.loc[label, 'nextTask']
+#
+#
+#     return copy.deepcopy(RemainingTimeTotal)
+#     #为了防止把地址传出去误改了，确保所有改变值的操作都在本文件的变量空间中进行
 
 
 
 
-def get_value_satState():
 
-    global satStateTable
-
-    return satStateTable
+#
+# def get_value_satState():
+#
+#     global satStateTable
+#
+#     return satStateTable
 
 
 

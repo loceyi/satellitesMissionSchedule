@@ -45,7 +45,6 @@ GLOBAL_EP = 0 #中央大脑步数
 STEP = 6 # Step limitation in an episode
 TEST = 10 # The number of experiment test every 100 episode
 globalVariable.initTask()
-globalVariable.initRemainingTimeTotal()
 env = myEnv.MyEnv()
 #定义游戏环境
 # env = gym.make(GAME)

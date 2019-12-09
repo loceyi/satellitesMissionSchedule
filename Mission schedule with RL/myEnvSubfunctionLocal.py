@@ -2,6 +2,7 @@ import pandas as pd
 from interval import Interval
 #关于action：若接收任务，action=1,拒绝任务，action=0
 import globalVariableLocal
+import RemainingTimeTotalModule
 #self.state = np.array([Storage,TaskNumber,label])
 
 def get_env_feedback(S, A):
@@ -16,7 +17,8 @@ def get_env_feedback(S, A):
     # S[2]=taskList[0]
     # RemainingTime = S[1]
 
-    RemainingTimeTotal=globalVariableLocal.get_value_RemainingTimeTotal()
+    RemainingTimeTotal=RemainingTimeTotalModule.get_value_RemainingTimeTotal()
+
     RemainingTime = RemainingTimeTotal[S[2]].copy()
 
     # RemainingTime=RemainingTimeTotal[S[3]].copy() #因为取出来的是列表，只想复制它的值
@@ -171,7 +173,7 @@ def get_env_feedback(S, A):
             # RemainingTimeTotal.append(RemainingTime)
             S[2]=len(RemainingTimeTotal)
             # globalVariableLocal.addNewState(S[0], S[1], S[2])
-            globalVariableLocal.updateRemainTimeTotal(RemainingTime)
+            RemainingTimeTotalModule.updateRemainTimeTotal(RemainingTime)
 
 
         else:
@@ -290,7 +292,7 @@ def get_env_feedback(S, A):
 
             S[2]=len(RemainingTimeTotal)
             # globalVariableLocal.addNewState(S[0], S[1], S[2])
-            globalVariableLocal.updateRemainTimeTotal(RemainingTime)
+            RemainingTimeTotalModule.updateRemainTimeTotal(RemainingTime)
 
         else:
 
