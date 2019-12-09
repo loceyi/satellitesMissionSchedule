@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="639b334a-7721-4416-ac57-6edd38b904bb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Mission schedule with RL/RemainingTimeTotalModule.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Mission schedule with RL/actor3Critic.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/actor3Critic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mission schedule with RL/globalVariableLocal.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/globalVariableLocal.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mission schedule with RL/globalVariableLocalWorker1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/globalVariableLocalWorker1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mission schedule with RL/globalVariableLocalWorker2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/globalVariableLocalWorker2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mission schedule with RL/globalVariableLocalWorker3.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/globalVariableLocalWorker3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mission schedule with RL/myEnvSubfunctionLocalWorker1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/myEnvSubfunctionLocalWorker1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mission schedule with RL/myEnvSubfunctionLocalWorker2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/myEnvSubfunctionLocalWorker2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mission schedule with RL/myEnvSubfunctionLocalWorker3.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/myEnvSubfunctionLocalWorker3.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,8 +19,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Mission schedule with RL/actor3Critic.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="260" column="8" selection-start-line="260" selection-start-column="8" selection-end-line="260" selection-end-column="8" />
+            <state relative-caret-position="211">
+              <caret line="54" column="32" lean-forward="true" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
               <folding>
                 <element signature="e#770#786#0" expanded="true" />
               </folding>
@@ -39,22 +31,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Mission schedule with RL/actorCritic.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="160" column="33" lean-forward="true" selection-start-line="160" selection-start-column="33" selection-end-line="160" selection-end-column="33" />
+            <state relative-caret-position="1945">
+              <caret line="80" selection-start-line="80" selection-end-line="80" />
               <folding>
                 <element signature="e#586#596#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Mission schedule with RL/RemainingTimeTotalModule.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="26">
-              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -652,7 +632,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575720874913</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="2019.12.8 好像把a3c弄出来了！下午载核对一下">
+      <created>1575774388921</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1575774388921</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TodoView">
@@ -668,7 +655,7 @@
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49814814" visible="true" weight="0.24561404" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49814814" weight="0.24561404" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.50185186" side_tool="true" weight="0.24960127" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -728,7 +715,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="2019.11.13 Woooops! Try to build a new env for my program but failed today. Try it again tomorrow" />
     <MESSAGE value="2019.11.16 Try it more" />
     <MESSAGE value="2019.11.18 Finally finish the debug. Find the problem of function getsolution" />
     <MESSAGE value="2019.11.18 16:17" />
@@ -753,7 +739,8 @@
     <MESSAGE value="2019.12.4 20:59 开始编写a3c，多线程的环境编写还是有的问题，加油！" />
     <MESSAGE value="2019.12.6 还是没有找到多线程环境的编写方法，再想一想" />
     <MESSAGE value="2019.12.7 我太难了！明天试试能不能通过赋值文件，不同worker实例化不同的文件，都用独立的环境文件，也不知道啥时候能搞定" />
-    <option name="LAST_COMMIT_MESSAGE" value="2019.12.7 我太难了！明天试试能不能通过赋值文件，不同worker实例化不同的文件，都用独立的环境文件，也不知道啥时候能搞定" />
+    <MESSAGE value="2019.12.8 好像把a3c弄出来了！下午载核对一下" />
+    <option name="LAST_COMMIT_MESSAGE" value="2019.12.8 好像把a3c弄出来了！下午载核对一下" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1121,16 +1108,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/actorCritic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="160" column="33" lean-forward="true" selection-start-line="160" selection-start-column="33" selection-end-line="160" selection-end-column="33" />
-          <folding>
-            <element signature="e#586#596#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/myEnvLocalWorker3.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="832">
@@ -1153,18 +1130,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/RemainingTimeTotalModule.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        <state relative-caret-position="78">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/actorCritic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1945">
+          <caret line="80" selection-start-line="80" selection-end-line="80" />
+          <folding>
+            <element signature="e#586#596#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/actor3Critic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="260" column="8" selection-start-line="260" selection-start-column="8" selection-end-line="260" selection-end-column="8" />
+        <state relative-caret-position="211">
+          <caret line="54" column="32" lean-forward="true" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
           <folding>
             <element signature="e#770#786#0" expanded="true" />
           </folding>

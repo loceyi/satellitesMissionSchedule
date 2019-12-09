@@ -46,7 +46,8 @@ STEP = 6 # Step limitation in an episode
 TEST = 10 # The number of experiment test every 100 episode
 globalVariable.initTask()
 globalVariable.initRemainingTimeTotal()
-env = myEnv.MyEnv() #定义游戏环境
+env = myEnv.MyEnv()
+#定义游戏环境
 # env = gym.make(GAME)
 N_S = env.observation_space.n
 N_A = env.action_space.n
@@ -120,6 +121,11 @@ class ACNet(object): #这个class即可用于生产global net，也可生成 wor
                                   p=prob_weights.ravel())  # select action w.r.t the actions prob
         return action
 
+    def choose_action_greedy(self, s):
+        prob_weights = SESS.run(self.a_prob, feed_dict={self.s: s[np.newaxis, :]})
+        p = prob_weights.ravel().tolist()
+        action=p.index(max(p))
+        return action
 
 class Worker(object):
     def __init__(self, name, globalAC):
@@ -137,6 +143,9 @@ class Worker(object):
         elif self.name=='W_2':
 
             self.env = myEnvWorker3.MyEnv()
+        elif self.name=='test':
+
+            self.env = myEnv.MyEnv()
 
         #定义worker使用的环境
 
@@ -211,6 +220,7 @@ class Worker(object):
                     GLOBAL_EP += 1
                     break
 
+
 if __name__ == "__main__":
     SESS = tf.Session()
 
@@ -247,20 +257,36 @@ if __name__ == "__main__":
     testWorker = Worker("test", GLOBAL_AC)
     testWorker.AC.pull_global()
 
-    total_reward = 0
-    for i in range(TEST):
-        state = env.reset()
-        globalVariable.initTasklist()
-        for j in range(STEP):
-            # env.render()
-            action = testWorker.AC.choose_action(state)  # direct action for test
-            state, reward, done, _ = env.step(action)
-            total_reward += reward
-            if done:
-                break
+    '''
+    Get the best solution
+    '''
+    state = env.reset()
+    globalVariable.initTasklist()
+    for j in range(STEP):
+        # env.render()
 
-    ave_reward = total_reward / TEST
-    print('episode: ', GLOBAL_EP, 'Evaluation Average Reward:', ave_reward)
+        action = testWorker.AC.choose_action_greedy(state)
+        print('Task', state[1], 'Action',action )
+        state, reward, done, _ = env.step(action)
+
+        if done:
+            break
+
+
+    # total_reward = 0
+    # for i in range(TEST):
+    #     state = env.reset()
+    #     globalVariable.initTasklist()
+    #     for j in range(STEP):
+    #         # env.render()
+    #         action = testWorker.AC.choose_action(state)  # direct action for test
+    #         state, reward, done, _ = env.step(action)
+    #         total_reward += reward
+    #         if done:
+    #             break
+    #
+    # ave_reward = total_reward / TEST
+    # print('episode: ', GLOBAL_EP, 'Evaluation Average Reward:', ave_reward)
 
     # plt.plot(np.arange(len(GLOBAL_RUNNING_R)), GLOBAL_RUNNING_R)
     # plt.xlabel('step')
