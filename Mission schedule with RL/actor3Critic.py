@@ -35,7 +35,7 @@ GAME = 'CartPole-v0'
 OUTPUT_GRAPH = True
 LOG_DIR = './log'
 N_WORKERS = 3
-MAX_GLOBAL_EP = 3000 #中央大脑最大回合数
+MAX_GLOBAL_EP = 500 #中央大脑最大回合数
 GLOBAL_NET_SCOPE = 'Global_Net'  #中央大脑的名字
 UPDATE_GLOBAL_ITER = 100 #中央大脑每N次提升一次
 GAMMA = 0.9 #衰减度
@@ -43,7 +43,7 @@ ENTROPY_BETA = 0.001
 LR_A = 0.001    # learning rate for actor
 LR_C = 0.001    # learning rate for critic
 GLOBAL_RUNNING_R = []
-GLOBAL_EP = 0 #中央大脑步数
+GLOBAL_EP = 0 #中央大脑步数,后面引用的时候为全局变量
 STEP = 100 # Step limitation in an episode
 TEST = 10 # The number of experiment test every 100 episode
 globalVariable.initTask()
@@ -56,6 +56,7 @@ globalVariableWorker1.initTask()
 globalVariableWorker2.initTask()
 globalVariableWorker3.initTask()
 RemainingTimeTotalModule.initRemainingTimeTotal()
+#在A3C这里，我们把两个网络放到了一起，即输入状态S,可以输入状态价值V,和对应的策略π
 class ACNet(object): #这个class即可用于生产global net，也可生成 worker net，因为结构相同
     def __init__(self, scope, globalAC=None):
 
@@ -219,12 +220,12 @@ class Worker(object):
                     #     "| Ep_r: %i" % GLOBAL_RUNNING_R[-1],
                     #       )
                     GLOBAL_EP += 1
-                    print(GLOBAL_EP)
+                    # print(GLOBAL_EP)
                     break
 
 
 if __name__ == "__main__":
-    SESS = tf.Session()
+    SESS = tf.Session()#创建对话
 
     with tf.device("/cpu:0"):
         OPT_A = tf.train.RMSPropOptimizer(LR_A, name='RMSPropA')
@@ -235,11 +236,11 @@ if __name__ == "__main__":
         # Create worker
         for i in range(N_WORKERS):
             i_name = 'W_%i' % i   # worker name
-            workers.append(Worker(i_name, GLOBAL_AC))
+            workers.append(Worker(i_name, GLOBAL_AC))#将类传入类
 
-            #实例化多个 Worker(i_name, GLOBAL_AC)，并且传入global
+            #实例化多个 Worker(i_name, GLOBAL_AC)，并且传入global_ac类实例
 
-    COORD = tf.train.Coordinator()#多线程管理器
+    COORD = tf.train.Coordinator()#使用 tf.train.Coordinator()来创建一个线程管理器（协调器）对象
     SESS.run(tf.global_variables_initializer())
     #输出log文件，可以加载tensorboard用来看神经网络的结构
     if OUTPUT_GRAPH:
@@ -252,10 +253,12 @@ if __name__ == "__main__":
         job = lambda: worker.work()#worker的工作目标,此处调用Worker类中的work
         #lambda创建匿名函数
         t = threading.Thread(target=job)#每一个线程完成一个worker的工作目标
-        t.start()# 启动每一个worker
+        #需要线程去执行的方法名，每个 Thread 对象代表一个线程
+        t.start()# 启动worker，如果要让一个 Thread 对象启动，调用它的 start() 方法就好了。
         worker_threads.append(t)#每一个worker的工作都加入thread中
     COORD.join(worker_threads) #合并几个worker,当每一个worker都运行完再继续后面步骤
-
+    # 使用coord.join(threads)
+    # 把线程加入主线程，等待threads结束
     testWorker = Worker("test", GLOBAL_AC)
     testWorker.AC.pull_global()
 
