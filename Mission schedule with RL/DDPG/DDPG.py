@@ -19,6 +19,8 @@ gym 0.8.0
 ## 强化学习(十六) 深度确定性策略梯度(DDPG) ##
 
 
+##DDPG的关键是建立一个经验回放池，先不更新网络，而是先随机获得一部分episode
+#然后再利用回放池来训练网络
 import tensorflow as tf
 import numpy as np
 import gym
