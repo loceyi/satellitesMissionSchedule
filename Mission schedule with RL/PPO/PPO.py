@@ -111,10 +111,23 @@ class PPO(object):
         # update critic
         [self.sess.run(self.ctrain_op, {self.tfs: s, self.tfdc_r: r}) for _ in range(C_UPDATE_STEPS)]
 
+    def _build_anetDiscrete(self,name, trainable):
+
+        w_init = tf.random_normal_initializer(0., .1)
+        with tf.variable_scope('actor'):
+            l_a = tf.layers.dense(self.tfs, 200, tf.nn.relu6, kernel_initializer=w_init, name='la')
+            a_prob = tf.layers.dense(l_a, N_A, tf.nn.softmax, kernel_initializer=w_init, name='ap')
+
+
+
+
     def _build_anet(self, name, trainable):
         with tf.variable_scope(name):
             l1 = tf.layers.dense(self.tfs, 100, tf.nn.relu, trainable=trainable)
+            # dense ：全连接层
+            # 相当于添加一个层
             mu = 2 * tf.layers.dense(l1, A_DIM, tf.nn.tanh, trainable=trainable)
+            #乘二代表建立两次，mu返回的是张量，是该层网络的参数
             sigma = tf.layers.dense(l1, A_DIM, tf.nn.softplus, trainable=trainable)
             norm_dist = tf.distributions.Normal(loc=mu, scale=sigma)
         params = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope=name)

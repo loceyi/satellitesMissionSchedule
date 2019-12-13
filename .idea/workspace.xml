@@ -19,8 +19,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Mission schedule with RL/actor3Critic.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1300">
-              <caret line="161" selection-start-line="161" selection-end-line="161" />
+            <state relative-caret-position="818">
+              <caret line="130" lean-forward="true" selection-start-line="130" selection-end-line="130" />
               <folding>
                 <element signature="e#795#811#0" expanded="true" />
               </folding>
@@ -31,8 +31,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Mission schedule with RL/PPO/PPO.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="113" column="8" selection-start-line="113" selection-start-column="8" selection-end-line="113" selection-end-column="8" />
+            <state relative-caret-position="343">
+              <caret line="134" lean-forward="true" selection-start-line="134" selection-end-line="134" />
               <folding>
                 <element signature="e#409#432#0" expanded="true" />
               </folding>
@@ -41,21 +41,9 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../ANAdonda/Lib/site-packages/gym/envs/classic_control/pendulum.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="67">
-              <caret line="37" column="5" lean-forward="true" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Mission schedule with RL/myEnvLocal.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-545">
+            <state relative-caret-position="572">
               <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
@@ -67,7 +55,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Mission schedule with RL/myEnvSubfunctionLocal.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-380">
+            <state relative-caret-position="78">
               <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
@@ -110,6 +98,7 @@
       <find>RemainingTimeTotalModule</find>
       <find>MAX_GLOBAL_EP</find>
       <find>GLOBAL_EP</find>
+      <find>la</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -178,7 +167,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-12" />
+    <option name="x" value="-15" />
     <option name="width" value="1938" />
     <option name="height" value="1029" />
   </component>
@@ -714,7 +703,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576142706946</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="2019.12.12 Try to use it in a discrete way">
+      <created>1576210675139</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1576210675143</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TodoView">
@@ -727,7 +723,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="0" width="1292" height="686" extended-state="0" />
+    <frame x="-10" y="0" width="1292" height="686" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.3802817" visible="true" weight="0.22781774" />
@@ -790,7 +786,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="2019.11.22 试图把stk窗口计算加入python代码中，&#10;可是agi官网打不开，帮助信息看不到了。。。" />
     <MESSAGE value="2019.11.25 正在编写强化学习环境文件" />
     <MESSAGE value="2019.11.25 22：23编写到107行，注意python函数return时只是赋值，不传递变量地址" />
     <MESSAGE value="2019.11.26 17:08" />
@@ -815,10 +810,18 @@
     <MESSAGE value="2019.12.11 Start on DDPG" />
     <MESSAGE value="2019.12.11 DDPG好像不适合离散空间，先试试PPO吧" />
     <MESSAGE value="2019.12.12 Start on PPO, I am so upset this afternoon" />
-    <option name="LAST_COMMIT_MESSAGE" value="2019.12.12 Start on PPO, I am so upset this afternoon" />
+    <MESSAGE value="2019.12.12 Try to use it in a discrete way" />
+    <option name="LAST_COMMIT_MESSAGE" value="2019.12.12 Try to use it in a discrete way" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Mission schedule with RL/PPO/PPO.py</url>
+          <line>130</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -1197,46 +1200,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/myEnvSubfunctionLocal.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-380">
-          <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/myEnvLocal.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-545">
-          <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/actor3Critic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1300">
-          <caret line="161" selection-start-line="161" selection-end-line="161" />
-          <folding>
-            <element signature="e#795#811#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../ANAdonda/Lib/site-packages/gym/envs/classic_control/pendulum.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="67">
-          <caret line="37" column="5" lean-forward="true" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../ANAdonda/Lib/site-packages/tensorflow/python/ops/distributions/distribution.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-68">
@@ -1247,10 +1210,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../ANAdonda/Lib/site-packages/gym/envs/classic_control/pendulum.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="858">
+          <caret line="37" column="5" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/myEnvLocal.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/myEnvSubfunctionLocal.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/actor3Critic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="818">
+          <caret line="130" lean-forward="true" selection-start-line="130" selection-end-line="130" />
+          <folding>
+            <element signature="e#795#811#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/PPO/PPO.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="113" column="8" selection-start-line="113" selection-start-column="8" selection-end-line="113" selection-end-column="8" />
+        <state relative-caret-position="343">
+          <caret line="134" lean-forward="true" selection-start-line="134" selection-end-line="134" />
           <folding>
             <element signature="e#409#432#0" expanded="true" />
           </folding>
