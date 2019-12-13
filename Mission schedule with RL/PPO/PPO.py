@@ -14,17 +14,22 @@ import numpy as np
 import matplotlib.pyplot as plt
 import gym
 import myEnvLocal as myEnv
+import globalVariableLocal as globalVariable
+import RemainingTimeTotalModule
 # env = gym.make('Pendulum-v0').unwrapped
 env = myEnv.MyEnv()
-EP_MAX = 1000
-EP_LEN = 200
+EP_MAX = 1000 #The maximum nmuber of training episodes
+EP_LEN = 200  #The maximum lenth of each episode
 GAMMA = 0.9
 A_LR = 0.0001
 C_LR = 0.0002
 BATCH = 32
 A_UPDATE_STEPS = 10
 C_UPDATE_STEPS = 10
-S_DIM, A_DIM = 3, 1
+N_S = env.observation_space.n
+N_A = env.action_space.n
+S_DIM, A_DIM = N_S, N_A
+
 #选择优化方法
 METHOD = [
     dict(name='kl_pen', kl_target=0.01, lam=0.5),   # KL penalty
@@ -51,7 +56,10 @@ class PPO(object):
         pi, pi_params = self._build_anet('pi', trainable=True)
         oldpi, oldpi_params = self._build_anet('oldpi', trainable=False)
         with tf.variable_scope('sample_action'):
-            self.sample_op = tf.squeeze(pi.sample(1), axis=0)       # choosing action
+            self.sample_op = tf.squeeze(pi.sample(1), axis=0)
+            # choosing action sample_op是一个张量
+            # 这边pi是一个正态分布，sample(1)
+            # 就是采一个点（就是选一个动作）
         with tf.variable_scope('update_oldpi'):
             self.update_oldpi_op = [oldp.assign(p) for p, oldp in zip(pi_params, oldpi_params)]
 
@@ -75,7 +83,7 @@ class PPO(object):
         with tf.variable_scope('atrain'):
             self.atrain_op = tf.train.AdamOptimizer(A_LR).minimize(self.aloss)
 
-        tf.summary.FileWriter("log/", self.sess.graph)
+        tf.summary.FileWriter("logs/", self.sess.graph)
 
         self.sess.run(tf.global_variables_initializer())
 
@@ -124,13 +132,16 @@ class PPO(object):
 # env = gym.make('Pendulum-v0').unwrapped
 ppo = PPO()
 all_ep_r = []
+globalVariable.initTask()
+RemainingTimeTotalModule.initRemainingTimeTotal()
 
 for ep in range(EP_MAX):
+    globalVariable.initTasklist()
     s = env.reset()
     buffer_s, buffer_a, buffer_r = [], [], []
     ep_r = 0
     for t in range(EP_LEN):    # in one episode
-        env.render()
+        # env.render()
         a = ppo.choose_action(s)
         s_, r, done, _ = env.step(a)
         buffer_s.append(s)
@@ -150,9 +161,15 @@ for ep in range(EP_MAX):
 
             bs, ba, br = np.vstack(buffer_s), np.vstack(buffer_a), np.array(discounted_r)[:, np.newaxis]
             buffer_s, buffer_a, buffer_r = [], [], []
-            ppo.update(bs, ba, br)
-    if ep == 0: all_ep_r.append(ep_r)
-    else: all_ep_r.append(all_ep_r[-1]*0.9 + ep_r*0.1)
+            ppo.update(bs, ba, br) #update critic and actor
+
+    if ep == 0:
+
+        all_ep_r.append(ep_r)
+
+    else:
+
+        all_ep_r.append(all_ep_r[-1]*0.9 + ep_r*0.1)
     print(
         'Ep: %i' % ep,
         "|Ep_r: %i" % ep_r,
