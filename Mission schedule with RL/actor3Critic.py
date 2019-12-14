@@ -178,7 +178,8 @@ class Worker(object):
 
                 a = self.AC.choose_action(s)
                 s_, r, done, info = self.env.step(a)
-                if done: r = -5
+                # if done:
+                #     r = -5
                 ep_r += r
                 buffer_s.append(s)
                 buffer_a.append(a)
@@ -214,6 +215,7 @@ class Worker(object):
                         GLOBAL_RUNNING_R.append(ep_r)
                     else:
                         GLOBAL_RUNNING_R.append(0.99 * GLOBAL_RUNNING_R[-1] + 0.01 * ep_r)
+                    # print(ep_r)
                     # print(
                     #     self.name,
                     #     "Ep:", GLOBAL_EP,

@@ -19,7 +19,7 @@ import RemainingTimeTotalModule
 # env = gym.make('Pendulum-v0').unwrapped
 env = myEnv.MyEnv()
 EP_MAX = 1000 #The maximum nmuber of training episodes
-EP_LEN = 200  #The maximum lenth of each episode
+EP_LEN = 50  #The maximum lenth of each episode
 GAMMA = 0.9
 A_LR = 0.0001
 C_LR = 0.0002
@@ -27,7 +27,8 @@ BATCH = 32
 A_UPDATE_STEPS = 10
 C_UPDATE_STEPS = 10
 N_S = env.observation_space.n
-N_A = env.action_space.n
+N_A =1
+    # env.action_space.n
 S_DIM, A_DIM = N_S, N_A
 
 #选择优化方法
@@ -56,13 +57,15 @@ class PPO(object):
         pi, pi_params = self._build_anet('pi', trainable=True)
         oldpi, oldpi_params = self._build_anet('oldpi', trainable=False)
         with tf.variable_scope('sample_action'):
+            # tf.variable_scope()的作用是为了实现变量共享，
+            # 它和tf.get_variable()来完成变量共享的功能。
             self.sample_op = tf.squeeze(pi.sample(1), axis=0)
             # choosing action sample_op是一个张量
             # 这边pi是一个正态分布，sample(1)
             # 就是采一个点（就是选一个动作）
         with tf.variable_scope('update_oldpi'):
             self.update_oldpi_op = [oldp.assign(p) for p, oldp in zip(pi_params, oldpi_params)]
-
+            # 函数用于将可迭代的对象作为参数，将对象中对应的元素打包成一个个元组，然后返回由这些元组组成的列表
         self.tfa = tf.placeholder(tf.float32, [None, A_DIM], 'action')
         self.tfadv = tf.placeholder(tf.float32, [None, 1], 'advantage')
         with tf.variable_scope('loss'):
@@ -131,6 +134,7 @@ class PPO(object):
             sigma = tf.layers.dense(l1, A_DIM, tf.nn.softplus, trainable=trainable)
             norm_dist = tf.distributions.Normal(loc=mu, scale=sigma)
         params = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope=name)
+        # 从一个集合中取出变量，比如隐藏层的权重
         return norm_dist, params
 
     def choose_action(self, s):
@@ -156,12 +160,22 @@ for ep in range(EP_MAX):
     for t in range(EP_LEN):    # in one episode
         # env.render()
         a = ppo.choose_action(s)
+        if a >= 0:
+
+            a=1.0
+
+        else:
+
+            a=0.0
+
         s_, r, done, _ = env.step(a)
         buffer_s.append(s)
         buffer_a.append(a)
         buffer_r.append((r+8)/8)    # normalize reward, find to be useful
         s = s_
         ep_r += r
+        if done:
+            break
 
         # update ppo
         if (t+1) % BATCH == 0 or t == EP_LEN-1:
@@ -189,5 +203,25 @@ for ep in range(EP_MAX):
         ("|Lam: %.4f" % METHOD['lam']) if METHOD['name'] == 'kl_pen' else '',
     )
 
-plt.plot(np.arange(len(all_ep_r)), all_ep_r)
-plt.xlabel('Episode');plt.ylabel('Moving averaged episode reward');plt.show()
+# plt.plot(np.arange(len(all_ep_r)), all_ep_r)
+# plt.xlabel('Episode');plt.ylabel('Moving averaged episode reward');plt.show()
+# globalVariable.initTasklist()
+# s = env.reset()
+# for t in range(EP_LEN):    # in one episode
+#     # env.render()
+#     a = ppo.choose_action(s)
+#
+#     if a >= 0:
+#
+#         a=1.0
+#
+#     else:
+#
+#         a=0.0
+#
+#     print('Task', s[1], 'action', a)
+#     s_, r, done, _ = env.step(a)
+#     s = s_
+#     if done:
+#         break
+#
