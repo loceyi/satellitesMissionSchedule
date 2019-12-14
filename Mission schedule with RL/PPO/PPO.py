@@ -19,7 +19,7 @@ import RemainingTimeTotalModule
 # env = gym.make('Pendulum-v0').unwrapped
 env = myEnv.MyEnv()
 EP_MAX = 1000 #The maximum nmuber of training episodes
-EP_LEN = 50  #The maximum lenth of each episode
+EP_LEN = 33 #The maximum lenth of each episode
 GAMMA = 0.9
 A_LR = 0.0001
 C_LR = 0.0002
@@ -65,7 +65,7 @@ class PPO(object):
             # 就是采一个点（就是选一个动作）
         with tf.variable_scope('update_oldpi'):
             self.update_oldpi_op = [oldp.assign(p) for p, oldp in zip(pi_params, oldpi_params)]
-            # 函数用于将可迭代的对象作为参数，将对象中对应的元素打包成一个个元组，然后返回由这些元组组成的列表
+            # zip函数用于将可迭代的对象作为参数，将对象中对应的元素打包成一个个元组，然后返回由这些元组组成的列表
         self.tfa = tf.placeholder(tf.float32, [None, A_DIM], 'action')
         self.tfadv = tf.placeholder(tf.float32, [None, 1], 'advantage')
         with tf.variable_scope('loss'):
@@ -86,7 +86,7 @@ class PPO(object):
         with tf.variable_scope('atrain'):
             self.atrain_op = tf.train.AdamOptimizer(A_LR).minimize(self.aloss)
 
-        tf.summary.FileWriter("logs/", self.sess.graph)
+        # tf.summary.FileWriter("logs/", self.sess.graph)
 
         self.sess.run(tf.global_variables_initializer())
 
@@ -149,6 +149,8 @@ class PPO(object):
 # env = gym.make('Pendulum-v0').unwrapped
 ppo = PPO()
 all_ep_r = []
+max_ep_r=0
+max_r_episode=[]
 globalVariable.initTask()
 RemainingTimeTotalModule.initRemainingTimeTotal()
 
@@ -171,14 +173,12 @@ for ep in range(EP_MAX):
         s_, r, done, _ = env.step(a)
         buffer_s.append(s)
         buffer_a.append(a)
-        buffer_r.append((r+8)/8)    # normalize reward, find to be useful
+        # buffer_r.append((r+8)/8)    # normalize reward, find to be useful
+        buffer_r.append(r)
         s = s_
         ep_r += r
         if done:
-            break
-
-        # update ppo
-        if (t+1) % BATCH == 0 or t == EP_LEN-1:
+            print('1')
             v_s_ = ppo.get_v(s_)
             discounted_r = []
             for r in buffer_r[::-1]:
@@ -189,14 +189,39 @@ for ep in range(EP_MAX):
             bs, ba, br = np.vstack(buffer_s), np.vstack(buffer_a), np.array(discounted_r)[:, np.newaxis]
             buffer_s, buffer_a, buffer_r = [], [], []
             ppo.update(bs, ba, br) #update critic and actor
+            break
 
-    if ep == 0:
+        # update ppo
+        # if (t+1) % BATCH == 0 or t == EP_LEN-1:
+        #     # print('2')
+        #     v_s_ = ppo.get_v(s_)
+        #     discounted_r = []
+        #     for r in buffer_r[::-1]:
+        #         v_s_ = r + GAMMA * v_s_
+        #         discounted_r.append(v_s_)
+        #     discounted_r.reverse()
+        #
+        #     bs, ba, br = np.vstack(buffer_s), np.vstack(buffer_a), np.array(discounted_r)[:, np.newaxis]
+        #     buffer_s, buffer_a, buffer_r = [], [], []
+        #     ppo.update(bs, ba, br) #update critic and actor
 
-        all_ep_r.append(ep_r)
+
+
+    if ep_r >=max_ep_r:
+
+        max_ep_r=ep_r
+
 
     else:
 
-        all_ep_r.append(all_ep_r[-1]*0.9 + ep_r*0.1)
+        pass
+    # if ep == 0:
+    #
+    #     all_ep_r.append(ep_r)
+    #
+    # else:
+    #
+    #     all_ep_r.append(all_ep_r[-1]*0.9 + ep_r*0.1)
     print(
         'Ep: %i' % ep,
         "|Ep_r: %i" % ep_r,
