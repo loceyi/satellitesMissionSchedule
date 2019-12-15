@@ -18,7 +18,7 @@ import globalVariableLocal as globalVariable
 import RemainingTimeTotalModule
 # env = gym.make('Pendulum-v0').unwrapped
 env = myEnv.MyEnv()
-EP_MAX = 1000 #The maximum nmuber of training episodes
+EP_MAX = 300 #The maximum nmuber of training episodes
 MAX_EP_LEN = 50 #The maximum lenth of each episode
 GAMMA = 0.9
 A_LR = 0.0001 #learning rate of actor
@@ -214,7 +214,7 @@ for ep in range(EP_MAX):
 
             bs, ba, br = np.vstack(buffer_s), np.vstack(buffer_a), np.array(discounted_r)[:, np.newaxis]
             #将buffer中元素一个个拿出来重新垂直排列
-            buffer_s, buffer_a, buffer_r = [], [], []
+            # buffer_s, buffer_a, buffer_r = [], [], []
             ppo.update(bs, ba, br) #update critic and actor
             #
             RewardTotal=np.sum(buffer_r)
@@ -227,6 +227,7 @@ for ep in range(EP_MAX):
 
                 pass
 
+            buffer_s, buffer_a, buffer_r = [], [], []
 
             break
 
@@ -239,4 +240,5 @@ for ep in range(EP_MAX):
     #     ("|Lam: %.4f" % METHOD['lam']) if METHOD['name'] == 'kl_pen' else '',
     # )
 
-print('MAX_Record',MAX_Record)
+print('MAX_Record',MAX_Record,'MAX_Reward',MAX_Reward)
+

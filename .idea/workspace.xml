@@ -4,6 +4,7 @@
     <list default="true" id="639b334a-7721-4416-ac57-6edd38b904bb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Mission schedule with RL/PPO/PPO.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/PPO/PPO.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mission schedule with RL/globalVariableLocal.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/globalVariableLocal.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,7 +20,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Mission schedule with RL/actor3Critic.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="988">
+            <state relative-caret-position="26">
               <caret line="54" column="32" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
               <folding>
                 <element signature="e#795#811#0" expanded="true" />
@@ -28,11 +29,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Mission schedule with RL/PPO/PPO.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="26" column="19" lean-forward="true" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
+            <state relative-caret-position="57">
+              <caret line="93" column="13" selection-start-line="93" selection-start-column="13" selection-end-line="93" selection-end-column="13" />
               <folding>
                 <element signature="e#409#432#0" expanded="true" />
               </folding>
@@ -40,11 +41,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Mission schedule with RL/twCsvFileRead.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
+            <state relative-caret-position="57">
+              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -184,11 +185,11 @@
         <option value="$PROJECT_DIR$/Mission schedule with RL/twCsvFileRead.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/DDPG/DDPG.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/PPO/discrete_DPPO.py" />
-        <option value="$PROJECT_DIR$/Mission schedule with RL/globalVariableLocal.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/globalVariableLocalWorker1.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/globalVariableLocalWorker2.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/globalVariableLocalWorker3.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/actor3Critic.py" />
+        <option value="$PROJECT_DIR$/Mission schedule with RL/globalVariableLocal.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/PPO/PPO.py" />
       </list>
     </option>
@@ -259,7 +260,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.twCsvFileRead">
+  <component name="RunManager" selected="Python.PPO">
     <configuration name="PPO" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Satellites Mission Schedule" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -388,8 +389,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.twCsvFileRead" />
         <item itemvalue="Python.PPO" />
+        <item itemvalue="Python.twCsvFileRead" />
         <item itemvalue="Python.actor3Critic" />
         <item itemvalue="Python.discrete_DPPO" />
         <item itemvalue="Python.timeWindowCalculationStk" />
@@ -406,13 +407,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1569501136948</updated>
-    </task>
-    <task id="LOCAL-00005" summary="2019.10.17Evening 下一步需要把判断任务是否在可用时间窗口内写完">
-      <created>1571321259484</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1571321259485</updated>
     </task>
     <task id="LOCAL-00006" summary="2019.10.18Evening">
       <created>1571405242304</created>
@@ -750,7 +744,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576381723170</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="2019.12.15 在PPO中添加了获取收搜过程中最大reward的episode的代码，将task1的reward设置为-20，来训练ppo，可以得到理想的结果">
+      <created>1576400182609</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1576400182610</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TodoView">
@@ -826,7 +827,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="2019.11.28 22:29 bug好多，明天再干！" />
     <MESSAGE value="2019.11.28 22:29 突然发现没有bug了，竟然跑通了，出乎意料，开始改着不用gym环境" />
     <MESSAGE value="2019.11.29 11:23 发现新的bug" />
     <MESSAGE value="2019.12.2 12月快乐，发现如果Reward设为0在所有任务都被拒绝的情况下会引发计算的奇异，而且有时候计算的过程会陷入一个局部解，因为概率越来越小" />
@@ -851,7 +851,8 @@
     <MESSAGE value="2019.12.14 代码一大堆错误呀呀呀呀！先去弹个吉他" />
     <MESSAGE value="2019.12.14 Ooops 还是没有搞出来，再仔细看看代码，不要心急" />
     <MESSAGE value="2019.12.15 多调试调试" />
-    <option name="LAST_COMMIT_MESSAGE" value="2019.12.15 多调试调试" />
+    <MESSAGE value="2019.12.15 在PPO中添加了获取收搜过程中最大reward的episode的代码，将task1的reward设置为-20，来训练ppo，可以得到理想的结果" />
+    <option name="LAST_COMMIT_MESSAGE" value="2019.12.15 在PPO中添加了获取收搜过程中最大reward的episode的代码，将task1的reward设置为-20，来训练ppo，可以得到理想的结果" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1236,16 +1237,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/actor3Critic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="988">
-          <caret line="54" column="32" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
-          <folding>
-            <element signature="e#795#811#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/PPO/discrete_DPPO.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1045">
@@ -1266,6 +1257,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/timeWindowCalculationStk.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="96" column="13" lean-forward="true" selection-start-line="96" selection-start-column="13" selection-end-line="96" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/twCsvFileRead.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/actor3Critic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="54" column="32" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
+          <folding>
+            <element signature="e#795#811#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/globalVariableLocal.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="16">
@@ -1276,29 +1294,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/timeWindowCalculationStk.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="96" column="13" lean-forward="true" selection-start-line="96" selection-start-column="13" selection-end-line="96" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/PPO/PPO.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="26" column="19" lean-forward="true" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
+        <state relative-caret-position="57">
+          <caret line="93" column="13" selection-start-line="93" selection-start-column="13" selection-end-line="93" selection-end-column="13" />
           <folding>
             <element signature="e#409#432#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/twCsvFileRead.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
