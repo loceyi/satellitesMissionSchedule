@@ -104,7 +104,8 @@ class PPO(object):
     def update(self, s, a, r):
         self.sess.run(self.update_oldpi_op)
         adv = self.sess.run(self.advantage, {self.tfs: s, self.tfdc_r: r})
-        a= a[:, S_DIM: S_DIM + 1].ravel()
+        a=a.T
+        # a= a[:, S_DIM: S_DIM + 1].ravel()
         # adv = (adv - adv.mean())/(adv.std()+1e-6)     # sometimes helpful
 
         # update actor
