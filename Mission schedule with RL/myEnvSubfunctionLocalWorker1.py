@@ -35,7 +35,6 @@ def get_env_feedback(S, A):
 
             break
 
-
     if A == 1: #Accept=1
 
         R = float(TaskRequirement[3])

@@ -77,7 +77,6 @@ def initTask():
             '32': [43305.4925519444, 43305.4933894676, 1, 2]}
 
 
-
 # def initRemainingTimeTotal():
 #
 #     global RemainingTimeTotal

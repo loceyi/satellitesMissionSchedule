@@ -35,9 +35,9 @@ GAME = 'CartPole-v0'
 OUTPUT_GRAPH = True
 LOG_DIR = './log'
 N_WORKERS = 3
-MAX_GLOBAL_EP = 500 #中央大脑最大回合数
+MAX_GLOBAL_EP = 1000 #中央大脑最大回合数
 GLOBAL_NET_SCOPE = 'Global_Net'  #中央大脑的名字
-UPDATE_GLOBAL_ITER = 100 #中央大脑每N次提升一次
+UPDATE_GLOBAL_ITER = 100 #中央大脑每N步提升一次
 GAMMA = 0.9 #衰减度
 ENTROPY_BETA = 0.001
 LR_A = 0.001    # learning rate for actor
@@ -238,7 +238,7 @@ if __name__ == "__main__":
         # Create worker
         for i in range(N_WORKERS):
             i_name = 'W_%i' % i   # worker name
-            workers.append(Worker(i_name, GLOBAL_AC))#将类传入类
+            workers.append(Worker(i_name, GLOBAL_AC))#将类传入列表
 
             #实例化多个 Worker(i_name, GLOBAL_AC)，并且传入global_ac类实例
 
