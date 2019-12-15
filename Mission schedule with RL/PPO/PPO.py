@@ -19,10 +19,10 @@ import RemainingTimeTotalModule
 # env = gym.make('Pendulum-v0').unwrapped
 env = myEnv.MyEnv()
 EP_MAX = 1000 #The maximum nmuber of training episodes
-EP_LEN = 33 #The maximum lenth of each episode
+MAX_EP_LEN = 50 #The maximum lenth of each episode
 GAMMA = 0.9
-A_LR = 0.0001
-C_LR = 0.0002
+A_LR = 0.0001 #learning rate of actor
+C_LR = 0.0002 #learning rate of critic
 BATCH = 32
 A_UPDATE_STEPS = 10
 C_UPDATE_STEPS = 10
@@ -46,6 +46,7 @@ class PPO(object):
 
         # critic
         with tf.variable_scope('critic'):
+            #variable_scope下声明共享后，tf.Variable()同名变量指向两个不同变量实体，而tf.get_variable ()同名变量则指向同一个变量实体
             l1 = tf.layers.dense(self.tfs, 100, tf.nn.relu)
             self.v = tf.layers.dense(l1, 1)
             self.tfdc_r = tf.placeholder(tf.float32, [None, 1], 'discounted_r')
@@ -67,8 +68,10 @@ class PPO(object):
         #     # 就是采一个点（就是选一个动作）
         with tf.variable_scope('update_oldpi'):
             self.update_oldpi_op = [oldp.assign(p) for p, oldp in zip(pi_params, oldpi_params)]
+            #更新oldp参数
             # zip函数用于将可迭代的对象作为参数，将对象中对应的元素打包成一个个元组，然后返回由这些元组组成的列表
         self.tfa = tf.placeholder(tf.int32, [None, ], 'action')
+        #[None,]表示行不定，无列
         self.tfadv = tf.placeholder(tf.float32, [None, 1], 'advantage')
         a_indices = tf.stack([tf.range(tf.shape(self.tfa)[0], dtype=tf.int32), self.tfa], axis=1)
         #张量拼接函数tf.stack(),range()函数用于创建数字序列变量
@@ -104,7 +107,7 @@ class PPO(object):
     def update(self, s, a, r):
         self.sess.run(self.update_oldpi_op)
         adv = self.sess.run(self.advantage, {self.tfs: s, self.tfdc_r: r})
-        a=a.T
+        a=a.ravel()
         # a= a[:, S_DIM: S_DIM + 1].ravel()
         # adv = (adv - adv.mean())/(adv.std()+1e-6)     # sometimes helpful
 
@@ -134,6 +137,12 @@ class PPO(object):
             l_a = tf.layers.dense(self.tfs, 200, tf.nn.relu, trainable=trainable)
             a_prob = tf.layers.dense(l_a, A_DIM, tf.nn.softmax, trainable=trainable)
         params = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope=name)
+        '''
+        用来获取一个名称是‘key’的集合中的所有元素，返回的是一个列表，
+        列表的顺序是按照变量放入集合中的先后;   
+        scope参数可选，表示的是名称空间（名称域），
+        如果指定，就返回名称域中所有放入‘key’的变量的列表，不指定则返回所有变量。
+        '''
         return a_prob, params
 
 
@@ -164,7 +173,8 @@ class PPO(object):
                                   p=prob_weights.ravel())  # select action w.r.t the actions prob
         return action
     def get_v(self, s):
-        if s.ndim < 2: s = s[np.newaxis, :]
+        if s.ndim < 2:#ndim返回的是数组的维度
+            s = s[np.newaxis, :]
         return self.sess.run(self.v, {self.tfs: s})[0, 0]
 
 # env = gym.make('Pendulum-v0').unwrapped
@@ -174,24 +184,18 @@ max_ep_r=0
 max_r_episode=[]
 globalVariable.initTask()
 RemainingTimeTotalModule.initRemainingTimeTotal()
-
+MAX_Record=[]
+MAX_Reward=-1000
 for ep in range(EP_MAX):
     globalVariable.initTasklist()
     s = env.reset()
     buffer_s, buffer_a, buffer_r = [], [], []
     ep_r = 0
-    for t in range(EP_LEN):    # in one episode
-        # env.render()
+    episodeRecord=[]
+    for t in range(MAX_EP_LEN):    # in one episode
         a = ppo.choose_action_discrete(s)
-        # if a >= 0:
-        #
-        #     a=1.0
-        #
-        # else:
-        #
-        #     a=0.0
-
         s_, r, done, _ = env.step(a)
+        episodeRecord.append([s[1],a])
         buffer_s.append(s)
         buffer_a.append(a)
         # buffer_r.append((r+8)/8)    # normalize reward, find to be useful
@@ -199,10 +203,11 @@ for ep in range(EP_MAX):
         s = s_
         ep_r += r
         if done:
+
             # print('1')
             v_s_ = ppo.get_v(s_)
             discounted_r = []
-            for r in buffer_r[::-1]:
+            for r in buffer_r[::-1]:#取从后向前（相反）的元素
                 v_s_ = r + GAMMA * v_s_
                 discounted_r.append(v_s_)
             discounted_r.reverse()
@@ -211,65 +216,27 @@ for ep in range(EP_MAX):
             #将buffer中元素一个个拿出来重新垂直排列
             buffer_s, buffer_a, buffer_r = [], [], []
             ppo.update(bs, ba, br) #update critic and actor
+            #
+            RewardTotal=np.sum(buffer_r)
+            if RewardTotal >= MAX_Reward:
+
+                MAX_Record=episodeRecord
+                MAX_Reward=RewardTotal
+
+            else:
+
+                pass
+
 
             break
 
-        # update ppo
-        # if (t+1) % BATCH == 0 or t == EP_LEN-1:
-        #     # print('2')
-        #     v_s_ = ppo.get_v(s_)
-        #     discounted_r = []
-        #     for r in buffer_r[::-1]:
-        #         v_s_ = r + GAMMA * v_s_
-        #         discounted_r.append(v_s_)
-        #     discounted_r.reverse()
-        #
-        #     bs, ba, br = np.vstack(buffer_s), np.vstack(buffer_a), np.array(discounted_r)[:, np.newaxis]
-        #     buffer_s, buffer_a, buffer_r = [], [], []
-        #     ppo.update(bs, ba, br) #update critic and actor
 
 
 
-    # if ep_r >=max_ep_r:
-    #
-    #     max_ep_r=ep_r
-    #
-    #
-    # else:
-    #
-    #     pass
-    # if ep == 0:
-    #
-    #     all_ep_r.append(ep_r)
-    #
-    # else:
-    #
-    #     all_ep_r.append(all_ep_r[-1]*0.9 + ep_r*0.1)
-    print(
-        'Ep: %i' % ep,
-        "|Ep_r: %i" % ep_r,
-        ("|Lam: %.4f" % METHOD['lam']) if METHOD['name'] == 'kl_pen' else '',
-    )
+    # print(
+    #     'Ep: %i' % ep,
+    #     "|Ep_r: %i" % ep_r,
+    #     ("|Lam: %.4f" % METHOD['lam']) if METHOD['name'] == 'kl_pen' else '',
+    # )
 
-# plt.plot(np.arange(len(all_ep_r)), all_ep_r)
-# plt.xlabel('Episode');plt.ylabel('Moving averaged episode reward');plt.show()
-# globalVariable.initTasklist()
-# s = env.reset()
-# for t in range(EP_LEN):    # in one episode
-#     # env.render()
-#     a = ppo.choose_action(s)
-#
-#     if a >= 0:
-#
-#         a=1.0
-#
-#     else:
-#
-#         a=0.0
-#
-#     print('Task', s[1], 'action', a)
-#     s_, r, done, _ = env.step(a)
-#     s = s_
-#     if done:
-#         break
-#
+print('MAX_Record',MAX_Record)
