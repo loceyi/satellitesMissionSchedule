@@ -1,13 +1,11 @@
 """
-A simple version of OpenAI's Proximal Policy Optimization (PPO). [https://arxiv.org/abs/1707.06347]
-Distributing workers in parallel to collect data, then stop worker's roll-out and train PPO on collected data.
-Restart workers once PPO is updated.
-The global PPO updating rule is adopted from DeepMind's paper (DPPO):
-Emergence of Locomotion Behaviours in Rich Environments (Google Deepmind): [https://arxiv.org/abs/1707.02286]
-View more on my tutorial website: https://morvanzhou.github.io/tutorials
-Dependencies:
-tensorflow 1.8.0
-gym 0.9.2
+用 OpenAI 提出的 Clipped Surrogate Objective
+使用多个线程 (workers) 平行在不同的环境中收集数据
+workers 共享一个 Global PPO
+workers 不会自己算 PPO 的 gradients, 不会像 A3C 那样推送 Gradients 给 Global net
+workers 只推送自己采集的数据给 Global PPO
+Global PPO 拿到多个 workers 一定批量的数据后进行更新 (更新时 worker 停止采集)
+更新完后, workers 用最新的 Policy 采集数据
 """
 
 import tensorflow as tf
