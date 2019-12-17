@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="639b334a-7721-4416-ac57-6edd38b904bb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Mission schedule with RL/Tutorial/env.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Mission schedule with RL/Tutorial/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Mission schedule with RL/Tutorial/rl.py" afterDir="false" />
+    <list default="true" id="639b334a-7721-4416-ac57-6edd38b904bb" name="Default Changelist" comment="2019.12.16 开始跟着莫烦教程来学习一下整个强化学习项目的构造">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Mission schedule with RL/PPO/discrete_DPPO.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/PPO/discrete_DPPO.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mission schedule with RL/Tutorial/env.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mission schedule with RL/Tutorial/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mission schedule with RL/Tutorial/rl.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,51 +20,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Mission schedule with RL/actor3Critic.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-494">
-              <caret line="38" column="41" lean-forward="true" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="41" />
-              <folding>
-                <element signature="e#795#811#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Mission schedule with RL/Tutorial/env.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-91">
-              <caret line="37" column="12" lean-forward="true" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="12" />
-              <folding>
-                <element signature="e#1#14#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Mission schedule with RL/Tutorial/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="21" column="29" lean-forward="true" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
-              <folding>
-                <element signature="e#0#31#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Mission schedule with RL/Tutorial/rl.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Mission schedule with RL/PPO/PPO.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6084">
-              <caret line="234" lean-forward="true" selection-start-line="234" selection-end-line="234" />
+            <state relative-caret-position="178">
+              <caret line="19" selection-start-line="19" selection-end-line="19" selection-end-column="19" />
               <folding>
                 <element signature="e#409#432#0" expanded="true" />
               </folding>
@@ -73,60 +32,24 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Mission schedule with RL/actor3Critic.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2180">
+              <caret line="172" lean-forward="true" selection-start-line="172" selection-end-line="172" />
+              <folding>
+                <element signature="e#795#811#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Mission schedule with RL/PPO/discrete_DPPO.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1534">
-              <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
+            <state relative-caret-position="244">
+              <caret line="167" column="22" lean-forward="true" selection-start-line="167" selection-start-column="22" selection-end-line="167" selection-end-column="22" />
               <folding>
-                <element signature="e#551#574#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Mission schedule with RL/globalVariableLocalWorker2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1248">
-              <caret line="51" column="58" selection-start-line="51" selection-start-column="58" selection-end-line="51" selection-end-column="58" />
-              <folding>
-                <element signature="e#73#91#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Mission schedule with RL/globalVariableLocalWorker3.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1976">
-              <caret line="79" selection-start-line="79" selection-end-line="79" />
-              <folding>
-                <element signature="e#73#91#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Mission schedule with RL/RemainingTimeTotalModule.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="988">
-              <caret line="39" selection-start-line="39" selection-end-line="39" />
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Mission schedule with RL/globalVariableLocal.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1066">
-              <caret line="44" column="60" selection-start-line="44" selection-start-column="60" selection-end-line="44" selection-end-column="60" />
-              <folding>
-                <element signature="e#73#91#0" expanded="true" />
+                <element signature="e#289#312#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -170,6 +93,7 @@
       <find>A_UPDATE_STEPS</find>
       <find>update</find>
       <find>RemainingTimeTotalModule</find>
+      <find>wid</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -183,8 +107,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Reinforcement Learning/Q-learing test2.py" />
-        <option value="$PROJECT_DIR$/Reinforcement Learning/stkConnect.py" />
         <option value="$PROJECT_DIR$/Reinforcement Learning/asd.py" />
         <option value="$PROJECT_DIR$/tensorflow_practice-master/RL/Basic-Policy-Network/run_CartPole.py" />
         <option value="$PROJECT_DIR$/tensorflow_practice-master/RL/Policy_Gradient/run_MountainCar.py" />
@@ -230,17 +152,20 @@
         <option value="$PROJECT_DIR$/Mission schedule with RL/globalVariableLocal.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/RemainingTimeTotalModule.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/actor3Critic.py" />
-        <option value="$PROJECT_DIR$/Mission schedule with RL/PPO/discrete_DPPO.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/Tutorial/rl.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/Tutorial/main.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/Tutorial/env.py" />
+        <option value="$PROJECT_DIR$/Mission schedule with RL/train-robot-arm-from-scratch-master/part3/env.py" />
+        <option value="$PROJECT_DIR$/Mission schedule with RL/train-robot-arm-from-scratch-master/part4/main.py" />
+        <option value="$PROJECT_DIR$/Mission schedule with RL/PPO/discrete_DPPO.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-9" />
-    <option name="width" value="1293" />
-    <option name="height" value="687" />
+    <option name="x" value="-11" />
+    <option name="y" value="-11" />
+    <option name="width" value="1943" />
+    <option name="height" value="1043" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -266,12 +191,6 @@
               <item name="Satellites Mission Schedule" type="462c0819:PsiDirectoryNode" />
               <item name="Mission schedule with RL" type="462c0819:PsiDirectoryNode" />
               <item name="PPO" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Satellites Mission Schedule" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Satellites Mission Schedule" type="462c0819:PsiDirectoryNode" />
-              <item name="Mission schedule with RL" type="462c0819:PsiDirectoryNode" />
-              <item name="Tutorial" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -309,28 +228,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.env">
-    <configuration name="PPO" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Satellites Mission Schedule" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Mission schedule with RL/PPO" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Mission schedule with RL/PPO/PPO.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.discrete_DPPO">
     <configuration name="actor3Critic" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Satellites Mission Schedule" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -373,6 +271,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="env (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Satellites Mission Schedule" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Mission schedule with RL/train-robot-arm-from-scratch-master/part3" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Mission schedule with RL/train-robot-arm-from-scratch-master/part3/env.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="env" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Satellites Mission Schedule" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -386,6 +305,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Mission schedule with RL/Tutorial/env.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Satellites Mission Schedule" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Mission schedule with RL/train-robot-arm-from-scratch-master/part4" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Mission schedule with RL/train-robot-arm-from-scratch-master/part4/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -415,34 +355,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="twCsvFileRead" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Satellites Mission Schedule" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Mission schedule with RL" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Mission schedule with RL/twCsvFileRead.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.discrete_DPPO" />
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.env (1)" />
         <item itemvalue="Python.env" />
         <item itemvalue="Python.actor3Critic" />
-        <item itemvalue="Python.PPO" />
-        <item itemvalue="Python.twCsvFileRead" />
-        <item itemvalue="Python.discrete_DPPO" />
       </list>
     </recent_temporary>
   </component>
@@ -456,13 +375,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1569501136948</updated>
-    </task>
-    <task id="LOCAL-00008" summary="2019.10.29 Morning">
-      <created>1572338505206</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1572338505206</updated>
     </task>
     <task id="LOCAL-00009" summary="2019.10.29 Morning">
       <created>1572426015019</created>
@@ -800,7 +712,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576407971006</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="2019.12.16 开始跟着莫烦教程来学习一下整个强化学习项目的构造">
+      <created>1576464923501</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1576464923501</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TodoView">
@@ -816,13 +735,13 @@
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.3802817" visible="true" weight="0.16188198" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.3802817" visible="true" weight="0.23684211" />
       <window_info id="Structure" order="1" sideWeight="0.6197183" side_tool="true" weight="0.22727273" />
       <window_info id="Favorites" order="2" sideWeight="0.50185186" side_tool="true" weight="0.24960127" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32962963" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.47407407" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.56296295" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.5623003" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32962963" />
@@ -876,7 +795,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="2019.11.29 11:23 发现新的bug" />
     <MESSAGE value="2019.12.2 12月快乐，发现如果Reward设为0在所有任务都被拒绝的情况下会引发计算的奇异，而且有时候计算的过程会陷入一个局部解，因为概率越来越小" />
     <MESSAGE value="2019.12.2 17:10 准备开始用ac的方法来训练，单纯的pg方法很容易收敛到局部解" />
     <MESSAGE value="2019.12.4 16：56 ac方法编好了，打算把记录卫星状态表格这一项删除，感觉没有必要" />
@@ -901,7 +819,8 @@
     <MESSAGE value="2019.12.15 多调试调试" />
     <MESSAGE value="2019.12.15 在PPO中添加了获取收搜过程中最大reward的episode的代码，将task1的reward设置为-20，来训练ppo，可以得到理想的结果 补充：buffer在使用前清空了，有错误" />
     <MESSAGE value="2019.12.15 A3C有时候会蹦出NumTW的错误，之后再注意一下，然后训练次数在1000以上会比较好" />
-    <option name="LAST_COMMIT_MESSAGE" value="2019.12.15 A3C有时候会蹦出NumTW的错误，之后再注意一下，然后训练次数在1000以上会比较好" />
+    <MESSAGE value="2019.12.16 开始跟着莫烦教程来学习一下整个强化学习项目的构造" />
+    <option name="LAST_COMMIT_MESSAGE" value="2019.12.16 开始跟着莫烦教程来学习一下整个强化学习项目的构造" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -919,42 +838,11 @@
         <watch expression="q_table" />
         <watch expression="q_table" />
         <watch expression="Access_Start_list" />
+        <watch expression="workers[1]" />
       </configuration>
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../ANAdonda/Lib/site-packages/comtypes/gen/STKObjects.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="2" column="36" lean-forward="true" selection-start-line="2" selection-start-column="36" selection-end-line="2" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/test3" />
-    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/test3.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../ANAdonda/Lib/site-packages/gym/spaces/discrete.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-26">
-          <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../ANAdonda/Lib/site-packages/gym/envs/registration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-369">
-          <caret line="154" column="4" selection-start-line="154" selection-start-column="4" selection-end-line="154" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../ANAdonda/Lib/site-packages/gym/envs/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -1202,16 +1090,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/myEnvLocalWorker1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-90">
-          <caret line="22" column="10" lean-forward="true" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/myEnvSubfunctionLocalWorker2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="156">
@@ -1262,6 +1140,8 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/Tutorial/main.py" />
+    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/Tutorial/rl.py" />
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/globalVariableLocalWorker2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1248">
@@ -1302,55 +1182,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/PPO/discrete_DPPO.py">
+    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/Tutorial/env.py" />
+    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/train-robot-arm-from-scratch-master/part3/env.py" />
+    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/myEnvLocalWorker1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1534">
-          <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
+        <state relative-caret-position="416">
+          <caret line="22" column="10" lean-forward="true" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
           <folding>
-            <element signature="e#551#574#0" expanded="true" />
+            <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/train-robot-arm-from-scratch-master/part4/env.py" />
+    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/train-robot-arm-from-scratch-master/part4/rl.py" />
+    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/train-robot-arm-from-scratch-master/part1/main.py" />
+    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/train-robot-arm-from-scratch-master/part4/main.py" />
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/PPO/PPO.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6084">
-          <caret line="234" lean-forward="true" selection-start-line="234" selection-end-line="234" />
+        <state relative-caret-position="178">
+          <caret line="19" selection-start-line="19" selection-end-line="19" selection-end-column="19" />
           <folding>
             <element signature="e#409#432#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/Tutorial/rl.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/Tutorial/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="21" column="29" lean-forward="true" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/actor3Critic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-494">
-          <caret line="38" column="41" lean-forward="true" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="41" />
+        <state relative-caret-position="-2180">
+          <caret line="172" lean-forward="true" selection-start-line="172" selection-end-line="172" />
           <folding>
             <element signature="e#795#811#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/Tutorial/env.py">
+    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/PPO/discrete_DPPO.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-91">
-          <caret line="37" column="12" lean-forward="true" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="12" />
+        <state relative-caret-position="244">
+          <caret line="167" column="22" lean-forward="true" selection-start-line="167" selection-start-column="22" selection-end-line="167" selection-end-column="22" />
           <folding>
-            <element signature="e#1#14#0" expanded="true" />
+            <element signature="e#289#312#0" expanded="true" />
           </folding>
         </state>
       </provider>

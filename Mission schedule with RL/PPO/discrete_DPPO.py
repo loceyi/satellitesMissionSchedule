@@ -13,9 +13,22 @@ import numpy as np
 import matplotlib.pyplot as plt
 import gym, threading, queue
 
+
+import globalVariableLocal as globalVariable
+import globalVariableLocalWorker1 as globalVariableWorker1
+import globalVariableLocalWorker2 as globalVariableWorker2
+import globalVariableLocalWorker3 as globalVariableWorker3
+import myEnvLocal as myEnv
+import myEnvLocalWorker1 as myEnvWorker1
+import myEnvLocalWorker2 as myEnvWorker2
+import myEnvLocalWorker3 as myEnvWorker3
+import RemainingTimeTotalModule
+
+
+
 EP_MAX = 1000
-EP_LEN = 500
-N_WORKER = 4  # parallel workers
+EP_LEN = 100
+N_WORKER = 3  # parallel workers
 GAMMA = 0.9  # reward discount factor
 A_LR = 0.0001  # learning rate for actor
 C_LR = 0.0001  # learning rate for critic
@@ -24,8 +37,9 @@ UPDATE_STEP = 15  # loop update operation n-steps
 EPSILON = 0.2  # for clipping surrogate objective
 GAME = 'CartPole-v0'
 
-env = gym.make(GAME)
-S_DIM = env.observation_space.shape[0]
+# env = gym.make(GAME)
+env = myEnv.MyEnv()
+S_DIM = env.observation_space.n
 A_DIM = env.action_space.n
 
 
@@ -103,13 +117,42 @@ class PPONet(object):
 class Worker(object):
     def __init__(self, wid):
         self.wid = wid
-        self.env = gym.make(GAME).unwrapped
+
+        if self.wid == 0:
+
+            self.env = myEnvWorker1.MyEnv()
+        elif self.wid == 1:
+
+            self.env = myEnvWorker2.MyEnv()
+
+        elif self.wid == 2:
+
+            self.env = myEnvWorker3.MyEnv()
+
+        elif self.wid == 3:
+
+            self.env = myEnv.MyEnv()
+
+        # self.env = gym.make(GAME).unwrapped
         self.ppo = GLOBAL_PPO
 
     def work(self):
         global GLOBAL_EP, GLOBAL_RUNNING_R, GLOBAL_UPDATE_COUNTER
         while not COORD.should_stop():
             s = self.env.reset()
+
+            if self.wid == 0:
+
+                globalVariableWorker1.initTasklist()
+            elif self.wid == 1:
+
+                globalVariableWorker2.initTasklist()
+
+            elif self.wid == 2:
+
+                globalVariableWorker3.initTasklist()
+
+
             ep_r = 0
             buffer_s, buffer_a, buffer_r = [], [], []
             for t in range(EP_LEN):
@@ -163,8 +206,9 @@ class Worker(object):
 if __name__ == '__main__':
     GLOBAL_PPO = PPONet()
     UPDATE_EVENT, ROLLING_EVENT = threading.Event(), threading.Event()
+    # 模块threading提供了多线程相关操作，event可以帮助我们实现线程间通信
     UPDATE_EVENT.clear()  # not update now
-    ROLLING_EVENT.set()  # start to roll out
+    ROLLING_EVENT.set()  # start to roll out,当event标志为False时，线程被阻塞，直至标志位被set()为True；
     workers = [Worker(wid=i) for i in range(N_WORKER)]
 
     GLOBAL_UPDATE_COUNTER, GLOBAL_EP = 0, 0
