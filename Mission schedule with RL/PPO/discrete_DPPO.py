@@ -36,7 +36,10 @@ MIN_BATCH_SIZE = 64  # minimum batch size for updating PPO
 UPDATE_STEP = 15  # loop update operation n-steps
 EPSILON = 0.2  # for clipping surrogate objective
 GAME = 'CartPole-v0'
-
+globalVariableWorker1.initTask()
+globalVariableWorker2.initTask()
+globalVariableWorker3.initTask()
+RemainingTimeTotalModule.initRemainingTimeTotal()
 # env = gym.make(GAME)
 env = myEnv.MyEnv()
 S_DIM = env.observation_space.n
@@ -129,9 +132,6 @@ class Worker(object):
 
             self.env = myEnvWorker3.MyEnv()
 
-        elif self.wid == 3:
-
-            self.env = myEnv.MyEnv()
 
         # self.env = gym.make(GAME).unwrapped
         self.ppo = GLOBAL_PPO
@@ -161,15 +161,18 @@ class Worker(object):
                     buffer_s, buffer_a, buffer_r = [], [], []  # clear history buffer, use new policy to collect data
                 a = self.ppo.choose_action(s)
                 s_, r, done, _ = self.env.step(a)
-                if done: r = -10
+
                 buffer_s.append(s)
                 buffer_a.append(a)
-                buffer_r.append(r - 1)  # 0 for not down, -11 for down. Reward engineering
+                buffer_r.append(r)  # 0 for not down, -11 for down. Reward engineering
+                # print('s',s[1],'a',a)
                 s = s_
                 ep_r += r
+                # print('r',r)
 
                 GLOBAL_UPDATE_COUNTER += 1  # count to minimum batch size, no need to wait other workers
-                if t == EP_LEN - 1 or GLOBAL_UPDATE_COUNTER >= MIN_BATCH_SIZE or done:
+                # if t == EP_LEN - 1 or GLOBAL_UPDATE_COUNTER >= MIN_BATCH_SIZE or done:
+                if done:
                     if done:
                         v_s_ = 0  # end of episode
                     else:
@@ -184,6 +187,7 @@ class Worker(object):
                     bs, ba, br = np.vstack(buffer_s), np.vstack(buffer_a), np.array(discounted_r)[:, None]
                     buffer_s, buffer_a, buffer_r = [], [], []
                     QUEUE.put(np.hstack((bs, ba, br)))  # put data in the queue
+                    # 多个子进程间的通信就要采用第一步中说到的Queue
                     if GLOBAL_UPDATE_COUNTER >= MIN_BATCH_SIZE:
                         ROLLING_EVENT.clear()  # stop collecting data
                         UPDATE_EVENT.set()  # globalPPO update
@@ -192,14 +196,19 @@ class Worker(object):
                         COORD.request_stop()
                         break
 
-                    if done: break
+                    if done:
+
+                        break
 
             # record reward changes, plot later
+            # print(ep_r)
             if len(GLOBAL_RUNNING_R) == 0:
                 GLOBAL_RUNNING_R.append(ep_r)
             else:
                 GLOBAL_RUNNING_R.append(GLOBAL_RUNNING_R[-1] * 0.9 + ep_r * 0.1)
             GLOBAL_EP += 1
+
+            # print(br)
             print('{0:.1f}%'.format(GLOBAL_EP / EP_MAX * 100), '|W%i' % self.wid, '|Ep_r: %.2f' % ep_r, )
 
 
@@ -227,15 +236,15 @@ if __name__ == '__main__':
 
     # plot reward change and test
     plt.plot(np.arange(len(GLOBAL_RUNNING_R)), GLOBAL_RUNNING_R)
-    plt.xlabel('Episode');
-    plt.ylabel('Moving reward');
-    plt.ion();
+    plt.xlabel('Episode')
+    plt.ylabel('Moving reward')
+    # plt.ion();
     plt.show()
-    env = gym.make('CartPole-v0')
+    # env = gym.make('CartPole-v0')
     while True:
         s = env.reset()
         for t in range(1000):
-            env.render()
+            # env.render()
             s, r, done, info = env.step(GLOBAL_PPO.choose_action(s))
             if done:
                 break
