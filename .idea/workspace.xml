@@ -3,11 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="639b334a-7721-4416-ac57-6edd38b904bb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mission schedule with RL/PPO/discrete_DPPO.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/PPO/discrete_DPPO.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mission schedule with RL/RemainingTimeTotalModule.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/RemainingTimeTotalModule.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Mission schedule with RL/globalVariableLocal.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/globalVariableLocal.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mission schedule with RL/globalVariableLocalWorker1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/globalVariableLocalWorker1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mission schedule with RL/globalVariableLocalWorker2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/globalVariableLocalWorker2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mission schedule with RL/globalVariableLocalWorker3.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/globalVariableLocalWorker3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mission schedule with RL/myEnvLocal.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mission schedule with RL/myEnvLocal.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,8 +21,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Mission schedule with RL/PPO/PPO.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="19" selection-start-line="19" selection-end-line="19" selection-end-column="19" />
+            <state relative-caret-position="-208">
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
               <folding>
                 <element signature="e#409#432#0" expanded="true" />
               </folding>
@@ -33,24 +31,36 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Mission schedule with RL/actor3Critic.py">
+        <entry file="file://$PROJECT_DIR$/Mission schedule with RL/myEnvLocalWorker1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="54" column="32" lean-forward="true" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
+            <state relative-caret-position="-733">
+              <caret line="22" column="10" lean-forward="true" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
               <folding>
-                <element signature="e#795#811#0" expanded="true" />
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Mission schedule with RL/myEnvLocal.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="47">
+              <caret line="54" column="20" lean-forward="true" selection-start-line="54" selection-start-column="20" selection-end-line="54" selection-end-column="20" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Mission schedule with RL/PPO/discrete_DPPO.py">
+        <entry file="file://$PROJECT_DIR$/Mission schedule with RL/RemainingTimeTotalModule.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
-              <caret line="174" column="24" lean-forward="true" selection-start-line="174" selection-start-column="24" selection-end-line="174" selection-end-column="24" />
+            <state relative-caret-position="143">
+              <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
               <folding>
-                <element signature="e#289#312#0" expanded="true" />
+                <element signature="e#0#29#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -59,8 +69,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Mission schedule with RL/globalVariableLocal.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="38" column="15" lean-forward="true" selection-start-line="38" selection-start-column="15" selection-end-line="38" selection-end-column="15" />
+            <state relative-caret-position="-572">
+              <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+              <folding>
+                <element signature="e#73#91#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Mission schedule with RL/globalVariableLocalWorker1.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="196">
+              <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
               <folding>
                 <element signature="e#73#91#0" expanded="true" />
               </folding>
@@ -151,7 +173,6 @@
         <option value="$PROJECT_DIR$/Mission schedule with RL/RemainingTimeTotal.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/myEnvSubfunctionLocalWorker2.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/myEnvSubfunctionLocalWorker3.py" />
-        <option value="$PROJECT_DIR$/Mission schedule with RL/myEnvLocal.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/myEnvLocalWorker1.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/myEnvLocalWorker2.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/myEnvLocalWorker3.py" />
@@ -159,18 +180,19 @@
         <option value="$PROJECT_DIR$/Mission schedule with RL/DDPG/DDPG.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/PPO/PPO.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/myEnvSubfunctionLocalWorker1.py" />
-        <option value="$PROJECT_DIR$/Mission schedule with RL/RemainingTimeTotalModule.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/actor3Critic.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/Tutorial/rl.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/Tutorial/main.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/Tutorial/env.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/train-robot-arm-from-scratch-master/part3/env.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/train-robot-arm-from-scratch-master/part4/main.py" />
-        <option value="$PROJECT_DIR$/Mission schedule with RL/globalVariableLocal.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/globalVariableLocalWorker1.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/globalVariableLocalWorker2.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/globalVariableLocalWorker3.py" />
         <option value="$PROJECT_DIR$/Mission schedule with RL/PPO/discrete_DPPO.py" />
+        <option value="$PROJECT_DIR$/Mission schedule with RL/myEnvLocal.py" />
+        <option value="$PROJECT_DIR$/Mission schedule with RL/globalVariableLocal.py" />
+        <option value="$PROJECT_DIR$/Mission schedule with RL/RemainingTimeTotalModule.py" />
       </list>
     </option>
   </component>
@@ -197,12 +219,6 @@
               <item name="Satellites Mission Schedule" type="b2602c69:ProjectViewProjectNode" />
               <item name="Satellites Mission Schedule" type="462c0819:PsiDirectoryNode" />
               <item name="Mission schedule with RL" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Satellites Mission Schedule" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Satellites Mission Schedule" type="462c0819:PsiDirectoryNode" />
-              <item name="Mission schedule with RL" type="462c0819:PsiDirectoryNode" />
-              <item name="PPO" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -370,10 +386,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.discrete_DPPO" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.env (1)" />
         <item itemvalue="Python.env" />
+        <item itemvalue="Python.discrete_DPPO" />
         <item itemvalue="Python.actor3Critic" />
       </list>
     </recent_temporary>
@@ -388,13 +404,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1569501136948</updated>
-    </task>
-    <task id="LOCAL-00010" summary="2019.11.01 Happy Nov.!添加了获得最后解的函数">
-      <created>1572598703621</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1572598703621</updated>
     </task>
     <task id="LOCAL-00011" summary="2019.11.06 在Q-learning_test3中添加了实际的卫星窗口，并且将函数中要用的初始化数据统一在文件头定义，并且需要注意python的赋值规则">
       <created>1573046696627</created>
@@ -732,7 +741,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576551291991</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="2019.12.18 DDPO改完了，开始加入agile satellite">
+      <created>1576637783848</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1576637783849</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TodoView">
@@ -748,7 +764,7 @@
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.3802817" visible="true" weight="0.23684211" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.3802817" visible="true" weight="0.284689" />
       <window_info id="Structure" order="1" sideWeight="0.6197183" side_tool="true" weight="0.22727273" />
       <window_info id="Favorites" order="2" sideWeight="0.50185186" side_tool="true" weight="0.24960127" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -808,7 +824,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="2019.12.2 17:10 准备开始用ac的方法来训练，单纯的pg方法很容易收敛到局部解" />
     <MESSAGE value="2019.12.4 16：56 ac方法编好了，打算把记录卫星状态表格这一项删除，感觉没有必要" />
     <MESSAGE value="2019.12.4 17：42 ac编好了，可是为什么在最开始学习的时候，选择accept，给了一个reward，accept的概率还是减小" />
     <MESSAGE value="2019.12.4 20:59 开始编写a3c" />
@@ -833,7 +848,13 @@
     <MESSAGE value="2019.12.15 A3C有时候会蹦出NumTW的错误，之后再注意一下，然后训练次数在1000以上会比较好" />
     <MESSAGE value="2019.12.16 开始跟着莫烦教程来学习一下整个强化学习项目的构造" />
     <MESSAGE value="2019.12.17 下午把DPPO搞定" />
-    <option name="LAST_COMMIT_MESSAGE" value="2019.12.17 下午把DPPO搞定" />
+    <MESSAGE value="2019.12.18 DDPO改完了，开始加入agile satellite" />
+    <option name="LAST_COMMIT_MESSAGE" value="2019.12.18 DDPO改完了，开始加入agile satellite" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="579" height="363" key="Git.Branch.Popup" />
+    <state width="579" height="363" key="Git.Branch.Popup/1920.1080/1920.1080" />
+    <state width="579" height="363" key="Git.Branch.Popup@1920.1080@180dpi" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1123,16 +1144,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/myEnvLocal.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="30" column="48" lean-forward="true" selection-start-line="30" selection-start-column="48" selection-end-line="30" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/myEnvSubfunctionLocalWorker1.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="59">
@@ -1145,52 +1156,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/Tutorial/main.py" />
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/Tutorial/rl.py" />
-    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/RemainingTimeTotalModule.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="988">
-          <caret line="39" selection-start-line="39" selection-end-line="39" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/Tutorial/env.py" />
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/train-robot-arm-from-scratch-master/part3/env.py" />
-    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/myEnvLocalWorker1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="22" column="10" lean-forward="true" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/train-robot-arm-from-scratch-master/part4/env.py" />
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/train-robot-arm-from-scratch-master/part4/rl.py" />
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/train-robot-arm-from-scratch-master/part1/main.py" />
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/train-robot-arm-from-scratch-master/part4/main.py" />
-    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/PPO/PPO.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="19" selection-start-line="19" selection-end-line="19" selection-end-column="19" />
-          <folding>
-            <element signature="e#409#432#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/globalVariableLocalWorker1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
-          <folding>
-            <element signature="e#73#91#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/globalVariableLocalWorker2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-246">
@@ -1211,32 +1182,82 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/globalVariableLocal.py">
+    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/PPO/discrete_DPPO.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="38" column="15" lean-forward="true" selection-start-line="38" selection-start-column="15" selection-end-line="38" selection-end-column="15" />
+        <state relative-caret-position="1047">
+          <caret line="179" lean-forward="true" selection-start-line="179" selection-end-line="179" />
           <folding>
-            <element signature="e#73#91#0" expanded="true" />
+            <element signature="e#289#312#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Mission schedule with RL/actor3Critic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="54" column="32" lean-forward="true" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
+        <state relative-caret-position="-598">
+          <caret line="55" column="32" lean-forward="true" selection-start-line="55" selection-start-column="32" selection-end-line="55" selection-end-column="32" />
           <folding>
             <element signature="e#795#811#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/PPO/discrete_DPPO.py">
+    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/PPO/PPO.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="174" column="24" lean-forward="true" selection-start-line="174" selection-start-column="24" selection-end-line="174" selection-end-column="24" />
+        <state relative-caret-position="-208">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
           <folding>
-            <element signature="e#289#312#0" expanded="true" />
+            <element signature="e#409#432#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/myEnvLocalWorker1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-733">
+          <caret line="22" column="10" lean-forward="true" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/globalVariableLocalWorker1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
+          <folding>
+            <element signature="e#73#91#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/globalVariableLocal.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-572">
+          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+          <folding>
+            <element signature="e#73#91#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/myEnvLocal.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="47">
+          <caret line="54" column="20" lean-forward="true" selection-start-line="54" selection-start-column="20" selection-end-line="54" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mission schedule with RL/RemainingTimeTotalModule.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -55,7 +55,9 @@ class MyEnv(gym.Env):
         Storage = 32
         TaskNumber = 1
         label = 0
-        self.state = np.array([Storage,TaskNumber,label])
+        angle=0
+        self.state = np.array([Storage,TaskNumber,label,angle])
+        #angle为侧摆角
         self.steps_beyond_done = None
         # self.taskList=[]
         return np.array(self.state)
