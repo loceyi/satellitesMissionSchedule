@@ -31,6 +31,7 @@ def get_env_feedback(S, A):
     taskRollAngle = TaskRequirement[4] #roll angle of incoming task
     attitudeManeuverTimeSeconds = abs(taskRollAngle-rollAngle)/omega # /s
     attitudeManeuverTimeJulian= attitudeManeuverTimeSeconds/86400.0
+    # print(attitudeManeuverTimeJulian)
     #修改incoming task的起始时间
     TaskRequirement[0] = TaskRequirement[0]-attitudeManeuverTimeJulian
 
@@ -39,12 +40,15 @@ def get_env_feedback(S, A):
 
 
     NumTW = None  #初始化一下,免得有warning
+    # print(RemainingTime)
+    # print(TaskRequirement)
     for i in range(0, len(RemainingTime)):
 
         if (TaskRequirement[0] in RemainingTime[i]) and (TaskRequirement[1] in RemainingTime[i]):
 
 
             NumTW = i
+            # print(NumTW)
 
             break
 
@@ -111,7 +115,7 @@ def get_env_feedback(S, A):
 
                 for j in range(0, len(RemainingTime)):
 
-                    if ((TaskTotal[str(taskList[0])][0]+ attitudeManeuverTimeJulian) in RemainingTime[j]) and\
+                    if ((TaskTotal[str(taskList[0])][0]-attitudeManeuverTimeJulian) in RemainingTime[j]) and\
                             (TaskTotal[str(taskList[0])][1] in RemainingTime[j]):
 
                         Counter += 1
@@ -222,10 +226,14 @@ def get_env_feedback(S, A):
             else:
 
                 Counter=0
+                rollAngleNew = S[3]
+                taskRollAngle = TaskTotal[str(taskList[0])][4]  # roll angle of incoming task
+                attitudeManeuverTimeSeconds = abs(taskRollAngle - rollAngleNew) / omega  # /s
+                attitudeManeuverTimeJulian = attitudeManeuverTimeSeconds / 86400.0
 
                 for j in range(0, len(RemainingTime)):
 
-                    if (TaskTotal[str(taskList[0])][0] in RemainingTime[j]) and\
+                    if ((TaskTotal[str(taskList[0])][0]-attitudeManeuverTimeJulian) in RemainingTime[j]) and\
                             (TaskTotal[str(taskList[0])][1] in RemainingTime[j]):
 
                         Counter += 1

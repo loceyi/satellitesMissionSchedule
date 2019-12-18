@@ -38,7 +38,7 @@ def initRemainingTimeTotal():
             '31': [43305.4925221759, 43305.4933020486, 1, 2, -8],
             '32': [43305.4925519444, 43305.4933894676, 1, 2, 0]}
 
-    RemainingTimeTotal = [[Interval(Task['1'][0]+0.05, Task['32'][1], closed=True)]]
+    RemainingTimeTotal = [[Interval(Task['1'][0]-0.05, Task['32'][1], closed=True)]]
     #初始时间要早一些，因为要留一定时间给卫星机动到第一个任务
 
 def updateRemainTimeTotal(RemainingTime):

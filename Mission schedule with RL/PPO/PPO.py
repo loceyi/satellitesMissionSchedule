@@ -18,7 +18,7 @@ import globalVariableLocal as globalVariable
 import RemainingTimeTotalModule
 # env = gym.make('Pendulum-v0').unwrapped
 env = myEnv.MyEnv()
-EP_MAX = 300 #The maximum nmuber of training episodes
+EP_MAX = 1000 #The maximum nmuber of training episodes
 MAX_EP_LEN = 50 #The maximum lenth of each episode
 GAMMA = 0.9
 A_LR = 0.0001 #learning rate of actor
