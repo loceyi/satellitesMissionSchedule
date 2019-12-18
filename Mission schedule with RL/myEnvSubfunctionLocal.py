@@ -1,12 +1,15 @@
-import pandas as pd
+# import pandas as pd
 from interval import Interval
 #关于action：若接收任务，action=1,拒绝任务，action=0
 import globalVariableLocal
 import RemainingTimeTotalModule
 #self.state = np.array([Storage,TaskNumber,label])
+import sys
 
 def get_env_feedback(S, A):
+    omega=0.2 #平均轨道机动时间
     done=0
+    rollAngle=S[3]
     # satStateTable=globalVariableLocal.get_value_satState()
     globalVariableLocal.taskListMove(S[1]) #更新完global值后要取出来
     taskList=globalVariableLocal.get_value_taskList()
@@ -21,12 +24,21 @@ def get_env_feedback(S, A):
 
     RemainingTime = RemainingTimeTotal[S[2]].copy()
 
-    # RemainingTime=RemainingTimeTotal[S[3]].copy() #因为取出来的是列表，只想复制它的值
-    # print('S-label',S[3])
-    # print('RemainingTime',RemainingTime)
-    # print('Tasknum',Tasknum,'Action',A)
-    # print('Task[str(Tasknum)][0] ',Task[str(Tasknum)][0])
-    # print('Task[str(Tasknum)][1]',Task[str(Tasknum)][1])
+    '''
+    根据当前卫星的roll angle，以及当前来临任务的roll angle,计算需要的
+    机动时间，将时间添加进来临Task的时间窗口内
+    '''
+    taskRollAngle = TaskRequirement[4] #roll angle of incoming task
+    attitudeManeuverTimeSeconds = abs(taskRollAngle-rollAngle)/omega # /s
+    attitudeManeuverTimeJulian= attitudeManeuverTimeSeconds/86400.0
+    #修改incoming task的起始时间
+    TaskRequirement[0] = TaskRequirement[0]-attitudeManeuverTimeJulian
+
+
+
+
+
+    NumTW = None  #初始化一下,免得有warning
     for i in range(0, len(RemainingTime)):
 
         if (TaskRequirement[0] in RemainingTime[i]) and (TaskRequirement[1] in RemainingTime[i]):
@@ -37,10 +49,15 @@ def get_env_feedback(S, A):
             break
 
 
+    if NumTW== None:
+
+        print('Error in NumTW')
+        sys.exit()
+
     if A == 1: #Accept=1
 
         R = float(TaskRequirement[3])
-
+        S[3]= taskRollAngle #更新卫星姿态
         S[0] = S[0] - TaskRequirement[2]
         # 更新可用时间窗口
         # a=S[1]
@@ -78,6 +95,7 @@ def get_env_feedback(S, A):
             if taskList[0] == 0:
 
                 S[1] = taskList[0]
+
                 done=1
 
                 break
@@ -85,10 +103,15 @@ def get_env_feedback(S, A):
             else:
 
                 Counter=0
+                #计算预分配任务是否拥有足够的机动时间，如果没有，则不分配
+                rollAngleNew = S[3]
+                taskRollAngle = TaskTotal[str(taskList[0])][4] # roll angle of incoming task
+                attitudeManeuverTimeSeconds = abs(taskRollAngle - rollAngleNew ) / omega  # /s
+                attitudeManeuverTimeJulian = attitudeManeuverTimeSeconds / 86400.0
 
                 for j in range(0, len(RemainingTime)):
 
-                    if (TaskTotal[str(taskList[0])][0] in RemainingTime[j]) and\
+                    if ((TaskTotal[str(taskList[0])][0]+ attitudeManeuverTimeJulian) in RemainingTime[j]) and\
                             (TaskTotal[str(taskList[0])][1] in RemainingTime[j]):
 
                         Counter += 1
