@@ -52,8 +52,8 @@ class MyEnv(gym.Env):
 
     def reset(self):
 
-        Storage = 32
-        TaskNumber = 1
+        Storage = 10
+        TaskNumber = 3
         label = 0
         angle=0
         self.state = np.array([Storage,TaskNumber,label,angle])

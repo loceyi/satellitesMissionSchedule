@@ -16,11 +16,12 @@ import gym
 import myEnvLocal as myEnv
 import globalVariableLocal as globalVariable
 import RemainingTimeTotalModule
+import time
 # env = gym.make('Pendulum-v0').unwrapped
 env = myEnv.MyEnv()
-EP_MAX = 1000 #The maximum nmuber of training episodes
+EP_MAX = 500 #The maximum nmuber of training episodes
 MAX_EP_LEN = 50 #The maximum lenth of each episode
-GAMMA = 0.9
+GAMMA = 0.91
 A_LR = 0.0001 #learning rate of actor
 C_LR = 0.0002 #learning rate of critic
 BATCH = 32
@@ -186,6 +187,10 @@ globalVariable.initTask()
 RemainingTimeTotalModule.initRemainingTimeTotal()
 MAX_Record=[]
 MAX_Reward=-1000
+ax = []                    # 定义一个 x 轴的空列表用来接收动态的数据
+ay = []                    # 定义一个 y 轴的空列表用来接收动态的数据
+plt.ion()
+# Rewardrecord=[]
 for ep in range(EP_MAX):
     globalVariable.initTasklist()
     s = env.reset()
@@ -231,14 +236,18 @@ for ep in range(EP_MAX):
 
             break
 
-
-
-
+    ax.append(ep)  # 添加 i 到 x 轴的数据中
+    ay.append(ep_r)  # 添加 i 的平方到 y 轴的数据中
+    plt.clf()  # 清除之前画的图
+    plt.plot(ax, ay)  # 画出当前 ax 列表和 ay 列表中的值的图形
+    plt.pause(0.1)  # 暂停一秒
+    plt.ioff()
     # print(
     #     'Ep: %i' % ep,
-    #     "|Ep_r: %i" % ep_r,
-    #     ("|Lam: %.4f" % METHOD['lam']) if METHOD['name'] == 'kl_pen' else '',
+    #     "|Ep_r: %i" % ep_r
     # )
+    # Rewardrecord.append(ep_r)
+
 
 print('MAX_Record',MAX_Record,'MAX_Reward',MAX_Reward)
 

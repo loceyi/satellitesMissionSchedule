@@ -7,8 +7,13 @@ import RemainingTimeTotalModule
 import sys
 
 def get_env_feedback(S, A):
-    omega=0.2 #平均轨道机动时间
+    a_omega=0.2 #平均角加速度°/s^2
+    maxOmega=2 #最大角速度 °/s
+    ms_b=15 #秒s
+    ms_e=5 #秒s
+
     done=0
+
     rollAngle=S[3]
     # satStateTable=globalVariableLocal.get_value_satState()
     globalVariableLocal.taskListMove(S[1]) #更新完global值后要取出来
@@ -28,12 +33,21 @@ def get_env_feedback(S, A):
     根据当前卫星的roll angle，以及当前来临任务的roll angle,计算需要的
     机动时间，将时间添加进来临Task的时间窗口内
     '''
+
     taskRollAngle = TaskRequirement[4] #roll angle of incoming task
-    attitudeManeuverTimeSeconds = abs(taskRollAngle-rollAngle)/omega # /s
-    attitudeManeuverTimeJulian= attitudeManeuverTimeSeconds/86400.0
+    deltaRollAngle=abs(taskRollAngle-rollAngle)#需要机动的角度
+    if deltaRollAngle <= pow(maxOmega,2)/a_omega:
+
+        attitudeManeuverTimeSeconds= 2*pow(deltaRollAngle/a_omega,0.5)+ms_b+ms_e
+
+    else:
+
+        attitudeManeuverTimeSeconds=(a_omega*deltaRollAngle-pow(maxOmega,2))/(a_omega*maxOmega)+ms_b+ms_e
+
+    # attitudeManeuverTimeJulian= attitudeManeuverTimeSeconds/86400.0
     # print(attitudeManeuverTimeJulian)
     #修改incoming task的起始时间
-    TaskRequirement[0] = TaskRequirement[0]-attitudeManeuverTimeJulian
+    TaskRequirement[0] = TaskRequirement[0]-attitudeManeuverTimeSeconds
 
 
 
@@ -109,13 +123,23 @@ def get_env_feedback(S, A):
                 Counter=0
                 #计算预分配任务是否拥有足够的机动时间，如果没有，则不分配
                 rollAngleNew = S[3]
-                taskRollAngle = TaskTotal[str(taskList[0])][4] # roll angle of incoming task
-                attitudeManeuverTimeSeconds = abs(taskRollAngle - rollAngleNew ) / omega  # /s
-                attitudeManeuverTimeJulian = attitudeManeuverTimeSeconds / 86400.0
+                taskRollAngleNew = TaskTotal[str(taskList[0])][4] # roll angle of incoming task
+                # attitudeManeuverTimeSeconds = abs(taskRollAngle - rollAngleNew ) / omega  # /s
+                # attitudeManeuverTimeJulian = attitudeManeuverTimeSeconds / 86400.0
+                deltaRollAngle = abs(taskRollAngleNew - rollAngleNew)  # 需要机动的角度
+                if deltaRollAngle <= pow(maxOmega, 2) / a_omega:
+
+                    attitudeManeuverTimeSeconds = 2 * pow(deltaRollAngle / a_omega, 0.5) + ms_b + ms_e
+
+                else:
+
+                    attitudeManeuverTimeSeconds = (a_omega * deltaRollAngle - pow(maxOmega, 2)) / (
+                                a_omega * maxOmega) + ms_b + ms_e
+
 
                 for j in range(0, len(RemainingTime)):
 
-                    if ((TaskTotal[str(taskList[0])][0]-attitudeManeuverTimeJulian) in RemainingTime[j]) and\
+                    if ((TaskTotal[str(taskList[0])][0]-attitudeManeuverTimeSeconds) in RemainingTime[j]) and\
                             (TaskTotal[str(taskList[0])][1] in RemainingTime[j]):
 
                         Counter += 1
@@ -226,14 +250,29 @@ def get_env_feedback(S, A):
             else:
 
                 Counter=0
+                # rollAngleNew = S[3]
+                # taskRollAngle = TaskTotal[str(taskList[0])][4]  # roll angle of incoming task
+                # attitudeManeuverTimeSeconds = abs(taskRollAngle - rollAngleNew) / omega  # /s
+                # attitudeManeuverTimeJulian = attitudeManeuverTimeSeconds / 86400.0
                 rollAngleNew = S[3]
-                taskRollAngle = TaskTotal[str(taskList[0])][4]  # roll angle of incoming task
-                attitudeManeuverTimeSeconds = abs(taskRollAngle - rollAngleNew) / omega  # /s
-                attitudeManeuverTimeJulian = attitudeManeuverTimeSeconds / 86400.0
+                taskRollAngleNew = TaskTotal[str(taskList[0])][4]  # roll angle of incoming task
+                # attitudeManeuverTimeSeconds = abs(taskRollAngle - rollAngleNew ) / omega  # /s
+                # attitudeManeuverTimeJulian = attitudeManeuverTimeSeconds / 86400.0
+                deltaRollAngle = abs(taskRollAngleNew - rollAngleNew)  # 需要机动的角度
+                if deltaRollAngle <= pow(maxOmega, 2) / a_omega:
+
+                    attitudeManeuverTimeSeconds = 2 * pow(deltaRollAngle / a_omega, 0.5) + ms_b + ms_e
+
+                else:
+
+                    attitudeManeuverTimeSeconds = (a_omega * deltaRollAngle - pow(maxOmega, 2)) / (
+                            a_omega * maxOmega) + ms_b + ms_e
+
+
 
                 for j in range(0, len(RemainingTime)):
 
-                    if ((TaskTotal[str(taskList[0])][0]-attitudeManeuverTimeJulian) in RemainingTime[j]) and\
+                    if ((TaskTotal[str(taskList[0])][0]-attitudeManeuverTimeSeconds) in RemainingTime[j]) and\
                             (TaskTotal[str(taskList[0])][1] in RemainingTime[j]):
 
                         Counter += 1
