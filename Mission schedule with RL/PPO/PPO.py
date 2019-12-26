@@ -19,9 +19,9 @@ import RemainingTimeTotalModule
 import time
 # env = gym.make('Pendulum-v0').unwrapped
 env = myEnv.MyEnv()
-EP_MAX = 500 #The maximum nmuber of training episodes
+EP_MAX = 1000 #The maximum nmuber of training episodes
 MAX_EP_LEN = 50 #The maximum lenth of each episode
-GAMMA = 0.91
+GAMMA = 1
 A_LR = 0.0001 #learning rate of actor
 C_LR = 0.0002 #learning rate of critic
 BATCH = 32
@@ -48,8 +48,14 @@ class PPO(object):
         # critic
         with tf.variable_scope('critic'):
             #variable_scope下声明共享后，tf.Variable()同名变量指向两个不同变量实体，而tf.get_variable ()同名变量则指向同一个变量实体
-            l1 = tf.layers.dense(self.tfs, 100, tf.nn.relu)
-            self.v = tf.layers.dense(l1, 1)
+            W1 = np.random.randn(S_DIM,100) * np.sqrt(2 /S_DIM)
+            init1 = tf.constant_initializer(W1)
+            l1 = tf.layers.dense(self.tfs, 100,activation=tf.nn.relu,kernel_initializer=init1,
+            bias_initializer=tf.zeros_initializer)
+            W2 = np.random.randn(100, 1) * np.sqrt(2 / 100)
+            init2 = tf.constant_initializer(W2)
+            self.v = tf.layers.dense(l1, 1,kernel_initializer=init2,
+            bias_initializer=tf.zeros_initializer)
             self.tfdc_r = tf.placeholder(tf.float32, [None, 1], 'discounted_r')
             self.advantage = self.tfdc_r - self.v
             self.closs = tf.reduce_mean(tf.square(self.advantage))
@@ -135,7 +141,12 @@ class PPO(object):
     def _build_anetDiscrete(self,name, trainable):
 
         with tf.variable_scope(name):
-            l_a = tf.layers.dense(self.tfs, 200, tf.nn.relu, trainable=trainable)
+            W3 = np.random.randn(S_DIM, 200) * np.sqrt(2 / S_DIM)
+            init3 = tf.constant_initializer(W3)
+            l_a = tf.layers.dense(self.tfs, 200, tf.nn.relu, trainable=trainable,
+            kernel_initializer=init3,bias_initializer=tf.zeros_initializer)
+
+            # , kernel_initializer = tf.constant_initializer(np.zeros((4, 200)))
             a_prob = tf.layers.dense(l_a, A_DIM, tf.nn.softmax, trainable=trainable)
         params = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope=name)
         '''
