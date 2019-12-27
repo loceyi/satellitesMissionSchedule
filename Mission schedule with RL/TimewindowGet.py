@@ -6,7 +6,7 @@ import numpy as np
 import pymap3d as pm
 import numpy as np
 
-def GSAT():
+def GSAT(Latitude_3,Longitude_3,Altitude,year, month, day, hour, minute, second):
 
     import pandas as pd  # 导入pandas包
     Orbitdata = pd.read_csv("TWORbitdata.csv")
@@ -25,21 +25,13 @@ def GSAT():
     #     time.append(i[0])
     #     print(i[0])
     sensor_angle=5 #degree
-    Longitude_3=100
-    Latitude_3=30
-    # MAX_ElevationAngle=45
-    Altitude =0
+
     # HPOP_Results = joblib.load('TWOrbitdata.pkl')
 
 
     # Start_Time = joblib.load('Start_Time.pkl')
 
-    year = 2016
-    month = 5
-    day = 2
-    hour = 6
-    minute = 0
-    second = 0
+
 
     # t_start_jd = Julian_date(year, month, day, hour, minute, second)
 
@@ -63,7 +55,7 @@ def GSAT():
         else:
 
             pass
-    print('max_t',max_t-18*60-40,'max_elev',max_elev)
+    # print('max_t',max_t-18*60-40,'max_elev',max_elev)
     # max_t=max_t+1
     x_max = x[max_t]*1e3
     y_max = y[max_t]*1e3
@@ -75,7 +67,7 @@ def GSAT():
     x_target_sat_3=x_max_ecef-x_target_3
     y_target_sat_3=y_max_ecef-y_target_3
     z_target_sat_3=z_max_ecef-z_target_3
-    print('TS',[x_target_sat_3,y_target_sat_3,z_target_sat_3])
+    # print('TS',[x_target_sat_3,y_target_sat_3,z_target_sat_3])
     index1=x_max_ecef*x_target_sat_3+y_max_ecef*y_target_sat_3+z_max_ecef*z_target_sat_3
 
     index2=math.sqrt(x_max_ecef**2+y_max_ecef**2+z_max_ecef**2)*math.sqrt(x_target_sat_3**2+y_target_sat_3**2+z_target_sat_3**2)
@@ -94,71 +86,84 @@ def GSAT():
         symbol=1
     # print(symbol)
     alpha=symbol*abs(math.degrees(math.acos(index1/index2)))
-    print('alpha', alpha)
-        # x, y, z = pm.geodetic2ecef(Latitude_3, Longitude_3, Altitude)
-        # r_ICRF = get_ground_station_postion_ICRF(t, Latitude_3, Longitude_3, Altitude, MJD_UTC_Start)
 
-    TimeWindow=[]
+    return max_t,alpha
 
-    for t in time:
-
-        t_datetime = datetime.datetime(year, month, day, hour + t // 3600, (minute + t // 60) % 60, (second + t) % 60)
-        # x_ecef, y_ecef, z_ecef = pm.eci2ecef(np.array((x[t]*1e3, y[t]*1e3, z[t]*1e3)),t_datetime,useastropy=False)
-        v_direction = np.array([vx[t] * 1e3, vy[t] * 1e3, vz[t] * 1e3])
-        r_direction = np.array([x[t]* 1e3, y[t]* 1e3, z[t]* 1e3])
-        r_direction_ecef=pm.eci2ecef(r_direction, t_datetime,useastropy=False)
-        v_direction_ecef = pm.eci2ecef(v_direction, t_datetime, useastropy=False)
-        key_vector = np.cross(v_direction_ecef, r_direction_ecef)
-        # key_vector_ecef = pm.eci2ecef(np.array((key_vector[0], key_vector[1], key_vector[2])), t_datetime,
-        #                                useastropy=False)
-        # x_target_sat_3 = x_ecef - x_target_3
-        # y_target_sat_3 = x_ecef - y_target_3
-        # z_target_sat_3 = x_ecef - z_target_3
-        # target_sat_ecef = np.array((x_target_sat_3, y_target_sat_3, z_target_sat_3))
-
-        r_direction_toEC_unit = -r_direction_ecef / math.sqrt(r_direction_ecef[0] ** 2 + r_direction_ecef[1] ** 2 + r_direction_ecef [2] ** 2)
-        key_vector_unit = key_vector / math.sqrt(key_vector[0] ** 2 + key_vector[1] ** 2 + key_vector[2] ** 2)
-        alpha_abs = abs(alpha)
-        if symbol == -1:
-
-            opt_axis_ecef = r_direction_toEC_unit  + key_vector_unit* math.tan(math.radians(alpha_abs))
-
-        else:
-            opt_axis_ecef = r_direction_toEC_unit  - key_vector_unit* math.tan(math.radians(alpha_abs))
-
-        # opt_axis_ecef = pm.eci2ecef(opt_axis, t_datetime,useastropy=False)
-
-        # opt_axis_ecef = -r_direction_ecef
-        x_sat_target_3 = -x_target_sat_3
-        y_sat_target_3 = -y_target_sat_3
-        z_sat_target_3 = -z_target_sat_3
-        index1 = opt_axis_ecef[0]  * x_sat_target_3 + opt_axis_ecef[1]  * y_sat_target_3 + opt_axis_ecef [2] * z_sat_target_3
-
-        index2 = math.sqrt(opt_axis_ecef[0] ** 2 + opt_axis_ecef[1] ** 2 + opt_axis_ecef[2]  ** 2) * math.sqrt(
-            x_sat_target_3 ** 2 + y_sat_target_3 ** 2 + z_sat_target_3 ** 2)
-
-        theta = math.degrees(math.acos(index1 / index2))
-        print('theta',theta)
-        # if t==67+18*60+40:
-        #     print('Axis',opt_axis_ecef,r_direction_toEC_unit)
-        #     print('satt',x_sat_target_3,y_sat_target_3,z_sat_target_3)
-        #     break
-        if theta <= sensor_angle:
-
-            TimeWindow.append(t-18*60-40)
-
-        else:
-
-            pass
-    print('Timewindow',TimeWindow)
-# def test():
-#
-#
-#     # print('1')
+    #
+    # print('alpha', alpha)
+    #     # x, y, z = pm.geodetic2ecef(Latitude_3, Longitude_3, Altitude)
+    #     # r_ICRF = get_ground_station_postion_ICRF(t, Latitude_3, Longitude_3, Altitude, MJD_UTC_Start)
+    #
+    # TimeWindow=[]
+    #
+    # for t in time:
+    #
+    #     t_datetime = datetime.datetime(year, month, day, hour + t // 3600, (minute + t // 60) % 60, (second + t) % 60)
+    #     # x_ecef, y_ecef, z_ecef = pm.eci2ecef(np.array((x[t]*1e3, y[t]*1e3, z[t]*1e3)),t_datetime,useastropy=False)
+    #     v_direction = np.array([vx[t] * 1e3, vy[t] * 1e3, vz[t] * 1e3])
+    #     r_direction = np.array([x[t]* 1e3, y[t]* 1e3, z[t]* 1e3])
+    #     r_direction_ecef=pm.eci2ecef(r_direction, t_datetime,useastropy=False)
+    #     v_direction_ecef = pm.eci2ecef(v_direction, t_datetime, useastropy=False)
+    #     key_vector = np.cross(v_direction_ecef, r_direction_ecef)
+    #     # key_vector_ecef = pm.eci2ecef(np.array((key_vector[0], key_vector[1], key_vector[2])), t_datetime,
+    #     #                                useastropy=False)
+    #     # x_target_sat_3 = x_ecef - x_target_3
+    #     # y_target_sat_3 = x_ecef - y_target_3
+    #     # z_target_sat_3 = x_ecef - z_target_3
+    #     # target_sat_ecef = np.array((x_target_sat_3, y_target_sat_3, z_target_sat_3))
+    #
+    #     r_direction_toEC_unit = -r_direction_ecef / math.sqrt(r_direction_ecef[0] ** 2 + r_direction_ecef[1] ** 2 + r_direction_ecef [2] ** 2)
+    #     key_vector_unit = key_vector / math.sqrt(key_vector[0] ** 2 + key_vector[1] ** 2 + key_vector[2] ** 2)
+    #     alpha_abs = abs(alpha)
+    #     if symbol == -1:
+    #
+    #         opt_axis_ecef = r_direction_toEC_unit  + key_vector_unit* math.tan(math.radians(alpha_abs))
+    #
+    #     else:
+    #         opt_axis_ecef = r_direction_toEC_unit  - key_vector_unit* math.tan(math.radians(alpha_abs))
+    #
+    #     # opt_axis_ecef = pm.eci2ecef(opt_axis, t_datetime,useastropy=False)
+    #
+    #     # opt_axis_ecef = -r_direction_ecef
+    #     x_sat_target_3 = -x_target_sat_3
+    #     y_sat_target_3 = -y_target_sat_3
+    #     z_sat_target_3 = -z_target_sat_3
+    #     index1 = opt_axis_ecef[0]  * x_sat_target_3 + opt_axis_ecef[1]  * y_sat_target_3 + opt_axis_ecef [2] * z_sat_target_3
+    #
+    #     index2 = math.sqrt(opt_axis_ecef[0] ** 2 + opt_axis_ecef[1] ** 2 + opt_axis_ecef[2]  ** 2) * math.sqrt(
+    #         x_sat_target_3 ** 2 + y_sat_target_3 ** 2 + z_sat_target_3 ** 2)
+    #
+    #     theta = math.degrees(math.acos(index1 / index2))
+    #     print('theta',theta)
+    #     # if t==67+18*60+40:
+    #     #     print('Axis',opt_axis_ecef,r_direction_toEC_unit)
+    #     #     print('satt',x_sat_target_3,y_sat_target_3,z_sat_target_3)
+    #     #     break
+    #     if theta <= sensor_angle:
+    #
+    #         TimeWindow.append(t-18*60-40)
+    #
+    #     else:
+    #
+    #         pass
+    # print('Timewindow',TimeWindow)
+    #
 
 
 
 if __name__ == "__main__":
+    year = 2016
+    month = 5
+    day = 2
+    hour = 6
+    minute = 0
+    second = 0
+    Longitude = 100
+    Latitude = 30
+    # MAX_ElevationAngle=45
+    Altitude = 0
 
-    GSAT()
+    max_t,alpha=GSAT(Latitude,Longitude,Altitude,year, month, day, hour, minute, second)
+
+    print(max_t,alpha)
 
