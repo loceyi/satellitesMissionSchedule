@@ -44,7 +44,7 @@ class PPO(object):
     def __init__(self):
         self.sess = tf.Session()
         self.tfs = tf.placeholder(tf.float32, [None, S_DIM], 'state')
-
+        # saver = tf.train.Saver(max_to_keep=1)
         # critic
         with tf.variable_scope('critic'):
             #variable_scope下声明共享后，tf.Variable()同名变量指向两个不同变量实体，而tf.get_variable ()同名变量则指向同一个变量实体
@@ -53,10 +53,12 @@ class PPO(object):
 
             # l1 = tf.layers.dense(self.tfs, 100,activation=tf.nn.relu,kernel_initializer=init1,
             # bias_initializer=tf.zeros_initializer)
-            l1 = tf.layers.dense(self.tfs, 100, activation=tf.nn.relu)
+            l1 = tf.layers.dense(self.tfs, 200, activation=tf.nn.relu)
+            l2 = tf.layers.dense(l1, 200, activation=tf.nn.relu)
+            # l3 = tf.layers.dense(l2, 300, activation=tf.nn.relu)
             # W2 = np.random.randn(100, 1) * np.sqrt(2 / 100)
             # init2 = tf.constant_initializer(W2)
-            self.v = tf.layers.dense(l1, 1)
+            self.v = tf.layers.dense(l2, 1)
             # self.v = tf.layers.dense(l1, 1,kernel_initializer=init2,
             # bias_initializer=tf.zeros_initializer)
             self.tfdc_r = tf.placeholder(tf.float32, [None, 1], 'discounted_r')
@@ -111,7 +113,6 @@ class PPO(object):
             self.atrain_op = tf.train.AdamOptimizer(A_LR).minimize(self.aloss)
 
         # tf.summary.FileWriter("logs/", self.sess.graph)
-
         self.sess.run(tf.global_variables_initializer())
 
     def update(self, s, a, r):
@@ -149,13 +150,14 @@ class PPO(object):
             # l_a = tf.layers.dense(self.tfs, 200, tf.nn.relu, trainable=trainable,
             # kernel_initializer=init3,bias_initializer=tf.zeros_initializer)
             l_a = tf.layers.dense(self.tfs, 200, tf.nn.relu, trainable=trainable)
-
+            l_a2 = tf.layers.dense(l_a, 200, tf.nn.relu, trainable=trainable)
+            # l_a3 = tf.layers.dense(l_a2, 300, tf.nn.relu, trainable=trainable)
             # , kernel_initializer = tf.constant_initializer(np.zeros((4, 200)))
             # W4 = np.random.randn(200, A_DIM) * np.sqrt(2 / 200)
             # init4 = tf.constant_initializer(W4)
             # a_prob = tf.layers.dense(l_a, A_DIM, tf.nn.softmax, trainable=trainable,
             # kernel_initializer=init4,bias_initializer=tf.zeros_initializer)
-            a_prob = tf.layers.dense(l_a, A_DIM, tf.nn.softmax, trainable=trainable)
+            a_prob = tf.layers.dense(l_a2, A_DIM, tf.nn.softmax, trainable=trainable)
         params = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope=name)
         '''
         用来获取一个名称是‘key’的集合中的所有元素，返回的是一个列表，

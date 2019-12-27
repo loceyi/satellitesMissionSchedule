@@ -18,7 +18,7 @@ class MyEnv(gym.Env):
         # self.action_space = spaces.Box(low=-1, high=1, shape=(1,))
         self.action_space = spaces.Discrete(2)# 动作空间
         # self.observation_space = spaces.Box(low=-1, high=1, shape=(1,))
-        self.observation_space = spaces.Discrete(3) # 状态空间
+        self.observation_space = spaces.Discrete(4) # 状态空间
 
     # 其他成员
 
@@ -52,10 +52,11 @@ class MyEnv(gym.Env):
 
     def reset(self):
 
-        Storage = 32
-        TaskNumber = 1
+        Storage =10
+        TaskNumber = 3
         label = 0
-        self.state = np.array([Storage,TaskNumber,label])
+        angle = 0
+        self.state = np.array([Storage, TaskNumber, label, angle])
         self.steps_beyond_done = None
         # self.taskList=[]
         return np.array(self.state)

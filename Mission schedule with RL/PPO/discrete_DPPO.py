@@ -235,11 +235,11 @@ if __name__ == '__main__':
     COORD.join(threads)
 
     # plot reward change and test
-    plt.plot(np.arange(len(GLOBAL_RUNNING_R)), GLOBAL_RUNNING_R)
-    plt.xlabel('Episode')
-    plt.ylabel('Moving reward')
-    # plt.ion();
-    plt.show()
+    # plt.plot(np.arange(len(GLOBAL_RUNNING_R)), GLOBAL_RUNNING_R)
+    # plt.xlabel('Episode')
+    # plt.ylabel('Moving reward')
+    # # plt.ion();
+    # plt.show()
     # env = gym.make('CartPole-v0')
     while True:
         s = env.reset()
@@ -248,3 +248,4 @@ if __name__ == '__main__':
             s, r, done, info = env.step(GLOBAL_PPO.choose_action(s))
             if done:
                 break
+
