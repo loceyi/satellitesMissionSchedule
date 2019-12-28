@@ -52,10 +52,11 @@ class MyEnv(gym.Env):
 
     def reset(self):
 
-        Storage = 10
-        TaskNumber = 3
-        label = 0
-        angle=0
+        Storage = 10.0
+        TaskNumber = 3.0
+        label = (500.0-0)/1000
+        angle=0.0
+        #array 要求数据类型全部一样
         self.state = np.array([Storage,TaskNumber,label,angle])
         #angle为侧摆角
         self.steps_beyond_done = None

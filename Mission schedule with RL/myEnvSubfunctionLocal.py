@@ -26,8 +26,10 @@ def get_env_feedback(S, A):
     # RemainingTime = S[1]
 
     RemainingTimeTotal=RemainingTimeTotalModule.get_value_RemainingTimeTotal()
+    # print('s',S[2])
+    RemainingTime = RemainingTimeTotal[str(S[2])].copy()
+    #RemainingTime是列表
 
-    RemainingTime = RemainingTimeTotal[S[2]].copy()
 
     '''
     根据当前卫星的roll angle，以及当前来临任务的roll angle,计算需要的
@@ -168,7 +170,7 @@ def get_env_feedback(S, A):
         # print('RemainingTimeTotalBefore',RemainingTimeTotal)
         # print(Tasknum,A)
 
-        for i in range(0, len(RemainingTimeTotal)):
+        for i in RemainingTimeTotal:#对字典进行遍历
 
             diff_TW = 0
             RemainingTime_i = RemainingTimeTotal[i].copy()
@@ -202,10 +204,10 @@ def get_env_feedback(S, A):
                     else:
 
                         pass
-                # 判断若窗口全都一样，看看其它状态量是否相同
+
             if diff_TW == 0:
 
-                S[2] = i #与RemainTimetotal中第i个时间窗口相同
+                S[2] = float(i) #与RemainTimetotal中 key='i'时间窗口相同
 
 
             else:
@@ -214,17 +216,24 @@ def get_env_feedback(S, A):
 
         if diff == len(RemainingTimeTotal):
 
-            # new = pd.DataFrame({'Accept': 0,
-            #                     'Reject': 0,
-            #                     'Storage': S[0],
-            #                     'IncomingTask': S[2]},
-            #                    index=[0])
-            #
-            # q_table = q_table.append(new, ignore_index=True)
-            # RemainingTimeTotal.append(RemainingTime)
-            S[2]=len(RemainingTimeTotal)
-            # globalVariableLocal.addNewState(S[0], S[1], S[2])
-            RemainingTimeTotalModule.updateRemainTimeTotal(RemainingTime)
+
+            #计算新的时间窗口feature label
+            label=0
+            for interval in RemainingTime:
+
+                label=interval.upper_bound-interval.lower_bound+label
+
+            S[2]=label/1000
+            # print('S[2]',S[2])
+            if str(label) in RemainingTimeTotal:
+
+                print('Error: Different TimeWindow Generates the same label')
+                sys.exit()
+            else:
+
+                pass
+            # print(label)
+            RemainingTimeTotalModule.updateRemainTimeTotal(S[2],RemainingTime)
 
 
         else:
@@ -290,83 +299,70 @@ def get_env_feedback(S, A):
                     S[1] = taskList[0]
 
 
-
-
                 else:
 
                     S[1] = taskList[0]
 
                     break
 
-        # 判断此时的状态是否是之前的episode遍历过的
-        diff = 0
-        # 判断是否出现过同样的timewindow
-        # print(RemainingTimeTotal)
-        # print(Tasknum, A)
-        for i in range(0, len(RemainingTimeTotal)):
-            diff_TW = 0
-            RemainTimeIndex = i
-            RemainingTime_i = RemainingTimeTotal[RemainTimeIndex].copy()
-
-            CurrentStateRemaingingTime = RemainingTime.copy()
-            CRT = len(CurrentStateRemaingingTime)
-            RT = len(RemainingTime_i)
-
-            if CRT != RT:
-
-                diff_TW += 1
-
-
-            else:
-                # 由于窗口时间是被分成了几段interval存储，所以也要遍历
-                for i_1 in range(0, CRT):
-
-                    CurrentWindow = CurrentStateRemaingingTime[i_1]
-                    ExisintWindow = RemainingTime_i[i_1]
-
-                    if CurrentWindow.lower_bound != ExisintWindow.lower_bound:
-                        diff_TW += 1
-
-                        break
-
-                    elif CurrentWindow.upper_bound != ExisintWindow.upper_bound:
-
-                        diff_TW += 1
-
-                        break
-
-                    else:
-
-                        pass
-                # 判断若窗口全都一样，看看其它状态量是否相同
-            if diff_TW == 0:
-
-                S[2] = i
-
-            else:
-
-                diff += 1
-
-        if diff == len(RemainingTimeTotal):
-
-            # new = pd.DataFrame({'Accept': 0,
-            #                     'Reject': 0,
-            #                     'Storage': S[0],
-            #                     'IncomingTask': S[2]},
-            #                    index=[0])
-            #
-            # q_table = q_table.append(new, ignore_index=True)
-            # RemainingTimeTotal.append(RemainingTime)
-            # S[3] = q_table.shape[0] - 1
-            # S[1] = S[3]
-
-            S[2]=len(RemainingTimeTotal)
-            # globalVariableLocal.addNewState(S[0], S[1], S[2])
-            RemainingTimeTotalModule.updateRemainTimeTotal(RemainingTime)
-
-        else:
-
-            pass
+        #
+        # diff = 0
+        #
+        # for i in range(0, len(RemainingTimeTotal)):
+        #     diff_TW = 0
+        #     RemainTimeIndex = i
+        #     RemainingTime_i = RemainingTimeTotal[RemainTimeIndex].copy()
+        #
+        #     CurrentStateRemaingingTime = RemainingTime.copy()
+        #     CRT = len(CurrentStateRemaingingTime)
+        #     RT = len(RemainingTime_i)
+        #
+        #     if CRT != RT:
+        #
+        #         diff_TW += 1
+        #
+        #
+        #     else:
+        #         # 由于窗口时间是被分成了几段interval存储，所以也要遍历
+        #         for i_1 in range(0, CRT):
+        #
+        #             CurrentWindow = CurrentStateRemaingingTime[i_1]
+        #             ExisintWindow = RemainingTime_i[i_1]
+        #
+        #             if CurrentWindow.lower_bound != ExisintWindow.lower_bound:
+        #                 diff_TW += 1
+        #
+        #                 break
+        #
+        #             elif CurrentWindow.upper_bound != ExisintWindow.upper_bound:
+        #
+        #                 diff_TW += 1
+        #
+        #                 break
+        #
+        #             else:
+        #
+        #                 pass
+        #
+        #     if diff_TW == 0:
+        #
+        #         S[2] = i
+        #
+        #     else:
+        #
+        #         diff += 1
+        #
+        # if diff == len(RemainingTimeTotal):
+        #
+        #
+        #
+        #     S[2]=len(RemainingTimeTotal)
+        #     # globalVariableLocal.addNewState(S[0], S[1], S[2])
+        #     RemainingTimeTotalModule.updateRemainTimeTotal(RemainingTime)
+        #
+        # else:
+        #
+        #     pass
 
     return S,R,done
 

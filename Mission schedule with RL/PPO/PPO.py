@@ -19,9 +19,9 @@ import RemainingTimeTotalModule
 import time
 # env = gym.make('Pendulum-v0').unwrapped
 env = myEnv.MyEnv()
-EP_MAX = 1000 #The maximum nmuber of training episodes
+EP_MAX = 400 #The maximum nmuber of training episodes
 MAX_EP_LEN = 50 #The maximum lenth of each episode
-GAMMA = 1
+GAMMA = 0.9
 A_LR = 0.0001 #learning rate of actor
 C_LR = 0.0002 #learning rate of critic
 BATCH = 32
@@ -35,7 +35,7 @@ S_DIM, A_DIM = N_S, N_A
 #选择优化方法
 METHOD = [
     dict(name='kl_pen', kl_target=0.01, lam=0.5),   # KL penalty
-    dict(name='clip', epsilon=0.3),                 # Clipped surrogate objective, find this is better
+    dict(name='clip', epsilon=0.1),                 # Clipped surrogate objective, find this is better
 ][1]        # choose the method for optimization
 
 
@@ -53,6 +53,7 @@ class PPO(object):
 
             # l1 = tf.layers.dense(self.tfs, 100,activation=tf.nn.relu,kernel_initializer=init1,
             # bias_initializer=tf.zeros_initializer)
+
             l1 = tf.layers.dense(self.tfs, 100, activation=tf.nn.relu)
             l2 = tf.layers.dense(l1, 100, activation=tf.nn.relu)
             # l3 = tf.layers.dense(l2, 300, activation=tf.nn.relu)
