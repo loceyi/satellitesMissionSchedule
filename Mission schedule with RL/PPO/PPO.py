@@ -19,9 +19,9 @@ import RemainingTimeTotalModule
 import time
 # env = gym.make('Pendulum-v0').unwrapped
 env = myEnv.MyEnv()
-EP_MAX = 2000 #The maximum nmuber of training episodes
+EP_MAX = 1000 #The maximum nmuber of training episodes
 MAX_EP_LEN = 50 #The maximum lenth of each episode
-GAMMA = 0.9
+GAMMA = 1
 A_LR = 0.0001 #learning rate of actor
 C_LR = 0.0002 #learning rate of critic
 BATCH = 32
@@ -35,7 +35,7 @@ S_DIM, A_DIM = N_S, N_A
 #选择优化方法
 METHOD = [
     dict(name='kl_pen', kl_target=0.01, lam=0.5),   # KL penalty
-    dict(name='clip', epsilon=0.1),                 # Clipped surrogate objective, find this is better
+    dict(name='clip', epsilon=0.3),                 # Clipped surrogate objective, find this is better
 ][1]        # choose the method for optimization
 
 
@@ -53,8 +53,8 @@ class PPO(object):
 
             # l1 = tf.layers.dense(self.tfs, 100,activation=tf.nn.relu,kernel_initializer=init1,
             # bias_initializer=tf.zeros_initializer)
-            l1 = tf.layers.dense(self.tfs, 200, activation=tf.nn.relu)
-            l2 = tf.layers.dense(l1, 200, activation=tf.nn.relu)
+            l1 = tf.layers.dense(self.tfs, 100, activation=tf.nn.relu)
+            l2 = tf.layers.dense(l1, 100, activation=tf.nn.relu)
             # l3 = tf.layers.dense(l2, 300, activation=tf.nn.relu)
             # W2 = np.random.randn(100, 1) * np.sqrt(2 / 100)
             # init2 = tf.constant_initializer(W2)
@@ -191,14 +191,18 @@ class PPO(object):
 
     def choose_action_discrete(self, s):  # run by a local
         prob_weights = self.sess.run(self.pi, feed_dict={self.tfs: s[None, :]})
-        # if prob_weights[0][0] < 0.01:
+        # if prob_weights[0][0] < 0.1:
         #
-        #     prob_weights[0][0]=prob_weights[0][1]/5+prob_weights[0][0]
-        #     prob_weights[0][1]=prob_weights[0][1]-prob_weights[0][1]/5
-        # elif prob_weights[0][1]<0.01:
+        #     # prob_weights[0][0]=prob_weights[0][1]/5+prob_weights[0][0]
+        #     prob_weights[0][0]=0.5
+        #     prob_weights[0][1]=0.5
+        #     # prob_weights[0][1]=prob_weights[0][1]-prob_weights[0][1]/5
+        # elif prob_weights[0][1]<0.1:
+        #     prob_weights[0][0] = 0.5
+        #     prob_weights[0][1] = 0.5
         #
-        #     prob_weights[0][1] = prob_weights[0][0] / 5 + prob_weights[0][1]
-        #     prob_weights[0][0] = prob_weights[0][0] - prob_weights[0][0] / 5
+        #     # prob_weights[0][1] = prob_weights[0][0] / 5 + prob_weights[0][1]
+        #     # prob_weights[0][0] = prob_weights[0][0] - prob_weights[0][0] / 5
         # else:
         #
         #     pass
@@ -275,12 +279,9 @@ for ep in range(EP_MAX):
     plt.plot(ax, ay)  # 画出当前 ax 列表和 ay 列表中的值的图形
     plt.pause(0.1)  # 暂停一秒
     plt.ioff()
-    # print(
-    #     'Ep: %i' % ep,
-    #     "|Ep_r: %i" % ep_r
-    # )
-    # Rewardrecord.append(ep_r)
 
 
+reward_array=np.array(ay)
+np.save('reward2.npy',reward_array)
 print('MAX_Record',MAX_Record,'MAX_Reward',MAX_Reward)
 

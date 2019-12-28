@@ -44,3 +44,5 @@ for i in range(0,17):
 
     print('task',S[1],'Action',A)
 print('Total Reward', TotalReward)
+
+# [[3, 1], [14, 1], [8, 1], [12, 1], [9, 1], [4, 1], [10, 1], [5, 1]]

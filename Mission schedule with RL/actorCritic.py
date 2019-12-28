@@ -7,7 +7,7 @@
 #######################################################################
 ## https://www.cnblogs.com/pinard/p/10272023.html ##
 ## 强化学习(十四) Actor-Critic ##
-
+import matplotlib.pyplot as plt
 import gym
 import tensorflow as tf
 import numpy as np
@@ -18,8 +18,8 @@ import globalVariableLocal as globalVariable
 import myEnvLocal as myEnv
 
 # Hyper Parameters
-GAMMA = 0.95 # discount factor
-LEARNING_RATE=0.01
+GAMMA = 0.9 # discount factor
+LEARNING_RATE=0.001
 
 class Actor():
     def __init__(self, env, sess):
@@ -166,10 +166,13 @@ def main():
   env = myEnv.MyEnv()#导入自我编写环境
   actor = Actor(env, sess)
   critic = Critic(env, sess)
-
+  ax = []
+  ay = []
   for episode in range(EPISODE):
     # initialize task
     # initialize task
+    ep_r=0
+
     globalVariable.initTasklist()  # 每个episode开始前都初始化Tasklist
     state = env.reset()
     # Train
@@ -181,9 +184,15 @@ def main():
       actor.learn(state, action, td_error)  # true_gradient = grad[logPi(s,a) * td_error]
       #每一步都学习，而不是像PG一样只在跑完一个episode后学习
       state = next_state
+      ep_r += reward
       if done:
           break
-
+    ax.append(episode)  # 添加 i 到 x 轴的数据中
+    ay.append(ep_r)  # 添加 i 的平方到 y 轴的数据中
+    plt.clf()  # 清除之前画的图
+    plt.plot(ax, ay)  # 画出当前 ax 列表和 ay 列表中的值的图形
+    plt.pause(0.1)  # 暂停一秒
+    plt.ioff()
     # # Test every 100 episodes
     # if episode % 100 == 0:
     #   total_reward = 0
