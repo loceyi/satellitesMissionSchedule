@@ -7,12 +7,9 @@ def get_env_feedback(S,task,RemainingTime):
     ms_b=15 #秒s
     ms_e=5 #秒s
 
-    done=0
-
     rollAngle=S[2]
 
-    Tasknum = S[1]
-    TaskRequirement=task
+
 
 
 
@@ -21,7 +18,7 @@ def get_env_feedback(S,task,RemainingTime):
     机动时间，将时间添加进来临Task的时间窗口内
     '''
 
-    taskRollAngle = TaskRequirement[4] #roll angle of incoming task
+    taskRollAngle = task[4] #roll angle of incoming task
     deltaRollAngle=abs(taskRollAngle-rollAngle)#需要机动的角度
     if deltaRollAngle <= pow(maxOmega,2)/a_omega:
 
@@ -34,7 +31,7 @@ def get_env_feedback(S,task,RemainingTime):
     # attitudeManeuverTimeJulian= attitudeManeuverTimeSeconds/86400.0
     # print(attitudeManeuverTimeJulian)
     #修改incoming task的起始时间
-    TaskRequirement[0] = TaskRequirement[0]-attitudeManeuverTimeSeconds
+    task[0] = task[0]-attitudeManeuverTimeSeconds
 
 
 
@@ -48,8 +45,8 @@ def get_env_feedback(S,task,RemainingTime):
     for j in range(0, len(RemainingTime)):
         # print('RemainingTime',RemainingTime)
         # print('n',task[0] - attitudeManeuverTimeSeconds)
-        if ((task[0] - attitudeManeuverTimeSeconds) in RemainingTime[j]) and \
-                (task[1] in RemainingTime[j]):
+        if (task[0]   in RemainingTime[j]) and \
+                (task[1]  in RemainingTime[j]):
             Counter += 1
 
         else:
@@ -72,19 +69,19 @@ def get_env_feedback(S,task,RemainingTime):
 
         for i in range(0, len(RemainingTime)):
 
-            if (TaskRequirement[0] in RemainingTime[i]) and (TaskRequirement[1] in RemainingTime[i]):
+            if (task[0] in RemainingTime[i]) and (task[1] in RemainingTime[i]):
                 NumTW = i
                 # print(NumTW)
 
                 break
 
-        R = float(TaskRequirement[3])
+        R = float(task[3])
         S[2]= taskRollAngle #更新卫星姿态
-        S[0] = S[0] - TaskRequirement[2]
+        S[0] = S[0] - task[2]
         # 更新可用时间窗口
         # a=S[1]
-        NewTW_1 = Interval(RemainingTime[NumTW].lower_bound, TaskRequirement[0], closed=True)
-        NewTW_2 = Interval(TaskRequirement[1], RemainingTime[NumTW].upper_bound, closed=True)
+        NewTW_1 = Interval(RemainingTime[NumTW].lower_bound, task[0], closed=True)
+        NewTW_2 = Interval(task[1], RemainingTime[NumTW].upper_bound, closed=True)
         if NewTW_1.upper_bound - NewTW_1.lower_bound == 0:
 
             if NewTW_2.upper_bound - NewTW_2.lower_bound == 0:
@@ -113,7 +110,7 @@ def get_env_feedback(S,task,RemainingTime):
 
     else:
 
-        R = float(0.01)
+        R = 0
 
 
     return S,A,R,RemainingTime
