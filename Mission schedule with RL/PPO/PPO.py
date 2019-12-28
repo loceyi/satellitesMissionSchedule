@@ -35,7 +35,7 @@ S_DIM, A_DIM = N_S, N_A
 #选择优化方法
 METHOD = [
     dict(name='kl_pen', kl_target=0.01, lam=0.5),   # KL penalty
-    dict(name='clip', epsilon=0.2),                 # Clipped surrogate objective, find this is better
+    dict(name='clip', epsilon=0.1),                 # Clipped surrogate objective, find this is better
 ][1]        # choose the method for optimization
 
 
@@ -157,7 +157,7 @@ class PPO(object):
             # init4 = tf.constant_initializer(W4)
             # a_prob = tf.layers.dense(l_a, A_DIM, tf.nn.softmax, trainable=trainable,
             # kernel_initializer=init4,bias_initializer=tf.zeros_initializer)
-            a_prob = tf.layers.dense(l_a2, A_DIM, tf.nn.softmax, trainable=trainable)
+            a_prob = tf.layers.dense(l_a2, A_DIM, tf.nn.softmax, trainable=trainable)#kernel_initializer=tf.zeros_initializer
         params = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope=name)
         '''
         用来获取一个名称是‘key’的集合中的所有元素，返回的是一个列表，
