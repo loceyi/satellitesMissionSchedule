@@ -20,7 +20,7 @@ def get_env_feedback(S, A):
     taskList=globalVariableLocal.get_value_taskList()
     TaskTotal=globalVariableLocal.get_value_TaskTotal() #返回整个task字典变量
     # This is how agent will interact with the environment
-    Tasknum = S[1]
+    Tasknum = int(S[1])
     TaskRequirement=globalVariableLocal.get_value_Task(str(Tasknum)).copy()
     # S[2]=taskList[0]
     # RemainingTime = S[1]

@@ -6,10 +6,10 @@ import numpy as np
 import pymap3d as pm
 import numpy as np
 
-def GSAT(Latitude_3,Longitude_3,Altitude,year, month, day, hour, minute, second):
+def GSAT(Latitude_3,Longitude_3,Altitude,year, month, day, hour, minute, second,file_name):
 
     import pandas as pd  # 导入pandas包
-    Orbitdata = pd.read_csv("TWORbitdata.csv")
+    Orbitdata = pd.read_csv(file_name)
     time=Orbitdata['Time']#取a列
     x=Orbitdata['x (km)']
     y=Orbitdata['y (km)']
@@ -41,7 +41,7 @@ def GSAT(Latitude_3,Longitude_3,Altitude,year, month, day, hour, minute, second)
     datetime.datetime(year, month, day, hour, minute, second)
     for t in time:
         # print('t',t)
-        t_datetime=datetime.datetime(year, month, day, hour+t//3600, (minute+t//60)%60, (second +t)%60)
+        t_datetime=datetime.datetime(year, month, day, hour + (second +t) // 3600, (minute + (second + t) // 60) % 60, (second + t) % 60)
         # print('t_datetime',t_datetime)
         az, elev, slantRange=pm.eci2aer((x[t]*1e3, y[t]*1e3, z[t]*1e3), Latitude_3, Longitude_3, Altitude, t_datetime,useastropy=False)
         # print('elev',elev)
@@ -60,7 +60,7 @@ def GSAT(Latitude_3,Longitude_3,Altitude,year, month, day, hour, minute, second)
     x_max = x[max_t]*1e3
     y_max = y[max_t]*1e3
     z_max = z[max_t]*1e3
-    t_max_datetime = datetime.datetime(year, month, day, hour + max_t // 3600, (minute + max_t // 60) % 60, (second + max_t) % 60)
+    t_max_datetime = datetime.datetime(year, month, day, hour + (second +max_t) // 3600, (minute + (second + max_t) // 60) % 60, (second + max_t) % 60)
     # print(' t_max_datetime ', t_max_datetime )
     x_max_ecef,y_max_ecef,z_max_ecef=pm.eci2ecef(np.array((x_max,y_max,z_max)),t_max_datetime,useastropy= False)
     x_target_3, y_target_3, z_target_3 = pm.geodetic2ecef(Latitude_3, Longitude_3, Altitude,deg=True)
@@ -152,18 +152,21 @@ def GSAT(Latitude_3,Longitude_3,Altitude,year, month, day, hour, minute, second)
 
 
 if __name__ == "__main__":
-    year = 2016
-    month = 5
-    day = 2
-    hour = 6
-    minute = 0
+    year = 2020
+    month = 1
+    day = 1
+    hour = 2
+    minute = 45
     second = 0
-    Longitude = 100
-    Latitude = 30
+    Longitude = 127.17
+    Latitude = 44.93
+
+
     # MAX_ElevationAngle=45
     Altitude = 0
+    file_name='TWorbitdata2.csv'
 
-    max_t,alpha=GSAT(Latitude,Longitude,Altitude,year, month, day, hour, minute, second)
+    max_t,alpha=GSAT(Latitude,Longitude,Altitude,year, month, day, hour, minute, second,file_name)
 
     print(max_t,alpha)
 

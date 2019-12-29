@@ -36,7 +36,7 @@ S_DIM, A_DIM = N_S, N_A
 METHOD = [
     dict(name='kl_pen', kl_target=0.01, lam=0.5),   # KL penalty
     dict(name='clip', epsilon=0.1),                 # Clipped surrogate objective, find this is better
-][1]        # choose the method for optimization
+         ][1]        # choose the method for optimization
 
 
 class PPO(object):
