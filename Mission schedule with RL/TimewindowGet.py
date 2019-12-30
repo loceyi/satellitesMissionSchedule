@@ -152,21 +152,21 @@ def GSAT(Latitude_3,Longitude_3,Altitude,year, month, day, hour, minute, second,
 
 
 if __name__ == "__main__":
-    year = 2020
-    month = 1
-    day = 1
-    hour = 2
-    minute = 45
+    year = 2016
+    month = 5
+    day = 2
+    hour = 6
+    minute = 0
     second = 0
-    Longitude = 127.17
-    Latitude = 44.93
+    Longitude = 145.805
+    Latitude = 30.906
 
 
     # MAX_ElevationAngle=45
     Altitude = 0
-    file_name='TWorbitdata2.csv'
+    file_name='TWorbitdata.csv'
 
     max_t,alpha=GSAT(Latitude,Longitude,Altitude,year, month, day, hour, minute, second,file_name)
 
-    print(max_t,alpha)
+    print(max_t-18*60-40,alpha)
 

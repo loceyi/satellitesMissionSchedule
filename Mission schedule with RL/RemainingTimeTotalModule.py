@@ -7,7 +7,7 @@ def initRemainingTimeTotal():
 
 
 
-    RemainingTimeTotal={'0.5':[Interval(0, 500, closed=True)]}
+    RemainingTimeTotal={'3.6':[Interval(0, 3600, closed=True)]}
 
     # RemainingTimeTotal = [[Interval(0, 500, closed=True)]]
     #初始时间要早一些，因为要留一定时间给卫星机动到第一个任务
