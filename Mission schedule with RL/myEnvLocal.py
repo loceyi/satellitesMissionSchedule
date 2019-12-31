@@ -52,8 +52,8 @@ class MyEnv(gym.Env):
 
     def reset(self):
 
-        Storage = 20.0
-        TaskNumber = 3
+        Storage = 50
+        TaskNumber = 1
         label = (3600.0-0)/1000
         angle=0.0
         #array 要求数据类型全部一样

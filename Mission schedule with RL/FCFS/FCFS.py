@@ -52,8 +52,8 @@ Task=get_value_TaskTotal()
 # taskList=[3,7,2,14,16,1,13,8,12,6,9,15,4,10,17,5,11]
 taskList=get_value_taskList()
 RemainingTime = [Interval(0, 3600, closed=True)]
-Storage = 20
-TaskNumber = 3
+Storage = 50
+TaskNumber = 1
 label = 0
 angle=0
 S = np.array([Storage,TaskNumber,angle])

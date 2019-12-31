@@ -1,5 +1,7 @@
 
 
+
+from openpyxl import load_workbook
 import math
 import datetime
 import numpy as np
@@ -166,23 +168,50 @@ def GSAT(Latitude_3,Longitude_3,Altitude,year, month, day, hour, minute, second,
 
 
 if __name__ == "__main__":
+    Task={}
     year = 2019
     month =12
     day = 30
     hour = 15
     minute =0
     second = 0
-    Longitude = -125.448
+    #读取信息
 
-    Latitude = 52.608
+    file_home = 'target.xlsx'
+    Task_initial1 = load_workbook(filename=file_home)
+
+    Task_initial = Task_initial1['Sheet1']
 
 
-    # MAX_ElevationAngle=45
-    Altitude = 0
-    file_name='TWorbitdata3.csv'
-    file_name_ecef='TWorbitdata3ECEF.csv'
-    max_t,alpha=GSAT(Latitude,Longitude,Altitude,year, month, day, hour,
-                     minute, second,file_name,file_name_ecef)
+    # workbook = xlrd.open_workbook("target.xlsx")
+    #
+    # worksheet = workbook.sheet_by_index(0)
+    #写入成像时间和滚转角
 
-    print(max_t,alpha)
+    # book = xlwt.Workbook(encoding="utf-8", style_compression=0)
+    #
+    # sheet = book.add_sheet('Sheet1', cell_overwrite_ok=True)
 
+    for i in range(0,50):
+
+        i_str=str(i+2)
+
+        Latitude = Task_initial["B"+i_str].value
+        Longitude = Task_initial["C"+i_str].value
+
+
+        # MAX_ElevationAngle=45
+        Altitude = 0
+        file_name='TWorbitdata3.csv'
+        file_name_ecef='TWorbitdata3ECEF.csv'
+        max_t,alpha=GSAT(Latitude,Longitude,Altitude,year, month, day, hour,
+                         minute, second,file_name,file_name_ecef)
+
+        Task_initial["D" + i_str]= max_t
+        Task_initial["E" + i_str] = alpha
+        Task[str(i+1)]=[max_t,max_t,1,2,alpha]
+            # print(max_t,alpha)
+
+    Task_initial1.save("target.xlsx")
+
+    print(Task)
