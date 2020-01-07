@@ -20,7 +20,7 @@ import time
 # env = gym.make('Pendulum-v0').unwrapped
 env = myEnv.MyEnv()
 EP_MAX = 400 #The maximum nmuber of training episodes
-MAX_EP_LEN = 50 #The maximum lenth of each episode
+MAX_EP_LEN = 100 #The maximum lenth of each episode
 GAMMA = 0.9
 A_LR = 0.0001 #learning rate of actor
 C_LR = 0.0002 #learning rate of critic
@@ -35,7 +35,7 @@ S_DIM, A_DIM = N_S, N_A
 #选择优化方法
 METHOD = [
     dict(name='kl_pen', kl_target=0.01, lam=0.5),   # KL penalty
-    dict(name='clip', epsilon=0.1),                 # Clipped surrogate objective, find this is better
+    dict(name='clip', epsilon=0.2),                 # Clipped surrogate objective, find this is better
          ][1]        # choose the method for optimization
 
 
