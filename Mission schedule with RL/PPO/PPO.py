@@ -19,7 +19,7 @@ import RemainingTimeTotalModule
 import time
 # env = gym.make('Pendulum-v0').unwrapped
 env = myEnv.MyEnv()
-EP_MAX = 400 #The maximum nmuber of training episodes
+EP_MAX = 80 #The maximum nmuber of training episodes
 MAX_EP_LEN = 100 #The maximum lenth of each episode
 GAMMA = 0.9
 A_LR = 0.0001 #learning rate of actor
@@ -282,7 +282,9 @@ for ep in range(EP_MAX):
     plt.ioff()
 
 
+print('MAX_Record',MAX_Record,'MAX_Reward',MAX_Reward)
+plt.pause(0)
 reward_array=np.array(ay)
 np.save('reward2.npy',reward_array)
-print('MAX_Record',MAX_Record,'MAX_Reward',MAX_Reward)
+# print('MAX_Record',MAX_Record,'MAX_Reward',MAX_Reward)
 
